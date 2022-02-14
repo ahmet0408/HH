@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "1a1bd1e9-63b3-4f1e-961b-1149c8fd203f": {
+      "ProjectGuid": "1a1bd1e9-63b3-4f1e-961b-1149c8fd203f",
+      "DisplayName": "HH.dal",
+      "ColorIndex": 0
+    },
+    "8af7edc6-59f7-468c-8e30-c7b2d756985a": {
+      "ProjectGuid": "8af7edc6-59f7-468c-8e30-c7b2d756985a",
+      "DisplayName": "HH.web",
+      "ColorIndex": 1
+    },
+    "24d90b63-5282-4b53-958b-734705511140": {
+      "ProjectGuid": "24d90b63-5282-4b53-958b-734705511140",
+      "DisplayName": "HH.BLL",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "ba30529c-3c53-4e2b-aa5b-4d72e87bff8e": {
+      "ProjectGuid": "ba30529c-3c53-4e2b-aa5b-4d72e87bff8e",
+      "DisplayName": "HH.bll",
+      "ColorIndex": 3
+    },
+    "ba88dbb0-9ba6-4041-99af-8ff59666991d": {
+      "ProjectGuid": "ba88dbb0-9ba6-4041-99af-8ff59666991d",
+      "DisplayName": "DevExtreme NuGet.config",
+      "ColorIndex": 4
+    }
+  },
+  "NextColorIndex": 5
+}
