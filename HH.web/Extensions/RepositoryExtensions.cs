@@ -3,6 +3,8 @@ using HH.bll.Services.BannerService;
 using HH.bll.Services.ClientService;
 using HH.bll.Services.CompanyService;
 using HH.bll.Services.ContactService;
+using HH.bll.Services.ImageService;
+using HH.bll.Services.LanguageService;
 using HH.bll.Services.MissionService;
 using HH.bll.Services.ProductService;
 using HH.bll.Services.ProjectService;
@@ -24,6 +26,8 @@ namespace HH.web.Extensions
             services.AddTransient<IBannerService, BannerService>();
             services.AddTransient<IProjectService, ProjectService>();
             services.AddTransient<IContactService, ContactService>();
+            services.AddTransient<ILanguageService, LanguageService>();
+            services.AddTransient<IImageService, ImageService>();
             return services;
         }
     }

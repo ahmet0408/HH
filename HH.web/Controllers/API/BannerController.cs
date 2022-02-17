@@ -31,6 +31,16 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(EditBannerDTO value)
+        {
+            if (ModelState.IsValid)
+            {
+                await _bannerService.EditBanner(value);
+                return Ok(value);
+            }
+            return BadRequest();
+        }
         [HttpDelete]
         public async Task DeleteAsync(int id)
         {

@@ -15,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,9 +23,20 @@ namespace HH.web
 {
     public class Startup
     {
+        public static string WebRootPath { get; private set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+        }
+        public static string MapPath(string path, string basePath = null)
+        {
+            if (string.IsNullOrEmpty(basePath))
+            {
+                basePath = WebRootPath;
+            }
+
+            path = path.Replace("~/", "").TrimStart('/').Replace('/', '\\');
+            return Path.Combine(basePath, path);
         }
 
         public IConfiguration Configuration { get; }
@@ -37,7 +49,14 @@ namespace HH.web
                    Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
             //services.AddHangfire(config =>
             //   config.UsePostgreSqlStorage(Configuration.GetConnectionString("DefaultConnnection")));
-            services.AddControllersWithViews().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+            services.AddControllersWithViews()
+                            .AddDataAnnotationsLocalization(options =>
+                            {
+                                options.DataAnnotationLocalizerProvider = (type, factory) =>
+                                    factory.Create(typeof(SharedResource));
+                            })
+                            .AddRazorRuntimeCompilation()
+                            .AddViewLocalization(); 
             services.AddControllers();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddRepositories();
@@ -103,7 +122,9 @@ namespace HH.web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
+            WebRootPath = env.WebRootPath;
         }
     }
 }

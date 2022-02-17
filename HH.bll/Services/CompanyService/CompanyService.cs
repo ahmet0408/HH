@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HH.bll.DTOs.CompanyDTO;
+using HH.bll.Services.ImageService;
 using HH.dal.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,27 +16,51 @@ namespace HH.bll.Services.CompanyService
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        public CompanyService(ApplicationDbContext dbContext, IMapper mapper)
+        private readonly IImageService _imageService;
+        public CompanyService(ApplicationDbContext dbContext, IMapper mapper, IImageService imageService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _imageService = imageService;
         }
         public async Task CreateNews(CreateNewsDTO modelDTO)
         {
-            dal.Models.Company.News News = _mapper.Map<dal.Models.Company.News>(modelDTO);
-            await _dbContext.News.AddAsync(News);
-            await _dbContext.SaveChangesAsync();
+            if (modelDTO != null)
+            {
+                dal.Models.Company.News news = _mapper.Map<dal.Models.Company.News>(modelDTO);
+                if (modelDTO.FormImage != null)
+                {
+                    news.Image = await _imageService.UploadImage(modelDTO.FormImage, "news");
+                }
+                await _dbContext.News.AddAsync(news);
+                await _dbContext.SaveChangesAsync();
+            }
+            
         }
         public async Task EditNews(EditNewsDTO modelDTO)
         {
-            dal.Models.Company.News News = _mapper.Map<dal.Models.Company.News>(modelDTO);
-            _dbContext.News.Update(News);
-            await _dbContext.SaveChangesAsync();
+            if (modelDTO != null)
+            {
+                dal.Models.Company.News news = _mapper.Map<dal.Models.Company.News>(modelDTO);
+                if (modelDTO.FormImage != null)
+                {
+                    _imageService.DeleteImage(news.Image, "news");
+                    news.Image = await _imageService.UploadImage(modelDTO.FormImage, "news");
+                  
+                }
+                _dbContext.News.Update(news);
+                await _dbContext.SaveChangesAsync();
+            }
+            
         }
         public async Task RemoveNews(int id)
         {
-            dal.Models.Company.News News = await _dbContext.News.FindAsync(id);
-            _dbContext.News.Remove(News);
+            dal.Models.Company.News news = await _dbContext.News.FindAsync(id);
+            if (!string.IsNullOrEmpty(news.Image))
+            {
+                _imageService.DeleteImage(news.Image, "news");
+            }
+            _dbContext.News.Remove(news);
             await _dbContext.SaveChangesAsync();
         } 
         public IEnumerable<NewsDTO> GetAllPublishListNews()

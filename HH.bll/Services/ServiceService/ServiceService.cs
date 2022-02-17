@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HH.bll.DTOs.ServicesDTO;
+using HH.bll.Services.ImageService;
 using HH.dal.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,27 +16,51 @@ namespace HH.bll.Services.ServiceService
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IImageService _imageService;
 
-        public ServiceService(ApplicationDbContext dbContext, IMapper mapper)
+        public ServiceService(ApplicationDbContext dbContext, IMapper mapper, IImageService imageService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _imageService = imageService;
         } 
         public async Task CreateService(CreateServiceDTO modelDTO)
         {
-            dal.Models.Service.Service service = _mapper.Map<dal.Models.Service.Service>(modelDTO);
-            await _dbContext.Services.AddAsync(service);
-            await _dbContext.SaveChangesAsync();
+            if (modelDTO != null)
+            {
+                dal.Models.Service.Service service = _mapper.Map<dal.Models.Service.Service>(modelDTO);
+                if (modelDTO.FormImage != null) 
+                {
+                    service.Image = await _imageService.UploadImage(modelDTO.FormImage, "service"); 
+                } 
+                await _dbContext.Services.AddAsync(service);
+                await _dbContext.SaveChangesAsync();
+            }
         }
         public async Task EditService(EditServiceDTO modelDTO)
         {
-            dal.Models.Service.Service service = _mapper.Map<dal.Models.Service.Service>(modelDTO);
-            _dbContext.Services.Update(service);
-            await _dbContext.SaveChangesAsync();
+            if (modelDTO != null)
+            {
+                dal.Models.Service.Service service = _mapper.Map<dal.Models.Service.Service>(modelDTO);
+                if (modelDTO.FormImage != null)
+                {
+                    _imageService.DeleteImage(service.Image, "service");
+                    service.Image = await _imageService.UploadImage(modelDTO.FormImage, "service");
+                } else
+                {
+                    service.Image = modelDTO.Image;
+                }
+                _dbContext.Services.Update(service);
+                await _dbContext.SaveChangesAsync();
+            }
         }
         public async Task RemoveService(int id)
         {
             dal.Models.Service.Service service = await _dbContext.Services.FindAsync(id);
+            if (!string.IsNullOrEmpty(service.Image))
+            {
+                _imageService.DeleteImage(service.Image, "service");
+            }
             _dbContext.Services.Remove(service);
             await _dbContext.SaveChangesAsync();
         }

@@ -4,6 +4,7 @@ using HH.bll.DTOs.BannerDTO;
 using HH.bll.DTOs.ClientDTO;
 using HH.bll.DTOs.CompanyDTO;
 using HH.bll.DTOs.ContactDTO;
+using HH.bll.DTOs.LanguageDTO;
 using HH.bll.DTOs.MissionDTO;
 using HH.bll.DTOs.ProductDTO;
 using HH.bll.DTOs.ProjectDTO;
@@ -13,6 +14,7 @@ using HH.dal.Models.Banner;
 using HH.dal.Models.Client;
 using HH.dal.Models.Company;
 using HH.dal.Models.Contact;
+using HH.dal.Models.Language;
 using HH.dal.Models.Mission;
 using HH.dal.Models.Product;
 using HH.dal.Models.Project;
@@ -94,6 +96,7 @@ namespace HH.web.Extensions
             CreateMap<Client, ClientDTO>();
 
             CreateMap<CreateBannerDTO, Banner>();
+            CreateMap<EditBannerDTO, Banner>();
             CreateMap<BannerTranslateDTO, BannerTranslate>();
             CreateMap<Banner, BannerDTO>()
                 .ForMember(p => p.Title, p => p.MapFrom(p => p.BannerTranslates.Select(p => p.Title).FirstOrDefault()));
@@ -109,6 +112,9 @@ namespace HH.web.Extensions
 
             CreateMap<CreateUserDTO, User>();
             CreateMap<User, UserDTO>();
+
+            CreateMap<Language, LanguageDTO>();
+            CreateMap<LanguageDTO, Language>();
         }
     }
 }

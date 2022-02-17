@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HH.bll.DTOs.ClientDTO;
+using HH.bll.Services.ImageService;
 using HH.dal.Data;
 using System;
 using System.Collections.Generic;
@@ -13,27 +14,53 @@ namespace HH.bll.Services.ClientService
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IImageService _imageService;
+        public static string FilePath { get; } = "client";
 
-        public ClientService(ApplicationDbContext dbContext, IMapper mapper)
+        public ClientService(ApplicationDbContext dbContext, IMapper mapper, IImageService imageService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _imageService = imageService;
         }
         public async Task CreatClient(CreateClientDTO modelDTO)
         {
-            dal.Models.Client.Client client = _mapper.Map<dal.Models.Client.Client>(modelDTO);
-            await _dbContext.Client.AddAsync(client);
-            await _dbContext.SaveChangesAsync();
+            if (modelDTO != null)
+            {
+                dal.Models.Client.Client client = _mapper.Map<dal.Models.Client.Client>(modelDTO);
+                if (modelDTO.FormLogo != null)
+                {
+                    client.Logo = await _imageService.UploadImage(modelDTO.FormLogo, FilePath);  
+                }
+                await _dbContext.Client.AddAsync(client);
+                await _dbContext.SaveChangesAsync();
+            }
         }
         public async Task EditClient(EditClientDTO modelDTO)
         {
-            dal.Models.Client.Client client = _mapper.Map<dal.Models.Client.Client>(modelDTO);
-            _dbContext.Client.Update(client);
-            await _dbContext.SaveChangesAsync();
+            if (modelDTO != null)
+            {
+                dal.Models.Client.Client client = _mapper.Map<dal.Models.Client.Client>(modelDTO);
+                if (modelDTO.FormLogo != null)
+                {
+                    _imageService.DeleteImage(modelDTO.Logo, FilePath);
+                    client.Logo = await _imageService.UploadImage(modelDTO.FormLogo, FilePath);
+                } else
+                {
+                    client.Logo = modelDTO.Logo;
+                }
+                _dbContext.Client.Update(client);
+                await _dbContext.SaveChangesAsync();
+
+            }
         }
         public async Task RemoveClient(int id)
         {
             dal.Models.Client.Client client =await _dbContext.Client.FindAsync(id);
+            if (!string.IsNullOrEmpty(client.Logo))
+            {
+                _imageService.DeleteImage(client.Logo, FilePath);
+            }
             _dbContext.Client.Remove(client);
             await _dbContext.SaveChangesAsync();
         }

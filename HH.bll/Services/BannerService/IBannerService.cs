@@ -10,6 +10,7 @@ namespace HH.bll.Services.BannerService
     public interface IBannerService
     {
         Task CreateBanner(CreateBannerDTO modelDTO);
+        Task EditBanner(EditBannerDTO modelDTO);
         Task RemoveBanner(int id);
         BannerDTO GetBanner();
     }

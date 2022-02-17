@@ -8,6 +8,7 @@ namespace HH.bll.DTOs.MissionDTO
 {
     public class EditMissionDTO
     {
+        public int Id { get; set; }
         public ICollection<MissionTranslateDTO> MissionTranslates { get; set; }
         public string Icon { get; set; }
         public bool IsPublish { get; set; }

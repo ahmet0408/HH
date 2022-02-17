@@ -8,6 +8,7 @@ namespace HH.bll.DTOs.ProductDTO
 {
     public class EditProductDTO
     {
+        public int Id { get; set; }
         public ICollection<ProductTranslateDTO> ProductTranslates { get; set; }
         public ICollection<CreateOptionDTO> Option { get; set; }
         public bool IsPublish { get; set; }

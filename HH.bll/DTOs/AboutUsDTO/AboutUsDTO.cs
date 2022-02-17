@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace HH.bll.DTOs.AboutUsDTO
 {
     public class AboutUsDTO
     {
-
+        public int Id { get; set; }
         public string Title { get; set; }
   
         public string Description {get; set;}

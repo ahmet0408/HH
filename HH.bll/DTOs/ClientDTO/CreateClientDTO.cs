@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace HH.bll.DTOs.ClientDTO
     public class CreateClientDTO
     {
         [Required]
-        public string Logo { get; set; }
+        public IFormFile FormLogo { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

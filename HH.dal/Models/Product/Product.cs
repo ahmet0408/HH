@@ -12,6 +12,8 @@ namespace HH.dal.Models.Product
         public bool IsPublish { get; set; }
         public string Image { get; set; }
         public int SortOrder { get; set; }
+        public string RequestFile { get; set; }
+        public string DownloadFile { get; set; }
         public ICollection<Option> Option { get; set; } 
         public ICollection<ProductTranslate> ProductTranslates { get; set;}
     }

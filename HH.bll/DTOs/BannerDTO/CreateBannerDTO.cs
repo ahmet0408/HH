@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace HH.bll.DTOs.BannerDTO
     {
         public ICollection<BannerTranslateDTO> BannerTranslates { get; set; }
         [Required]
-        public string Image { get; set; }
+        public IFormFile FormImage { get; set; }
         [Required]
         public bool IsPublish { get; set; }
     }

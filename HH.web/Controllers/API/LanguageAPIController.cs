@@ -10,7 +10,7 @@ using HH.bll.DTOs.LanguageDTO;
 using HH.bll.Services.LanguageService;
 using HH.web.Binder;
 
-namespace TSTB.Web.Areas.Admin.Controllers.API
+namespace HH.web.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]

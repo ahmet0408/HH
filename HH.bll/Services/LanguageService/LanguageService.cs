@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HH.bll.Services.LanguageService
 {
-    public class LanguageService
+    public class LanguageService: ILanguageService
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;

@@ -4,44 +4,170 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HH</title>
+     <link href="~/admin/css/bootstrap.min.css" rel="stylesheet">
+     <link href="~/admin/css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+    <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
+    <!-- Retina iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
+    <!-- Retina iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
+    <!-- Standard iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
+    <!-- Standard iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+    <!-- Styles -->
+    <link href="~/assets/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
+    <link href="~/assets/css/lib/chartist/chartist.min.css" rel="stylesheet">
+    <link href="~/assets/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="~/assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="~/assets/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/assets/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/assets/css/lib/weather-icons.css" rel="stylesheet" />
+    <link href="~/assets/css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="~/assets/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/css/lib/helper.css" rel="stylesheet">
+    <link href="~/assets/css/style.css" rel="stylesheet">
 </head>
-<body class="dx-viewport">
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HH.web</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+<body>
+    @*class="dx-viewport" *@
+    <div class="sidebar sidebar-hide-to-hide sidebar-shrink sidebar-gestures  ">
+            <div class="nano">
+                <div class="nano-content">
+                    <ul>
+                        <div class="logo"><a href="index.html">
+                                <span>Focus</span></a></div>
+                        <li><a class="sidebar-sub-toggle">About Us<span
+                                class="sidebar-collapse-icon ti-angle-down"></span></a>
+                            <ul>
+                                <li><a asp-action="Index" asp-controller="AboutUs" >About Us</a></li>
+                                <li><a asp-action="Create" asp-controller="AboutUs" >Create</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li><a class="sidebar-sub-toggle">Banner<span
+                                class="sidebar-collapse-icon ti-angle-down"></span></a>
+                            <ul>
+                                <li><a href="CreateAbout.html">Create</a></li>
+                                <li><a href="EditAbout.html">Edit</a></li>
+                                <li><a href="RemoveAbout.html">Remove</a></li>
+                            </ul>
+                        </li>
+                          <li><a class="sidebar-sub-toggle">Client<span
+                                class="sidebar-collapse-icon ti-angle-down"></span></a>
+                            <ul>
+                                <li><a href="CreateAbout.html">Create</a></li>
+                                <li><a href="EditAbout.html">Edit</a></li>
+                                <li><a href="RemoveAbout.html">Remove</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sidebar-sub-toggle">Company<span
+                                class="sidebar-collapse-icon ti-angle-down"></span></a>
+                            <ul>
+                                <li><a href="CreateAbout.html">Create</a></li>
+                                <li><a href="EditAbout.html">Edit</a></li>
+                                <li><a href="RemoveAbout.html">Remove</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sidebar-sub-toggle">Contact<span
+                                class="sidebar-collapse-icon ti-angle-down"></span></a>
+                            <ul>
+                                <li><a href="CreateAbout.html">Create</a></li>
+                                <li><a href="EditAbout.html">Edit</a></li>
+                                <li><a href="RemoveAbout.html">Remove</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sidebar-sub-toggle">Mission<span
+                                class="sidebar-collapse-icon ti-angle-down"></span></a>
+                            <ul>
+                                <li><a href="CreateAbout.html">Create</a></li>
+                                <li><a href="EditAbout.html">Edit</a></li>
+                                <li><a href="RemoveAbout.html">Remove</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sidebar-sub-toggle">Product<span
+                                class="sidebar-collapse-icon ti-angle-down"></span></a>
+                            <ul>
+                                <li><a href="CreateAbout.html">Create</a></li>
+                                <li><a href="EditAbout.html">Edit</a></li>
+                                <li><a href="RemoveAbout.html">Remove</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sidebar-sub-toggle">Project<span
+                                class="sidebar-collapse-icon ti-angle-down"></span></a>
+                            <ul>
+                                <li><a href="CreateAbout.html">Create</a></li>
+                                <li><a href="EditAbout.html">Edit</a></li>
+                                <li><a href="RemoveAbout.html">Remove</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="sidebar-sub-toggle">Service<span
+                                class="sidebar-collapse-icon ti-angle-down"></span></a>
+                            <ul>
+                                <li><a href="CreateAbout.html">Create</a></li>
+                                <li><a href="EditAbout.html">Edit</a></li>
+                                <li><a href="RemoveAbout.html">Remove</a></li>
+                            </ul>
                         </li>
                     </ul>
+            </div>
+        </div>
+    </div>
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="float-left">
+                        <div class="hamburger sidebar-toggle">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
-    
-    <div class="container">
+        </div>
+    </div>
+
+    <div class="container" style="margin-left: 250px">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - HH - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+
+    <!-- jquery vendor -->
+    <script src="~/assets/js/lib/jquery.min.js"></script>
+    <script src="~/assets/js/lib/jquery.nanoscroller.min.js"></script>
+    <!-- nano scroller -->
+    <script src="~/assets/js/lib/menubar/sidebar.js"></script>
+    <script src="~/assets/js/lib/preloader/pace.min.js"></script>
+    <!-- sidebar -->
+
+    <script src="~/assets/js/lib/bootstrap.min.js"></script>
+    <script src="~/assets/js/scripts.js"></script>
+    <!-- bootstrap -->
+
+    <script src="~/assets/js/lib/calendar-2/moment.latest.min.js"></script>
+    <script src="~/assets/js/lib/calendar-2/pignose.calendar.min.js"></script>
+    <script src="~/assets/js/lib/calendar-2/pignose.init.js"></script>
+
+
+    <script src="~/assets/js/lib/weather/jquery.simpleWeather.min.js"></script>
+    <script src="~/assets/js/lib/weather/weather-init.js"></script>
+    <script src="~/assets/js/lib/circle-progress/circle-progress.min.js"></script>
+    <script src="~/assets/js/lib/circle-progress/circle-progress-init.js"></script>
+    <script src="~/assets/js/lib/chartist/chartist.min.js"></script>
+    <script src="~/assets/js/lib/sparklinechart/jquery.sparkline.min.js"></script>
+    <script src="~/assets/js/lib/sparklinechart/sparkline.init.js"></script>
+    <script src="~/assets/js/lib/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/assets/js/lib/owl-carousel/owl.carousel-init.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/js/dashboard2.js"></script>
+    <script src="~/admin/js/bootstrap.min.js"></script>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

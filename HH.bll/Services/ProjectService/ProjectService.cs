@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HH.bll.DTOs.ProjectDTO;
+using HH.bll.Services.ImageService;
 using HH.dal.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,10 +16,12 @@ namespace HH.bll.Services.ProjectService
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        public ProjectService(ApplicationDbContext dbContext, IMapper mapper)
+        private readonly IImageService _imageService;
+        public ProjectService(ApplicationDbContext dbContext, IMapper mapper, IImageService imageService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _imageService = imageService;
         }
         public async Task CreateStatus(CreateStatusDTO modelDTO)
         {
@@ -45,22 +48,37 @@ namespace HH.bll.Services.ProjectService
         }
         public async Task CreateProject(CreateProjectDTO modelDTO)
         {
-            var client = _dbContext.Client.Where(p => p.Name == modelDTO.Client).FirstOrDefault();
-            var status = _dbContext.StatusTranslates.Where(p => p.Name == modelDTO.Status).FirstOrDefault();
-            var location = _dbContext.LocationTranslates.Where(p => p.Name == modelDTO.Location).FirstOrDefault();
-            modelDTO.ClientId = client.Id;
-            modelDTO.StatusId = status.StatusId;
-            modelDTO.LocationId = location.LocationId;
-
-
-            dal.Models.Project.Project project = _mapper.Map<dal.Models.Project.Project>(modelDTO);
-             
-            await _dbContext.Project.AddAsync(project);
-            await _dbContext.SaveChangesAsync();
+            if (modelDTO != null)
+            {
+                var client = _dbContext.Client.Where(p => p.Name == modelDTO.Client).FirstOrDefault();
+                var status = _dbContext.StatusTranslates.Where(p => p.Name == modelDTO.Status).FirstOrDefault();
+                var location = _dbContext.LocationTranslates.Where(p => p.Name == modelDTO.Location).FirstOrDefault();
+                modelDTO.ClientId = client.Id;
+                modelDTO.StatusId = status.StatusId;
+                modelDTO.LocationId = location.LocationId;
+                dal.Models.Project.Project project = _mapper.Map<dal.Models.Project.Project>(modelDTO);
+                if (modelDTO.FormImage != null)
+                {
+                    project.Image = await _imageService.UploadImage(modelDTO.FormImage, "project");
+                }
+                await _dbContext.Project.AddAsync(project);
+                await _dbContext.SaveChangesAsync();
+            }
         }
+        //public async Task EditProject(EditProjectDTO modelDTO)
+        //{
+        //    if (modelDTO != null)
+        //    {
+
+        //    }
+        //}
         public async Task RemoveProject(int id)
         {
             dal.Models.Project.Project project = await _dbContext.Project.FindAsync(id);
+            if (!string.IsNullOrEmpty(project.Image))
+            {
+                _imageService.DeleteImage(project.Image, "project");
+            }
             _dbContext.Project.Remove(project);
             await _dbContext.SaveChangesAsync();
         }
