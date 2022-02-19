@@ -30,7 +30,12 @@
       "ProjectGuid": "ba88dbb0-9ba6-4041-99af-8ff59666991d",
       "DisplayName": "DevExtreme NuGet.config",
       "ColorIndex": 4
+    },
+    "188a3948-0034-4cf2-a798-d7faac0551f9": {
+      "ProjectGuid": "188a3948-0034-4cf2-a798-d7faac0551f9",
+      "DisplayName": "DevExtreme NuGet.config",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 6
 }

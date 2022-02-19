@@ -18,7 +18,7 @@ namespace HH.web.Controllers
         {
             _aboutService = aboutService;
             _languageService = languageService;
-            _mapper = mapper;
+            _mapper = mapper;   
         }
 
          public IActionResult Index()
@@ -32,7 +32,7 @@ namespace HH.web.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateAboutUsDTO aboutUs)
         {
             if (ModelState.IsValid)

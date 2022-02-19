@@ -1,14 +1,22 @@
-﻿<!DOCTYPE html>
+﻿@using HH.web
+@using System.Globalization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HH</title>
-     <link href="~/admin/css/bootstrap.min.css" rel="stylesheet">
-     <link href="~/admin/css/sb-admin.css" rel="stylesheet">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <!-- ================= Favicon ================== -->
+
+    <!-- DevExtreme theme -->
+    <link rel="stylesheet" href="~/css/DevExtreme/dx.light.css" />
+    <link rel="stylesheet" href="~/css/DevExtreme/dx.common.css" />
+
+    @*<!-- ================= Favicon ================== -->
     <!-- Standard -->
     <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
     <!-- Retina iPad Touch Icon-->
@@ -18,28 +26,23 @@
     <!-- Standard iPad Touch Icon-->
     <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
     <!-- Standard iPhone Touch Icon-->
-    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">*@
     <!-- Styles -->
-    <link href="~/assets/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
-    <link href="~/assets/css/lib/chartist/chartist.min.css" rel="stylesheet">
     <link href="~/assets/css/lib/font-awesome.min.css" rel="stylesheet">
     <link href="~/assets/css/lib/themify-icons.css" rel="stylesheet">
-    <link href="~/assets/css/lib/owl.carousel.min.css" rel="stylesheet" />
     <link href="~/assets/css/lib/owl.theme.default.min.css" rel="stylesheet" />
-    <link href="~/assets/css/lib/weather-icons.css" rel="stylesheet" />
     <link href="~/assets/css/lib/menubar/sidebar.css" rel="stylesheet">
     <link href="~/assets/css/lib/bootstrap.min.css" rel="stylesheet">
     <link href="~/assets/css/lib/helper.css" rel="stylesheet">
     <link href="~/assets/css/style.css" rel="stylesheet">
 </head>
-<body>
-    @*class="dx-viewport" *@
+<body class="dx-viewport">
     <div class="sidebar sidebar-hide-to-hide sidebar-shrink sidebar-gestures  ">
             <div class="nano">
                 <div class="nano-content">
-                    <ul>
-                        <div class="logo"><a href="index.html">
+                    <div class="logo"><a href="index.html">
                                 <span>Focus</span></a></div>
+                    <ul>
                         <li><a class="sidebar-sub-toggle">About Us<span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
                             <ul>
@@ -131,15 +134,22 @@
         </div>
     </div>
 
-    <div class="container" style="margin-left: 250px">
+    <div  style="margin-left: 250px">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+    <!-- ... -->
+    <script type="text/javascript" src="~/js/DevExtreme/jquery.min.js"></script>
+     <!-- DevExtreme library -->
+    <script type="text/javascript" src="~/js/DevExtreme/dx.all.js"></script>
+    <script src="~/js/DevExtreme/localization/dx.messages.ru.js"></script>
+    <script src="~/js/DevExtreme/aspnet/dx.aspnet.data.js"></script>
 
+    
 
     <!-- jquery vendor -->
-    <script src="~/assets/js/lib/jquery.min.js"></script>
+    @*<script src="~/assets/js/lib/jquery.min.js"></script>*@
     <script src="~/assets/js/lib/jquery.nanoscroller.min.js"></script>
     <!-- nano scroller -->
     <script src="~/assets/js/lib/menubar/sidebar.js"></script>
@@ -149,28 +159,6 @@
     <script src="~/assets/js/lib/bootstrap.min.js"></script>
     <script src="~/assets/js/scripts.js"></script>
     <!-- bootstrap -->
-
-    <script src="~/assets/js/lib/calendar-2/moment.latest.min.js"></script>
-    <script src="~/assets/js/lib/calendar-2/pignose.calendar.min.js"></script>
-    <script src="~/assets/js/lib/calendar-2/pignose.init.js"></script>
-
-
-    <script src="~/assets/js/lib/weather/jquery.simpleWeather.min.js"></script>
-    <script src="~/assets/js/lib/weather/weather-init.js"></script>
-    <script src="~/assets/js/lib/circle-progress/circle-progress.min.js"></script>
-    <script src="~/assets/js/lib/circle-progress/circle-progress-init.js"></script>
-    <script src="~/assets/js/lib/chartist/chartist.min.js"></script>
-    <script src="~/assets/js/lib/sparklinechart/jquery.sparkline.min.js"></script>
-    <script src="~/assets/js/lib/sparklinechart/sparkline.init.js"></script>
-    <script src="~/assets/js/lib/owl-carousel/owl.carousel.min.js"></script>
-    <script src="~/assets/js/lib/owl-carousel/owl.carousel-init.js"></script>
-    <!-- scripit init-->
-    <script src="~/assets/js/dashboard2.js"></script>
-    <script src="~/admin/js/bootstrap.min.js"></script>
-    
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

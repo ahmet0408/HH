@@ -50,13 +50,13 @@ namespace HH.web
             //services.AddHangfire(config =>
             //   config.UsePostgreSqlStorage(Configuration.GetConnectionString("DefaultConnnection")));
             services.AddControllersWithViews()
-                            .AddDataAnnotationsLocalization(options =>
-                            {
-                                options.DataAnnotationLocalizerProvider = (type, factory) =>
-                                    factory.Create(typeof(SharedResource));
-                            })
-                            .AddRazorRuntimeCompilation()
-                            .AddViewLocalization(); 
+                .AddDataAnnotationsLocalization(options =>
+                {
+                    options.DataAnnotationLocalizerProvider = (type, factory) =>
+                        factory.Create(typeof(SharedResource));
+                })
+                .AddRazorRuntimeCompilation()
+                .AddViewLocalization();
             services.AddControllers();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddRepositories();

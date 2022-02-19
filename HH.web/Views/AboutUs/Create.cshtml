@@ -12,7 +12,7 @@
 
 }
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
@@ -20,58 +20,60 @@
             </h1>
         </div>
     </div>
-    <div class="row">
-        <div id="gridContainer">
-            <form asp-action="Create" id="form" enctype="multipart/form-data">
-                <div class="col-md-12">
+    <div class="row" >
+        <div class="col-lg-12" >
+                <form asp-action="Create" id="form" enctype="multipart/form-data">
                     <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             @foreach (LanguageDTO languageDTO in ViewBag.Languages)
                             {
                                 <h2>@languageDTO.Name</h2>
                                 <hr />
-                                <input type="hidden" class="form-control" name="AboutUsTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />                         
-                                <div class="form-group">
+                                <input type="hidden" class="form-control" name="AboutUsTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />                     
                                     <label>@SharedLocalizer["Name"]</label>
-                                    <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Name" />
-                                </div>
+                                    <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Title" />
+                                    <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Description" />
+                                    <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Phone" />
+                                    <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].LocationAdress" />
                                 <br />
                                 lngIndex++;
                             }
-
                         </div>
-                        <div class="col-md-6">
-                            <h2>@SharedLocalizer["Data"]</h2>
-                            <hr />
-
-
+                        <div class="col-lg-6">  
                             <div class="form-group">
-                                <label>@SharedLocalizer["Link"]</label>
-                                <input type="text" class="form-control" name="Link" />
+                                <label>@SharedLocalizer["Image"]</label>
+                                <input type="file" name="FormImage" />
                             </div>
-
-
                             <div class="form-group">
-                                <label>@SharedLocalizer["Order"]</label>
-                                <div id="sortNumber"></div>
+                                <label>@SharedLocalizer["Mail"]</label>
+                                <input type="email" class="form-control" name="mail" />
                             </div>
                              <div class="form-group">
-                                <div id="published"></div>
-                            </div>
-                            
-                        </div>
+                                <label>@SharedLocalizer["Active"]</label><br />
+                                <input type="checkbox" asp-for="IsPublish"/>
+                            </div>                       
                     </div>
- 
                 </div>
-
-                <div class="dx-fieldset">
+                 <div class="dx-fieldset">
                     <br />
                     <div id="summary"></div>
                     <br />
                     <div id="button"></div>
                 </div>
             </form>
-        </div>
-    </div>
+          </div>
+      </div>
 </div>
+@section Scripts {
+    <script>
+         $(function () {
+        $("#button").dxButton({
+                text: '@SharedLocalizer["Add"]',
+                type: "default",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+         });
+    </script>
+}
