@@ -14,11 +14,11 @@ namespace HH.bll.DTOs.ProjectDTO
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public ICollection<ProjectTranslateDTO> ProjectTranslates { get; set; } 
-        public string Client { get; set; }
+        public string Clientt { get; set; }
         public int ClientId { get; set; }
-        public string Status { get; set; }
+        public string Statuss { get; set; }
         public int StatusId { get; set; }
-        public string Location { get; set; }
+        public string Locationn { get; set; }
         public int LocationId { get; set; }
     }
 }

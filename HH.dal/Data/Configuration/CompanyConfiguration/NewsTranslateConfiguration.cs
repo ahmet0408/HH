@@ -15,6 +15,7 @@ namespace HH.dal.Data.Configuration.CompanyConfiguration
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.Title).IsRequired();
             builder.Property(x => x.ShortDesc).IsRequired();
             builder.Property(x => x.Description).IsRequired();
             builder.Property(x => x.LanguageCulture).IsRequired();

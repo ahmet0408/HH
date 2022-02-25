@@ -12,6 +12,5 @@ namespace HH.bll.DTOs.ServicesDTO
         public string ShortDesc { get; set; }
         public string Description { get; set; }
         public string LanguageCulture { get; set; }
-        public int ServiceId { get; set; }
     }
 }

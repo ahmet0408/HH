@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HH.bll.DTOs.ProductDTO;
 using HH.bll.DTOs.ServicesDTO;
 using HH.bll.Services.ImageService;
 using HH.dal.Data;
@@ -44,7 +45,7 @@ namespace HH.bll.Services.ServiceService
                 dal.Models.Service.Service service = _mapper.Map<dal.Models.Service.Service>(modelDTO);
                 if (modelDTO.FormImage != null)
                 {
-                    _imageService.DeleteImage(service.Image, "service");
+                    _imageService.DeleteImage(modelDTO.Image, "service");
                     service.Image = await _imageService.UploadImage(modelDTO.FormImage, "service");
                 } else
                 {
@@ -64,26 +65,25 @@ namespace HH.bll.Services.ServiceService
             _dbContext.Services.Remove(service);
             await _dbContext.SaveChangesAsync();
         }
-        public IEnumerable<ServiceDTO> GetAllPublishServiceDTO()
+        public IEnumerable<ServiceDTO> GetAllPublishService()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
             var service = _dbContext.Services.Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture)).Where(p => p.IsPublish == true);
             var result = _mapper.Map<IEnumerable<ServiceDTO>>(service);
             return result;
         }
-        public async Task<ServiceDetailDTO> GetByIdServiceDetailDTO(int id)
+        public async Task<ServiceDetailDTO> GetServiceDetailById(int id)
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var service = _dbContext.Services.Find(id);
-            var translate = await _dbContext.ServiceTranslates
-                .Where(p => p.LanguageCulture == culture).SingleOrDefaultAsync(p => p.ServiceId == service.Id);
-            ServiceDetailDTO result = new ServiceDetailDTO()
-            {
-                Id = service.Id,
-                Name = translate.Name,
-                Description = translate.Description,
-                Image = service.Image
-            };
+            var service = await _dbContext.Services.Where(p => p.IsPublish == true).Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture)).SingleOrDefaultAsync(p => p.Id == id);
+            ServiceDetailDTO result = _mapper.Map<ServiceDetailDTO>(service);
+            return result;
+        }
+        public IEnumerable<ProductDTO> GetAllService()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var service = _dbContext.Services.Where(p => p.IsPublish == true).Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<ProductDTO>>(service);
             return result;
         }
     }

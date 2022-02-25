@@ -26,7 +26,7 @@ namespace HH.web.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create()   
         {
             ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
             return View();

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Linq;
-using HH.web.Binder;
+using DevExtreme.AspNet.Mvc;
 
 namespace HH.web.Controllers.API
 {
@@ -18,18 +18,24 @@ namespace HH.web.Controllers.API
         {
             _companyservice = companyservice;
         }
-        //GET: api/Company
-        [HttpGet("GetAllPublishListNews")]
-        public object GetAllPublishListNews()
+        [HttpGet("GetAllNews")]
+        public object GetAllNews(DataSourceLoadOptions loadOptions)
         {
-            return (_companyservice.GetAllPublishListNews().AsQueryable());
+            return DataSourceLoader.Load<News>(_companyservice.GetAllNews().AsQueryable(), loadOptions);
+
         }
-        //Get: api/Company/{id}
-        [HttpGet("GetPublishNewsDetail/{id}")]
-        public async Task<IActionResult> Get(int id)
+        //GET: api/Company/GetAllPublishNews
+        [HttpGet("GetAllPublishNews")]
+        public object GetAll()
         {
-            NewsDetailDTO result =await  _companyservice.GetPublishNewsDetail(id);
-            return Ok(result);
+            return _companyservice.GetAllPublishListNews().AsQueryable();
+        }
+        //GET: api/Company/GetNewsPage/1
+        [HttpGet("GetNewsPage/{id}")]
+        public async Task<NewsDetailDTO> Get(int id)
+        {
+            NewsDetailDTO result =await  _companyservice.GetNewsPage(id);
+            return result;
         }
         //POST: api/Company
         [HttpPost]

@@ -16,11 +16,13 @@ namespace HH.web.Controllers.API
         {
             _clientService = clientService;
         }
+        //GET: api/ClientAPI
         [HttpGet]
         public object Get()
         {
-            return (_clientService.GetAllClient().AsQueryable());
+            return _clientService.GetAllClient().AsQueryable();
         }
+        //POST: api/ClientAPI
         [HttpPost]
         public async Task<IActionResult> Post(CreateClientDTO value)
         {
@@ -31,7 +33,8 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
-        [HttpPut]
+        //PUT: api/ClientAPI/1
+        [HttpPut("{id}")]
         public async Task<IActionResult> Put(EditClientDTO value)
         {
             if (ModelState.IsValid)
@@ -41,6 +44,7 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
+        //DELETE: api/ClientAPI/1
         [HttpDelete("{id}")]
         public async Task DeleteAsync(int id)
         {

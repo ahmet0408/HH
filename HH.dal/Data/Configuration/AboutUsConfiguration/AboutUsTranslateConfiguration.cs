@@ -15,9 +15,10 @@ namespace HH.dal.Data.Configuration.AboutUsConfiguration
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Title).IsRequired();
+            builder.Property(x => x.ShortDesc).IsRequired();
             builder.Property(x => x.Description).IsRequired();
-            builder.Property(x => x.Phone).IsRequired();
             builder.Property(x => x.LocationAdress).IsRequired();
+            builder.Property(x => x.LanguageCulture).IsRequired();
             builder.Property(x => x.AboutUsId).IsRequired();
         }
     }

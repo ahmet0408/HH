@@ -8,7 +8,8 @@ namespace HH.bll.DTOs.ProductDTO
 {
     public class CreateOptionDTO
     {
-        public ICollection<CreateOptionContentDTO> OptionContent { get; set; }
         public string OptionCode { get; set; }
+        public int ProductId { get; set; }
+        public string Productt { get; set; }
     }
 }

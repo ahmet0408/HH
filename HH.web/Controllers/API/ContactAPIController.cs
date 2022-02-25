@@ -24,6 +24,7 @@ namespace HH.web.Controllers.API
         [HttpPost]
         public async Task<IActionResult> Post(CreateUserDTO value)
         {
+
             if (ModelState.IsValid)
             {
                 await _contactService.CreateUser(value);

@@ -12,8 +12,9 @@ namespace HH.bll.DTOs.CompanyDTO
         [Required]
         public string Name { get; set; }
         [Required]
+        public string Title { get; set; }
+        [Required]
         public string ShortDesc { get; set; }
-        
         [Required]
         public string Description { get; set; }
         public string LanguageCulture { get; set; }

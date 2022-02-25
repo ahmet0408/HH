@@ -1,4 +1,5 @@
 ﻿using HH.bll.DTOs.BannerDTO;
+using HH.dal.Models.Banner;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace HH.bll.Services.BannerService
         Task EditBanner(EditBannerDTO modelDTO);
         Task RemoveBanner(int id);
         BannerDTO GetBanner();
+        IEnumerable<Banner> GetAllBanner();
     }
 }

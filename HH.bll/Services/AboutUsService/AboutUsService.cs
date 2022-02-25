@@ -29,11 +29,15 @@ namespace HH.bll.Services.AboutUsService
             if (modelDTO != null)
             {
                 dal.Models.AboutUs.AboutUs aboutUs = _mapper.Map<dal.Models.AboutUs.AboutUs>(modelDTO);
-                if (modelDTO.FormImage != null) 
+                if (modelDTO.FormMainImage != null) 
+                {
+                    aboutUs.MainImage = await _imageService.UploadImage(modelDTO.FormMainImage, FilePath);
+                }
+                if (modelDTO.FormImage != null)
                 {
                     aboutUs.Image = await _imageService.UploadImage(modelDTO.FormImage, FilePath);
-                } 
-                await _dbContext.AddAsync(aboutUs);
+                }
+                await _dbContext.AboutUs.AddAsync(aboutUs);
                 await _dbContext.SaveChangesAsync();
             }
         }
@@ -51,7 +55,7 @@ namespace HH.bll.Services.AboutUsService
                 {
                     aboutUs.Image = modelDTO.Image;
                 }
-                _dbContext.Update(aboutUs);
+                _dbContext.AboutUs.Update(aboutUs);
                 await _dbContext.SaveChangesAsync();
             }
         }
@@ -65,11 +69,31 @@ namespace HH.bll.Services.AboutUsService
             _dbContext.AboutUs.Remove(aboutUs);
             await _dbContext.SaveChangesAsync();
         }
-        public async Task<AboutUsDTO> GetAboutUs()
+        public IEnumerable<dal.Models.AboutUs.AboutUs> GetAllAboutUs() 
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var aboutUs =await _dbContext.AboutUs.Where(p => p.IsPublish == true).Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture)).FirstOrDefaultAsync();
-            AboutUsDTO result = _mapper.Map<AboutUsDTO>(aboutUs);
+            var aboutUs = _dbContext.AboutUs.ToList();
+            return aboutUs;
+        }
+        public AboutUsDTO GetAboutUs()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var aboutUs =_dbContext.AboutUs.Where(p => p.IsPublish == true).Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture)).FirstOrDefault();
+            var result = _mapper.Map<AboutUsDTO>(aboutUs);
+            return result;
+        }
+        public async Task<AboutUsDetailDTO> GetAboutUsDetail()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var aboutUs = await _dbContext.AboutUs.Where(p => p.IsPublish == true).Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture)).SingleOrDefaultAsync();
+            AboutUsDetailDTO result = _mapper.Map<AboutUsDetailDTO>(aboutUs);
+            return result;
+        }
+        public async Task<FooterDTO> GetFooter()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var footer = await _dbContext.AboutUs.Where(p => p.IsPublish == true).Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture)).SingleOrDefaultAsync();
+            FooterDTO result = _mapper.Map<FooterDTO>(footer);
             return result;
         }
     }

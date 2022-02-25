@@ -12,10 +12,20 @@ namespace HH.bll.DTOs.AboutUsDTO
     {
         public ICollection<AboutUsTranslateDTO> AboutUsTranslates { get; set; }
         [Required]
+        public IFormFile FormMainImage { get; set; }
+        [Required]
         public IFormFile FormImage { get; set; }
         [Required]
-        public bool IsPublish { get; set; }
+        public string Phone { get; set; }
+        [Required]
+        public string Fax { get; set; }
         [Required]
         public string Mail { get; set; }
+        [Required]
+        public int Longitude { get; set; }
+        [Required]
+        public int Latitude { get; set; }
+        [Required]
+        public bool IsPublish { get; set; }
     }
 }

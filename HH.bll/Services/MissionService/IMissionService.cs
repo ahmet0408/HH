@@ -13,5 +13,6 @@ namespace HH.bll.Services.MissionService
         Task EditMission(EditMissionDTO modelDTO);
         Task RemoveMission(int id);
         IEnumerable<MissionDTO> GetAllPublishMission();
+        IEnumerable<Mission> GetAllMission();
     }
 }

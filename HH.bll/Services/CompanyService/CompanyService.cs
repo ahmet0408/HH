@@ -23,6 +23,13 @@ namespace HH.bll.Services.CompanyService
             _mapper = mapper;
             _imageService = imageService;
         }
+        public IEnumerable<News> GetAllNews()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var news = _dbContext.News.Include(p => p.NewsTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<News>>(news);
+            return result;
+        }
         public async Task CreateNews(CreateNewsDTO modelDTO)
         {
             if (modelDTO != null)
@@ -44,7 +51,7 @@ namespace HH.bll.Services.CompanyService
                 dal.Models.Company.News news = _mapper.Map<dal.Models.Company.News>(modelDTO);
                 if (modelDTO.FormImage != null)
                 {
-                    _imageService.DeleteImage(news.Image, "news");
+                    _imageService.DeleteImage(modelDTO.Image, "news");
                     news.Image = await _imageService.UploadImage(modelDTO.FormImage, "news");
                   
                 }
@@ -72,20 +79,11 @@ namespace HH.bll.Services.CompanyService
             var result = _mapper.Map<IEnumerable<NewsDTO>>(news);
             return result;
         }
-        public async Task<NewsDetailDTO> GetPublishNewsDetail(int id)
+        public async Task<NewsDetailDTO> GetNewsPage(int id)
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var news = await _dbContext.News.FindAsync(id);
-            var translate = await _dbContext.NewsTranslates
-                .Where(p => p.LanguageCulture == culture).SingleOrDefaultAsync(p => p.NewsId == news.Id);
-            NewsDetailDTO result = new()
-            {
-                Id = news.Id,
-                Name = translate.Name,
-                ShortDesc = translate.ShortDesc,
-                Description = translate.Description,
-                Image = news.Image
-            };
+            var news = await _dbContext.News.Where(p => p.IsPublish == true).Include(p => p.NewsTranslates.Where(p => p.LanguageCulture == culture)).SingleOrDefaultAsync(p => p.Id == id);
+            NewsDetailDTO result = _mapper.Map<NewsDetailDTO>(news);
             return result;
         }
     }

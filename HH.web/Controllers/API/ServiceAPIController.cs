@@ -17,16 +17,24 @@ namespace HH.web.Controllers.API
         {
             _service = service;
         }
-        [HttpGet("GetAllPublishServiceDTO")]
-        public object GetAllPublishServiceDTO()
+        // GET: api/ServiceAPI/GetAllPublishService
+        [HttpGet("GetAllPublishService")]
+        public object GetAll()
         {
-            return (_service.GetAllPublishServiceDTO().AsQueryable());  
+            return (_service.GetAllPublishService().AsQueryable());  
         }
-        [HttpGet("GetByIdServiceDetailDTO/{id}")]
-        public async Task<IActionResult> Get(int id)
+        //GET: api/ServiceAPI/GetServiceDetailById/1
+        [HttpGet("GetServiceDetailById/{id}")]
+        public async Task<ServiceDetailDTO> Get(int id)
         {
-            ServiceDetailDTO result = await _service.GetByIdServiceDetailDTO(id);
-            return Ok(result);
+            ServiceDetailDTO result = await _service.GetServiceDetailById(id);
+            return result;
+        }
+        //GET: api/ServiceAPI/GetAllServiceForProduct
+        [HttpGet("GetAllServiceForProduct")]
+        public object GetAllService()
+        {
+            return _service.GetAllService().AsQueryable();
         }
 
         [HttpPost]

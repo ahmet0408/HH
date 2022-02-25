@@ -1,4 +1,6 @@
-﻿using HH.bll.DTOs.MissionDTO;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using HH.bll.DTOs.MissionDTO;
 using HH.bll.Services.MissionService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +19,19 @@ namespace HH.web.Controllers.API
         {
             _missionService = missionService;
         }
+        [HttpGet("GetAllMission")]
+        public object GetAllNews(DataSourceLoadOptions loadOptions)
+        {
+            return DataSourceLoader.Load<Mission>(_missionService.GetAllMission().AsQueryable(), loadOptions);
+
+        }
+        //api/MissionAPI
         [HttpGet]
         public object Get()
         {
             return (_missionService.GetAllPublishMission().AsQueryable());
         }
+        //api/MissionAPI
         [HttpPost]
         public async Task<IActionResult> Post(CreateMissionDTO value)
         {
@@ -32,7 +42,8 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
-        [HttpPut]
+        //api/MissionAPI/1
+        [HttpPut("{id}")]
         public async Task<IActionResult> Edit(EditMissionDTO value)
         {
             if (ModelState.IsValid)
@@ -42,6 +53,7 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
+        //api/MissionAPI/1
         [HttpDelete("{id}")]
         public async Task DeleteAsync(int id)
         {

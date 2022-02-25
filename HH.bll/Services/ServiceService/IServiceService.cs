@@ -1,4 +1,5 @@
-﻿using HH.bll.DTOs.ServicesDTO;
+﻿using HH.bll.DTOs.ProductDTO;
+using HH.bll.DTOs.ServicesDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace HH.bll.Services.ServiceService
         Task CreateService(CreateServiceDTO modelDTO);
         Task EditService(EditServiceDTO modelDTO);
         Task RemoveService(int id);
-        IEnumerable<ServiceDTO> GetAllPublishServiceDTO();
-        Task<ServiceDetailDTO> GetByIdServiceDetailDTO(int id);
+        IEnumerable<ServiceDTO> GetAllPublishService();
+        Task<ServiceDetailDTO> GetServiceDetailById(int id);
+        IEnumerable<ProductDTO> GetAllService();
     }
 }

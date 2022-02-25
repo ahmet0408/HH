@@ -12,30 +12,41 @@ namespace HH.web.Controllers.API
     [ApiController]
     public class ProductAPIController : ControllerBase
     {
-        private readonly IProductService _productservice;
+        private readonly IProductService _productService;
         public ProductAPIController(IProductService productservice)
         {
-            _productservice = productservice;
+            _productService = productservice;
         }
-        [HttpGet("GetAllPublishProductDTO")]
-        public object GetAllPublishProductDTO()
+        //GET: api/ProductAPI/GetOption
+        [HttpGet("GetOption")]
+        public object GetAll()
         {
-            return (_productservice.GetAllPublishProductDTO().AsQueryable());
+            return (_productService.GetAll().AsQueryable());
         }
-        //GET: api/Product
-        [HttpGet("GetPublishProductDetailtDTO/{id}")]
-        public async Task<IActionResult> Get(int id)
+        //GET: api/ProductAPI/GetProduct
+        [HttpGet("GetProduct")]
+        public object GetAllProduct()
         {
-            ProductDetailDTO result = await _productservice.GetProductDetailtWithoutOption(id);
-
-           // await _productservice.GetAllOptionNameByProductId(id);
-            return Ok(result);
+            return (_productService.GetAllProduct().AsQueryable());
         }
-        //GET: api/Product
+        //GET: api/ProductAPI/GetAllPublishProduct
+        [HttpGet("GetAllPublishProduct")]
+        public object GetAllPublishProduct()
+        {
+            return (_productService.GetAllPublishProductDTO().AsQueryable());
+        }
+        //GET: api/Product/GetProductPage/1
+        [HttpGet("GetProductPage/{id}")]
+        public async Task<ProductDetailDTO> Get(int id)
+        {
+            ProductDetailDTO result = await _productService.GetProductPage(id);
+            return result;
+        }
+        //GET: api/Product/GetAllOptionDetailByOptionId/1
         [HttpGet("GetAllOptionDetailByOptionId/{id}")]
-        public object GetAllOptionDetailByOptionId(int id)
+        public object GetOptionContent(int id)
         {
-            return (_productservice.GetAllOptionDetailByOptionId(id).AsQueryable());
+            return (_productService.GetAllOptionDetailByOptionId(id).AsQueryable());
         }
         //POST: api/Product
         [HttpPost]
@@ -43,7 +54,7 @@ namespace HH.web.Controllers.API
         {
             if (ModelState.IsValid)
             {
-                await _productservice.CreateProduct(value);
+                await _productService.CreateProduct(value);
                 return Ok(value);
             }
             return BadRequest();
@@ -53,7 +64,7 @@ namespace HH.web.Controllers.API
         {
             if (ModelState.IsValid)
             {
-                await _productservice.EditProduct(value);
+                await _productService.EditProduct(value);
                 return Ok(value);
             }
             return BadRequest();
@@ -61,7 +72,7 @@ namespace HH.web.Controllers.API
         [HttpDelete("{id}")]
         public async Task DeleteAsync(int id)
         {
-            await _productservice.RemoveProduct(id);
+            await _productService.RemoveProduct(id);
         }
     }
 }

@@ -11,13 +11,13 @@ namespace HH.bll.DTOs.ProductDTO
     public class CreateProductDTO
     {
         public ICollection<ProductTranslateDTO> ProductTranslates { get; set; }
-        public ICollection<CreateOptionDTO> Option { get; set; }
         [Required]
         public bool IsPublish { get; set; }
         [Required]
-        public string Image { get; set; }
+        public IFormFile FormImage { get; set; }
+        [Required]
         public int SortOrder { get; set; }
-        public IFormFile RequestFile { get; set; }
-        public IFormFile DownloadFile { get; set; }
+        public IFormFile FormRequestFile { get; set; }
+        public IFormFile FormDownloadFile { get; set; }
     }
 }

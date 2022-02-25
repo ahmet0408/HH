@@ -1,0 +1,76 @@
+﻿@model HH.bll.DTOs.ProductDTO.CreateOptionDTO
+@using HH.web
+@using HH.bll.DTOs.LanguageDTO
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["Create Option"];
+
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Create Option"]
+            </h1>
+        </div>
+    </div>
+    <div class="row" >
+        <div class="col-lg-12" >
+                <form asp-action="CreateOption" id="form" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-row">
+                        <div class="col-lg-6"> 
+                            <div class="form-group">
+                                <label>@SharedLocalizer["OptionName"]</label>
+                                <input type="text" class="form-control" name="OptionCode" />
+                            </div>
+                             <div class="form-group">
+                                <label>@SharedLocalizer["Product"]</label>
+                                <div id="product"></div>
+                            </div>
+                              
+                       </div>
+                </div>
+                 <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+          </div>
+      </div>
+</div>
+@section Scripts {
+    
+    <script>
+        var getProduct = new DevExpress.data.AspNet.createStore({
+            key: "id",
+            loadUrl: "/api/ProductAPI/GetProduct",
+            onBeforeSend: function (method, ajaxOptions) {
+                ajaxOptions.xhrFields = { withCredentials: true };
+            }
+        });
+       
+     $(function () {
+         $("#product").dxSelectBox({
+                dataSource: getProduct,
+                displayExpr: "name",
+                valueExpr: "name",
+                name: "Productt",
+                searchEnabled: true
+            });
+        
+          $("#button").dxButton({
+                text: '@SharedLocalizer["Add"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+        });
+        </script>
+}

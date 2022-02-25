@@ -14,10 +14,11 @@ namespace HH.dal.Models.Project
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public int ClientId { get; set; }
+        public Client.Client Client { get; set; }
         public int LocationId { get; set; }
-        //public Location Location { get; set; }
+        public Location Location { get; set; }
         public int StatusId { get; set; }
-        //public Status Status { get; set; }
+        public Status Status { get; set; }
         public ICollection<ProjectTranslate> ProjectTranslates { get; set; }    
     }
 }

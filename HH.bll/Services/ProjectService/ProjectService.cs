@@ -29,15 +29,28 @@ namespace HH.bll.Services.ProjectService
             await _dbContext.Status.AddAsync(status);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task EditStatus(EditStatusDTO modelDTO)
+        {
+            dal.Models.Project.Status status = _mapper.Map<dal.Models.Project.Status>(modelDTO);
+            _dbContext.Status.Update(status);
+            await _dbContext.SaveChangesAsync();
+        }
         public async Task RemoveStatus(int id)
         {
             dal.Models.Project.Status status = await _dbContext.Status.FindAsync(id);
             _dbContext.Status.Remove(status);
+            await _dbContext.SaveChangesAsync();
         }
         public async Task CreateLocation(CreateLocationDTO modelDTO)
         {
             dal.Models.Project.Location location = _mapper.Map<dal.Models.Project.Location>(modelDTO);
             await _dbContext.Location.AddAsync(location);
+            await _dbContext.SaveChangesAsync();
+        }
+        public async Task EditLocation(EditLocationDTO modelDTO)
+        {
+            dal.Models.Project.Location location = _mapper.Map<dal.Models.Project.Location>(modelDTO);
+            _dbContext.Location.Update(location);
             await _dbContext.SaveChangesAsync();
         }
         public async Task RemoveLocation(int id)
@@ -50,9 +63,9 @@ namespace HH.bll.Services.ProjectService
         {
             if (modelDTO != null)
             {
-                var client = _dbContext.Client.Where(p => p.Name == modelDTO.Client).FirstOrDefault();
-                var status = _dbContext.StatusTranslates.Where(p => p.Name == modelDTO.Status).FirstOrDefault();
-                var location = _dbContext.LocationTranslates.Where(p => p.Name == modelDTO.Location).FirstOrDefault();
+                var client = _dbContext.Client.Where(p => p.Name == modelDTO.Clientt).FirstOrDefault();
+                var status = _dbContext.StatusTranslates.Where(p => p.Name == modelDTO.Statuss).FirstOrDefault();
+                var location = _dbContext.LocationTranslates.Where(p => p.Name == modelDTO.Locationn).FirstOrDefault();
                 modelDTO.ClientId = client.Id;
                 modelDTO.StatusId = status.StatusId;
                 modelDTO.LocationId = location.LocationId;
@@ -65,13 +78,6 @@ namespace HH.bll.Services.ProjectService
                 await _dbContext.SaveChangesAsync();
             }
         }
-        //public async Task EditProject(EditProjectDTO modelDTO)
-        //{
-        //    if (modelDTO != null)
-        //    {
-
-        //    }
-        //}
         public async Task RemoveProject(int id)
         {
             dal.Models.Project.Project project = await _dbContext.Project.FindAsync(id);
@@ -82,6 +88,18 @@ namespace HH.bll.Services.ProjectService
             _dbContext.Project.Remove(project);
             await _dbContext.SaveChangesAsync();
         }
+        public IEnumerable<dal.Models.Project.StatusTranslate> GetAll()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var status = _dbContext.StatusTranslates.Where(p => p.LanguageCulture == culture);
+            return status;
+        }
+        public IEnumerable<dal.Models.Project.LocationTranslate> GetAllLocation()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName; 
+            var location = _dbContext.LocationTranslates.Where(p => p.LanguageCulture == culture).Where(p => p.LocationId == p.Location.Id && p.Location.IsPublish == true);
+            return location;
+        }
         public IEnumerable<ProjectDTO> GetAllPublishProject()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
@@ -89,28 +107,17 @@ namespace HH.bll.Services.ProjectService
             var result = _mapper.Map<IEnumerable<ProjectDTO>>(project);
             return result;
         }
-        public async Task<ProjectDetailDTO> GetProductDetaildById(int id)
+        public async Task<ProjectDetailDTO> GetProjectPageById(int id)
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var clientId = await _dbContext.Project.Select(p => p.ClientId).FirstOrDefaultAsync();
-            var client = await _dbContext.Client.Where(p => p.Id == clientId).FirstOrDefaultAsync();
-            var statusId = await _dbContext.Project.Select(p => p.StatusId).FirstOrDefaultAsync();
-            var status = await _dbContext.StatusTranslates.Where(p => p.LanguageCulture == culture).FirstOrDefaultAsync(p => p.StatusId == statusId);
-            var locationId = await _dbContext.Project.Select(p => p.LocationId).FirstOrDefaultAsync();
-            var location = await _dbContext.LocationTranslates.Where(p => p.LanguageCulture == culture).FirstOrDefaultAsync(p => p.LocationId == locationId);
-            var project = await _dbContext.Project.FindAsync(id);
-            var translate = await _dbContext.ProjectTranslates.Where(p => p.LanguageCulture == culture).SingleOrDefaultAsync(p => p.ProjectId == id);
-            ProjectDetailDTO result = new()
-            {
-                Title = translate.Title,
-                Image = project.Image,
-                Description = translate.Description,
-                StartDate = project.StartDate,
-                EndDate = project.EndDate,
-                Client = client.Name,
-                Status = status.Name,
-                Location = location.Name
-            };
+            var project = await _dbContext.Project.Where(p => p.IsPublish == true).Include(p => p.ProjectTranslates.Where(p => p.LanguageCulture == culture))
+                .Include(p => p.Client)
+                .Include(p => p.Status)
+                    .ThenInclude(p => p.StatusTranslates.Where(p => p.LanguageCulture == culture))
+                .Include(p => p.Location)
+                    .ThenInclude(p => p.LocationTranslates.Where(p => p.LanguageCulture == culture))
+                .Where(p => p.ClientId == p.Client.Id && p.LocationId == p.Location.Id && p.StatusId == p.Status.Id).SingleOrDefaultAsync(p => p.Id == id);
+            ProjectDetailDTO result = _mapper.Map<ProjectDetailDTO>(project);
             return result;
         }
     }

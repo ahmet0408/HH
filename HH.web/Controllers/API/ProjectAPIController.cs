@@ -16,8 +16,15 @@ namespace HH.web.Controllers.API
         {
             _projectService = projectService;
         }
+        //GET: api/ProjectAPI/GetStatus
+        [HttpGet("GetStatus")]
+        public object GetAll()
+        {
+            return _projectService.GetAll().AsQueryable();
+        }
+        //POST: api/ProjectAPI/CreateStatus
         [HttpPost("CreateStatus")]
-        public async Task<IActionResult> Post(CreateStatusDTO value)
+        public async Task<IActionResult> CreateStatus(CreateStatusDTO value)
         {
             if (ModelState.IsValid)
             {
@@ -26,11 +33,30 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
+        //PUT: api/ProjectAPI/EditStatus/1
+        [HttpPut("EditStatus/{id}")]
+        public async Task<IActionResult> EditStatus(EditStatusDTO value)
+        {
+            if (ModelState.IsValid)
+            {
+                await _projectService.EditStatus(value);
+                return Ok(value);
+            }
+            return BadRequest();
+        }
+        //DELETE: api/ProjectAPI/RemoveStatus/1
         [HttpDelete("RemoveStatus/{id}")]
         public async Task RemoveStatus(int id)
         {
             await _projectService.RemoveStatus(id);
         }
+        //GET: api/ProjectAPI/GetLocation
+        [HttpGet("GetLocation")]
+        public object GetAllLocation()
+        {
+            return _projectService.GetAllLocation().AsQueryable();
+        }
+        //POST: api/ProjectAPI/CreteLocation
         [HttpPost("CreateLocation")]
         public async Task<IActionResult> CreateLocation(CreateLocationDTO value)
         {
@@ -41,22 +67,26 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
+        //DELETE: api/ProjectAPI/RemoveLocation/1
         [HttpDelete("RemoveLocation/{Id}")]
         public async Task RemoveLocation(int id)
         {
             await _projectService.RemoveLocation(id);
         }
-        [HttpGet("GetAllPublishProject")]
+        //GET: api/ProjectAPI/
+        [HttpGet]
         public object Get()
         {
             return _projectService.GetAllPublishProject().AsQueryable();
         } 
-        [HttpGet("GetProjectDetailById/{id}")]
-        public async Task<IActionResult> GetProjectDetailById(int id)
+        //GET: api/ProjectAPI/1
+        [HttpGet("{id}")]
+        public async Task<ProjectDetailDTO> GetProject(int id)
         {
-            ProjectDetailDTO result =await _projectService.GetProductDetaildById(id);
-            return Ok(result);
+            ProjectDetailDTO result =await _projectService.GetProjectPageById(id);
+            return result;
         }
+        //POST: api/ProjectAPI
         [HttpPost("CreateProject")]
         public async Task<IActionResult> CreateProject(CreateProjectDTO value)
         {
@@ -67,7 +97,8 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
-        [HttpDelete("RemoveProject/{id}")]
+        //DELETE: api/ProjectAPI/1
+        [HttpDelete("{id}")]
         public async Task RemoveProject(int id)
         {
             await _projectService.RemoveProject(id);

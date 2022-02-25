@@ -1,4 +1,5 @@
 ﻿using HH.bll.DTOs.AboutUsDTO;
+using HH.dal.Models.AboutUs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,9 @@ namespace HH.bll.Services.AboutUsService
         Task CreateAbout(CreateAboutUsDTO modelDTO);
         Task EditAbout(EditAboutUsDTO modelDTO);
         Task RemoveAbout(int id);
-        Task<AboutUsDTO> GetAboutUs();
+        AboutUsDTO GetAboutUs();
+        IEnumerable<AboutUs> GetAllAboutUs();
+        Task<AboutUsDetailDTO> GetAboutUsDetail();
+        Task<FooterDTO> GetFooter();
     }
 }

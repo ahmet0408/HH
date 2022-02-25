@@ -1,0 +1,183 @@
+﻿@model HH.bll.DTOs.ProjectDTO.CreateProjectDTO
+@using HH.web
+@using HH.bll.DTOs.LanguageDTO
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["Create Project"];
+
+    int lngIndex = 0;
+
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Create Project"]
+            </h1>
+        </div>
+    </div>
+    <div class="row" >
+        <div class="col-lg-12" >
+                <form asp-action="Create" id="form" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            @foreach (LanguageDTO languageDTO in ViewBag.Languages)
+                            {
+                                <h2>@languageDTO.Name</h2>
+                                <hr />
+                                <input type="hidden" class="form-control" name="ProjectTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />                                                         
+                                    <label>@SharedLocalizer["Title"]</label>
+                                    <div id="title-@lngIndex"></div>
+                                    <label>@SharedLocalizer["Description"]</label>
+                                    <div id="description-editor-@lngIndex"></div>
+                                    <script>
+                                    $( function() {
+                                        $("#title-@lngIndex").dxTextBox({
+                                            name: "ProjectTranslates[@lngIndex].Title"
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Enter"]'
+                                            }]
+                                        });
+                                        $("#description-editor-@lngIndex").dxHtmlEditor({
+                                            height: 250,
+                                            toolbar: {
+                                                items: [
+                                                    "undo", "redo", "separator",
+                                                    {
+                                                        formatName: "header",
+                                                        formatValues: [false, 1, 2, 3, 4, 5]
+                                                    },
+                                                    {
+                                                        formatName: "size",
+                                                        formatValues: ["8pt", "10pt", "12pt", "14pt", "18pt", "24pt", "36pt"]
+                                                    },
+                                                        "bold", "italic", "strike", "underline", "separator",
+                                                             "alignLeft", "alignCenter", "alignRight", "alignJustify", "separator",
+                                                              "orderedList", "bulletList", "separator",
+                                                              "color", "background", "separator",
+                                                               "link", "image", "separator",
+                                                               "clear", "codeBlock", "blockquote",
+                                                    {
+                                                        widget: "dxButton",
+                                                        options: {
+                                                            text: "Show markup",
+                                                            stylingMode: "text",
+                                                            onClick: function () {
+                                                                popupInstance.show();
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            name: `ProjectTranslates[@lngIndex].Description`,
+                                        }).dxHtmlEditor("instance");
+                                    });
+                                </script>
+
+                                lngIndex++;
+                            }
+                        </div>
+                        <div class="col-lg-6"> 
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Image"]</label>
+                                <input type="file" class="form-control" name="FormImage" />
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["StartDate"]</label>
+                                <input type="date" class="form-control" name="StartDate" />
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["EndDate"]</label>
+                                <input type="date" class="form-control" name="EndDate" />
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Client"]</label>
+                                <div id="client"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Status"]</label>
+                                <div id="status"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Location"]</label>
+                                <div id="location"></div>
+                            </div>
+                            
+                             <div class="form-group">
+                                <label>@SharedLocalizer["Active"]</label>
+                                <input type="checkbox" class="form-control" asp-for="IsPublish"/>
+                            </div>                       
+                       </div>
+                </div>
+                 <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+          </div>
+      </div>
+</div>
+@section Scripts {
+    
+    <script>
+        var getClient = new DevExpress.data.AspNet.createStore({
+            key: "id",
+            loadUrl: "/api/ClientAPI",
+            onBeforeSend: function (method, ajaxOptions) {
+                ajaxOptions.xhrFields = { withCredentials: true };
+            }
+        });
+        var getStatus = new DevExpress.data.AspNet.createStore({
+            key: "id",
+            loadUrl: "/api/ProjectAPI/GetStatus",
+            onBeforeSend: function (method, ajaxOptions) {
+                ajaxOptions.xhrFields = { withCredentials: true };
+            }
+        });
+        var getLocation = new DevExpress.data.AspNet.createStore({
+            key: "id",
+            loadUrl: "/api/ProjectAPI/GetLocation",
+            onBeforeSend: function (method, ajaxOptions) {
+                ajaxOptions.xhrFields = { withCredentials: true };
+            }
+        });
+     $(function () {
+         $("#client").dxSelectBox({
+                dataSource: getClient,
+                displayExpr: "name",
+                valueExpr: "name",
+                name: "Clientt",
+                searchEnabled: true
+            });
+         $("#status").dxSelectBox({
+                dataSource: getStatus,
+                displayExpr: "name",
+                valueExpr: "name",
+                name: "Statuss",
+                searchEnabled: true
+            });
+            $("#location").dxSelectBox({
+                dataSource: getLocation,
+                displayExpr: "name",
+                valueExpr: "name",
+                name: "Locationn",
+                searchEnabled: true
+            });
+          $("#button").dxButton({
+                text: '@SharedLocalizer["Add"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+        });
+        </script>
+}

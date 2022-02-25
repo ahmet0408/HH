@@ -1,0 +1,193 @@
+﻿@model HH.bll.DTOs.ProductDTO.CreateProductDTO
+@using HH.web
+@using HH.bll.DTOs.LanguageDTO
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["Create Product"];
+    int lngIndex = 0;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Create Product"]
+            </h1>
+        </div>
+    </div>
+    <div class="row" >
+        <div class="col-lg-12" >
+                <form asp-action="Create" id="form" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            @foreach (LanguageDTO languageDTO in ViewBag.Languages)
+                            {
+                                <h2>@languageDTO.Name</h2>
+                                <hr />
+                                <input type="hidden" class="form-control" name="ProductTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />                                                         
+                                    <label>@SharedLocalizer["Name"]</label>
+                                    <div id="name-@lngIndex"></div>
+                                    <label>@SharedLocalizer["ShortDescription"]</label>
+                                    <div id="shortdesc-@lngIndex"></div>
+                                    <label>@SharedLocalizer["Description"]</label>
+                                    <div id="description-editor-@lngIndex"></div>
+                                    <script>
+                                    $( function() {
+                                        $("#name-@lngIndex").dxTextBox({
+                                            name: "ProductTranslates[@lngIndex].Name"
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Enter"]'
+                                            }]
+                                        });
+                                        $("#shortdesc-@lngIndex").dxTextBox({
+                                            name: "ProductTranslates[@lngIndex].ShortDesc"
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Enter"]'
+                                            }]
+                                        });
+                                        $("#description-editor-@lngIndex").dxHtmlEditor({
+                                            height: 250,
+                                            toolbar: {
+                                                items: [
+                                                    "undo", "redo", "separator",
+                                                    {
+                                                        formatName: "header",
+                                                        formatValues: [false, 1, 2, 3, 4, 5]
+                                                    },
+                                                    {
+                                                        formatName: "size",
+                                                        formatValues: ["8pt", "10pt", "12pt", "14pt", "18pt", "24pt", "36pt"]
+                                                    },
+                                                        "bold", "italic", "strike", "underline", "separator",
+                                                             "alignLeft", "alignCenter", "alignRight", "alignJustify", "separator",
+                                                              "orderedList", "bulletList", "separator",
+                                                              "color", "background", "separator",
+                                                               "link", "image", "separator",
+                                                               "clear", "codeBlock", "blockquote",
+                                                    {
+                                                        widget: "dxButton",
+                                                        options: {
+                                                            text: "Show markup",
+                                                            stylingMode: "text",
+                                                            onClick: function () {
+                                                                popupInstance.show();
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            name: `ProductTranslates[@lngIndex].Description`,
+                                        }).dxHtmlEditor("instance");
+                                    });
+                                </script>
+
+                                lngIndex++;
+                            }
+                        </div>
+                        <div class="col-lg-6"> 
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Image"]</label>
+                                <input type="file" class="form-control" name="FormImage" />
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["SortOrder"]</label>
+                                <input type="number" class="form-control" name="SortOrder" />
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["RequestFile"]</label>
+                                <input type="file" class="form-control" name="FormRequestFile" />
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["DownloadFile"]</label>
+                                <input type="file" class="form-control" name="FormDownloadFile" />
+                            </div>
+                             <div class="form-group">
+                                <label>@SharedLocalizer["Active"]</label><br />
+                                <input type="checkbox" class="form-control" asp-for="IsPublish"/>
+                            </div>
+                            @*<div class="btn">
+                                <input type="button" style="cursor: pointer" class="form-control" onclick="GFG_Fun();return false;" value=@SharedLocalizer["AddOption"] />
+                            </div>
+                            <div id="option"></div>
+                            <script>
+                               
+    // Create a break line element
+    var br = document.createElement("br");
+    var x = 0;var q;
+    function GFG_Fun() {
+    
+    // Create an input element for Full Name
+    var FN = document.createElement("input");
+    FN.setAttribute("type", "text");
+    FN.setAttribute("name", "OptionCode");
+    FN.setAttribute("placeholder", "OptionCode");
+    x=x+1;q="content"+x.toString();
+    var s = document.createElement("input");
+    s.setAttribute("class", q);
+    s.setAttribute("style", "cursor: pointer");
+    s.setAttribute("type", "button");
+    s.setAttribute("onclick",`xcontent("${q}"); return false;`)
+    s.setAttribute("value", "Add Content");
+    
+    
+    // create a submit button
+    var c = document.createElement("div");
+    c.setAttribute("class", q);
+     
+    document.getElementById("option").appendChild(FN);
+    document.getElementById("option").appendChild(s);
+    document.getElementById("option").appendChild(br.cloneNode());
+    document.getElementById("option").appendChild(c);
+    \document.getElementById("option").appendChild(br.cloneNode());
+    document.getElementById("option").appendChild(br.cloneNode());
+
+
+            }
+             
+            function xcontent(e) {
+              
+    var SO = document.createElement("input");
+    SO.setAttribute("type", "text");
+    SO.setAttribute("name", "SortOrder");
+    SO.setAttribute("placeholder", "SortOrder");
+    
+    var list = document.getElementsByClassName(e)[1];
+    list.appendChild(SO);
+    list.appendChild(br.cloneNode());
+
+
+    
+    }
+        </script>*@
+                       </div>
+                 </div>
+                     <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+          </div>
+      </div>
+</div>
+@section Scripts {
+    <script>
+     $(function () {
+          $("#button").dxButton({
+                text: '@SharedLocalizer["Add"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+        });
+        </script>
+}

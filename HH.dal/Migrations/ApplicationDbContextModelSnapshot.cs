@@ -17,7 +17,7 @@ namespace HH.dal.Migrations
             modelBuilder
                 .UseIdentityByDefaultColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.12");
 
             modelBuilder.Entity("HH.dal.Models.AboutUs.AboutUs", b =>
                 {
@@ -26,6 +26,10 @@ namespace HH.dal.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
+                    b.Property<string>("Fax")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("text");
@@ -33,7 +37,21 @@ namespace HH.dal.Migrations
                     b.Property<bool>("IsPublish")
                         .HasColumnType("boolean");
 
+                    b.Property<int>("Latitude")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Longitude")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("MainImage")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -57,13 +75,14 @@ namespace HH.dal.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("LanguageCulture")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LocationAdress")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Phone")
+                    b.Property<string>("ShortDesc")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -191,6 +210,10 @@ namespace HH.dal.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("ShortDesc")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -396,12 +419,18 @@ namespace HH.dal.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
+                    b.Property<string>("DownloadFile")
+                        .HasColumnType("text");
+
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("IsPublish")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("RequestFile")
+                        .HasColumnType("text");
 
                     b.Property<int>("SortOrder")
                         .HasColumnType("integer");
@@ -453,12 +482,6 @@ namespace HH.dal.Migrations
 
                     b.Property<bool>("IsPublish")
                         .HasColumnType("boolean");
-
-                    b.Property<int>("Latitude")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Longitude")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -520,6 +543,12 @@ namespace HH.dal.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("LocationId");
+
+                    b.HasIndex("StatusId");
 
                     b.ToTable("Project");
                 });
@@ -933,6 +962,33 @@ namespace HH.dal.Migrations
                         .IsRequired();
 
                     b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("HH.dal.Models.Project.Project", b =>
+                {
+                    b.HasOne("HH.dal.Models.Client.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HH.dal.Models.Project.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HH.dal.Models.Project.Status", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Location");
+
+                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("HH.dal.Models.Project.ProjectTranslate", b =>

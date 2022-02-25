@@ -14,7 +14,6 @@ namespace HH.dal.Data.Configuration.ProjectConfiguration
         public void Configure(EntityTypeBuilder<Status> builder)
         {
             builder.HasKey(x => x.Id);
-            //builder.HasMany(x => x.Projects).WithOne(x => x.Status).HasForeignKey(x => x.StatusId).OnDelete(DeleteBehavior.Cascade);
             builder.HasMany(x => x.StatusTranslates).WithOne(x => x.Status).HasForeignKey(x => x.StatusId).OnDelete(DeleteBehavior.Cascade);
         }
     }

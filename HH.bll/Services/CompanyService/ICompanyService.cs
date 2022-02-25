@@ -12,7 +12,8 @@ namespace HH.bll.Services.CompanyService
         Task CreateNews(CreateNewsDTO modelDTO);
         Task RemoveNews(int id);
         Task EditNews(EditNewsDTO modelDTO);
+        IEnumerable<News> GetAllNews();
         IEnumerable<NewsDTO> GetAllPublishListNews();
-        Task<NewsDetailDTO> GetPublishNewsDetail(int id);
+        Task<NewsDetailDTO> GetNewsPage(int id);
     }
 }

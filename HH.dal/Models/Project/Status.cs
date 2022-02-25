@@ -9,7 +9,6 @@ namespace HH.dal.Models.Project
     public class Status
     {
         public int Id { get; set; }
-        //public ICollection<Project> Projects { get; set; }
         public ICollection<StatusTranslate> StatusTranslates { get; set; }
     }
 }

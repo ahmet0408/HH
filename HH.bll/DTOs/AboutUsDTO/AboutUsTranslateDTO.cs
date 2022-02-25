@@ -9,8 +9,8 @@ namespace HH.bll.DTOs.AboutUsDTO
     public class AboutUsTranslateDTO
     {
         public string Title { get; set; }
+        public string ShortDesc { get; set; }
         public string Description { get; set; }
-        public string Phone { get; set; }
         public string LocationAdress { get; set; }
         public string LanguageCulture { get; set; }
     }

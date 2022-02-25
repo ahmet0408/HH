@@ -46,10 +46,7 @@ namespace HH.bll.Services.BannerService
                     _imageService.DeleteImage(modelDTO.Image, Filepath);
                   
                     banner.Image = await _imageService.UploadImage(modelDTO.FormImage, Filepath);
-                   
-                    // inkini pos 
-                    // upload new
-                    //set image to new image
+                  
                 }
                 else
                 {
@@ -69,10 +66,15 @@ namespace HH.bll.Services.BannerService
             _dbContext.Banner.Remove(banner);
             await _dbContext.SaveChangesAsync();
         }
+        public IEnumerable<dal.Models.Banner.Banner> GetAllBanner() 
+        {
+            var banner = _dbContext.Banner.ToList();
+            return banner;
+        }
         public BannerDTO GetBanner()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var banner = _dbContext.Banner.Include(p => p.BannerTranslates.Where(p => p.LanguageCulture == culture)).FirstOrDefault(p => p.IsPublish == true)   ;
+            var banner = _dbContext.Banner.Include(p => p.BannerTranslates.Where(p => p.LanguageCulture == culture)).FirstOrDefault(p => p.IsPublish == true);
             BannerDTO result = _mapper.Map<BannerDTO>(banner);
             return result;
         }

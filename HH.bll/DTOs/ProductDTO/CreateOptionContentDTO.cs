@@ -9,8 +9,10 @@ namespace HH.bll.DTOs.ProductDTO
 {
     public class CreateOptionContentDTO
     {
-        public ICollection<CreateOptionContentTranslateDTO> OptionContentTranslates { get; set; }
+        public ICollection<OptionContentTranslateDTO> OptionContentTranslates { get; set; }
         [Required]
         public int SortOrder { get; set; }
+        public int OptionId { get; set; }
+        public string Optionn { get; set; }
     }
 }

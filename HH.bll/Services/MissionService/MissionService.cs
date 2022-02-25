@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HH.bll.DTOs.MissionDTO;
+using HH.bll.Services.ImageService;
 using HH.dal.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,28 +15,60 @@ namespace HH.bll.Services.MissionService
     public class MissionService: IMissionService
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IImageService _imageService;
         private readonly IMapper _mapper;
 
-        public MissionService(ApplicationDbContext dbContext, IMapper mapper)
+        public MissionService(ApplicationDbContext dbContext, IMapper mapper, IImageService imageService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _imageService = imageService;
+        }
+        public IEnumerable<Mission> GetAllMission()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var mission = _dbContext.Mission.Include(p => p.MissionTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<Mission>>(mission);
+            return result;
         }
         public async Task CreateMission(CreateMissionDTO modelDTO)
         {
-            dal.Models.Mission.Mission mission = _mapper.Map<dal.Models.Mission.Mission>(modelDTO);
-            await _dbContext.Mission.AddAsync(mission);
-            await _dbContext.SaveChangesAsync();
+            if (modelDTO != null)
+            {
+                dal.Models.Mission.Mission mission = _mapper.Map<dal.Models.Mission.Mission>(modelDTO);
+                if (modelDTO.FormIcon != null)
+                {
+                    mission.Icon = await _imageService.UploadImage(modelDTO.FormIcon, "mission");
+                }
+                await _dbContext.Mission.AddAsync(mission);
+                await _dbContext.SaveChangesAsync();
+            }
+            
         }
         public async Task EditMission(EditMissionDTO modelDTO)
         {
-            dal.Models.Mission.Mission mission = _mapper.Map<dal.Models.Mission.Mission>(modelDTO);
-            _dbContext.Mission.Update(mission);
-            await _dbContext.SaveChangesAsync();
+            if (modelDTO != null)
+            {
+                dal.Models.Mission.Mission mission = _mapper.Map<dal.Models.Mission.Mission>(modelDTO);
+                if (modelDTO.FormIcon != null)
+                {
+                    _imageService.DeleteImage(modelDTO.Icon, "mission");
+                    mission.Icon = await _imageService.UploadImage(modelDTO.FormIcon, "mission");
+                } else
+                {
+                    mission.Icon = modelDTO.Icon;
+                }
+                _dbContext.Mission.Update(mission);
+                await _dbContext.SaveChangesAsync();
+            }
         }
         public async Task RemoveMission(int id)
         {
             dal.Models.Mission.Mission mission = await _dbContext.Mission.FindAsync(id);
+            if (!string.IsNullOrEmpty(mission.Icon))
+            {
+                _imageService.DeleteImage(mission.Icon, "mission");
+            }
             _dbContext.Mission.Remove(mission);
             await _dbContext.SaveChangesAsync();
         }

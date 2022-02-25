@@ -31,27 +31,118 @@
                                 <h2>@languageDTO.Name</h2>
                                 <hr />
                                 <input type="hidden" class="form-control" name="AboutUsTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />                     
-                                    <label>@SharedLocalizer["Name"]</label>
-                                    <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Title" />
-                                    <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Description" />
-                                    <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Phone" />
-                                    <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].LocationAdress" />
-                                <br />
+                                    <label>@SharedLocalizer["Title"]</label>
+                                    <div id="title-@lngIndex"></div>
+                                    <label>@SharedLocalizer["ShortDescription"]</label>
+                                    <div id="shortdesc-@lngIndex"></div>
+                                    <label>@SharedLocalizer["Description"]</label>
+                                    <div id="description-editorr-@lngIndex"></div>
+                                    <label>@SharedLocalizer["Location"]</label>
+                                    <div id="location-@lngIndex"></div>
+
+                                    @*<input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Title" />*@
+                                    @*<input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].ShortDesc" />*@
+                                    @*<input  type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Description" />*@
+                                    @*<input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].LocationAdress" />*@
+
+                                    <script>
+                                    $( function() {
+                                        $("#title-@lngIndex").dxTextBox({
+                                            name: "AboutUsTranslates[@lngIndex].Title"
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Enter"]'
+                                            }]
+                                        });
+                                        $("#shortdesc-@lngIndex").dxTextBox({
+                                            name: "AboutUsTranslates[@lngIndex].ShortDesc"
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Enter"]'
+                                            }]
+                                        });
+                                        $("#location-@lngIndex").dxTextBox({
+                                            name: "AboutUsTranslates[@lngIndex].LocationAdress"
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Enter"]'
+                                            }]
+                                        });
+
+                                        $("#description-editorr-@lngIndex").dxHtmlEditor({
+                                            height: 250,
+                                            toolbar: {
+                                                items: [
+                                                    "undo", "redo", "separator",
+                                                    {
+                                                        formatName: "header",
+                                                        formatValues: [false, 1, 2, 3, 4, 5]
+                                                    },
+                                                    {
+                                                        formatName: "size",
+                                                        formatValues: ["8pt", "10pt", "12pt", "14pt", "18pt", "24pt", "36pt"]
+                                                    },
+                                                        "bold", "italic", "strike", "underline", "separator",
+                                                             "alignLeft", "alignCenter", "alignRight", "alignJustify", "separator",
+                                                              "orderedList", "bulletList", "separator",
+                                                              "color", "background", "separator",
+                                                               "link", "image", "separator",
+                                                               "clear", "codeBlock", "blockquote",
+                                                    {
+                                                        widget: "dxButton",
+                                                        options: {
+                                                            text: "Show markup",
+                                                            stylingMode: "text",
+                                                            onClick: function () {
+                                                                popupInstance.show();
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            name: `AboutUsTranslates[@lngIndex].Description`,
+                                        }).dxHtmlEditor("instance");
+                                    });
+                                </script>
+
                                 lngIndex++;
                             }
                         </div>
                         <div class="col-lg-6">  
                             <div class="form-group">
+                                <label>@SharedLocalizer["MainImage"]</label>
+                                <input type="file" class="form-control" name="FormMainImage" />
+                            </div>
+                            <div class="form-group">
                                 <label>@SharedLocalizer["Image"]</label>
-                                <input type="file" name="FormImage" />
+                                <input type="file" class="form-control" name="FormImage" />
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Phone"]</label>
+                                <input type="text" class="form-control" name="Phone" />
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Fax"]</label>
+                                <input type="text" class="form-control" name="Fax" />
                             </div>
                             <div class="form-group">
                                 <label>@SharedLocalizer["Mail"]</label>
-                                <input type="email" class="form-control" name="mail" />
+                                <input type="email" class="form-control" name="Mail" />
+                            </div>
+                             <div class="form-group">
+                                <label>@SharedLocalizer["Longitude"]</label>
+                                <input type="number" class="form-control" name="Longitude" />
+                            </div>
+                             <div class="form-group">
+                                <label>@SharedLocalizer["Latitude"]</label>
+                                <input type="number" class="form-control" name="Latitude" />
                             </div>
                              <div class="form-group">
                                 <label>@SharedLocalizer["Active"]</label><br />
-                                <input type="checkbox" asp-for="IsPublish"/>
+                                <input type="checkbox" class="form-control" asp-for="IsPublish"/>
                             </div>                       
                     </div>
                 </div>
@@ -67,13 +158,13 @@
 </div>
 @section Scripts {
     <script>
-         $(function () {
-        $("#button").dxButton({
+     $(function () {
+          $("#button").dxButton({
                 text: '@SharedLocalizer["Add"]',
-                type: "default",
+                type: "success",
                 useSubmitBehavior: true,
             });
             $("#summary").dxValidationSummary({});
-         });
-    </script>
+        });
+        </script>
 }

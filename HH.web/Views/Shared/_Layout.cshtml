@@ -12,21 +12,15 @@
     <title>@ViewData["Title"] - HH</title>
     <link rel="stylesheet" href="~/css/site.css" />
 
-    <!-- DevExtreme theme -->
-    <link rel="stylesheet" href="~/css/DevExtreme/dx.light.css" />
-    <link rel="stylesheet" href="~/css/DevExtreme/dx.common.css" />
+    <link href="~/devextreme/css/dx.common.css" rel="stylesheet" />
+    <link href="~/devextreme/css/dx.light.css" rel="stylesheet" />
 
-    @*<!-- ================= Favicon ================== -->
-    <!-- Standard -->
-    <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
-    <!-- Retina iPad Touch Icon-->
-    <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
-    <!-- Retina iPhone Touch Icon-->
-    <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
-    <!-- Standard iPad Touch Icon-->
-    <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
-    <!-- Standard iPhone Touch Icon-->
-    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">*@
+    <!-- jQuery -->
+    <script src="~/admin/js/jquery.js"></script>
+    @*  <script src="~/js/quill.min.js"></script>*@
+    @*<script src="~/devextreme/js/jquery.min.js"></script>*@
+    <script src="~/devextreme/js/dx-quill.min.js"></script>
+ 
     <!-- Styles -->
     <link href="~/assets/css/lib/font-awesome.min.css" rel="stylesheet">
     <link href="~/assets/css/lib/themify-icons.css" rel="stylesheet">
@@ -53,25 +47,22 @@
                         <li><a class="sidebar-sub-toggle">Banner<span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
                             <ul>
-                                <li><a href="CreateAbout.html">Create</a></li>
-                                <li><a href="EditAbout.html">Edit</a></li>
-                                <li><a href="RemoveAbout.html">Remove</a></li>
+                                <li><a asp-action="Index" asp-controller="Banner" >Banner</a></li>
+                                <li><a asp-action="Create" asp-controller="Banner" >Create</a></li>
                             </ul>
                         </li>
                           <li><a class="sidebar-sub-toggle">Client<span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
                             <ul>
-                                <li><a href="CreateAbout.html">Create</a></li>
-                                <li><a href="EditAbout.html">Edit</a></li>
-                                <li><a href="RemoveAbout.html">Remove</a></li>
+                                <li><a asp-action="Index" asp-controller="Client" >Client</a></li>               
+                                <li><a asp-action="Create" asp-controller="Client" >Create</a></li>
                             </ul>
                         </li>
                         <li><a class="sidebar-sub-toggle">Company<span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
                             <ul>
-                                <li><a href="CreateAbout.html">Create</a></li>
-                                <li><a href="EditAbout.html">Edit</a></li>
-                                <li><a href="RemoveAbout.html">Remove</a></li>
+                                <li><a asp-action="Index" asp-controller="Company" >News</a></li>               
+                                <li><a asp-action="Create" asp-controller="Company" >Create</a></li>
                             </ul>
                         </li>
                         <li><a class="sidebar-sub-toggle">Contact<span
@@ -85,33 +76,33 @@
                         <li><a class="sidebar-sub-toggle">Mission<span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
                             <ul>
-                                <li><a href="CreateAbout.html">Create</a></li>
-                                <li><a href="EditAbout.html">Edit</a></li>
-                                <li><a href="RemoveAbout.html">Remove</a></li>
+                                <li><a asp-action="Index" asp-controller="Mission" >Mission</a></li>               
+                                <li><a asp-action="Create" asp-controller="Mission" >Create</a></li>
                             </ul>
                         </li>
                         <li><a class="sidebar-sub-toggle">Product<span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
                             <ul>
-                                <li><a href="CreateAbout.html">Create</a></li>
-                                <li><a href="EditAbout.html">Edit</a></li>
-                                <li><a href="RemoveAbout.html">Remove</a></li>
+                                <li><a asp-action="Index" asp-controller="Product" >Product</a></li>               
+                                <li><a asp-action="Create" asp-controller="Product" >Create</a></li>
+                                <li><a asp-action="CreateOption" asp-controller="Product" >Create Option</a></li>
+                                <li><a asp-action="CreateOptionContent" asp-controller="Product" >Create Option Content</a></li>
                             </ul>
                         </li>
                         <li><a class="sidebar-sub-toggle">Project<span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
                             <ul>
-                                <li><a href="CreateAbout.html">Create</a></li>
-                                <li><a href="EditAbout.html">Edit</a></li>
-                                <li><a href="RemoveAbout.html">Remove</a></li>
+                                <li><a asp-action="Index" asp-controller="Project" >Project</a></li>                
+                                <li><a asp-action="Create" asp-controller="Project" >Create</a></li>
+                                <li><a asp-action="CreateLocation" asp-controller="Project" >Create Location</a></li>
+                                <li><a asp-action="CreateStatus" asp-controller="Project" >Create Status</a></li>
                             </ul>
                         </li>
                         <li><a class="sidebar-sub-toggle">Service<span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
                             <ul>
-                                <li><a href="CreateAbout.html">Create</a></li>
-                                <li><a href="EditAbout.html">Edit</a></li>
-                                <li><a href="RemoveAbout.html">Remove</a></li>
+                                <li><a asp-action="Index" asp-controller="Service" >Project</a></li>                
+                                <li><a asp-action="Create" asp-controller="Service" >Create</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -139,15 +130,12 @@
             @RenderBody()
         </main>
     </div>
-    <!-- ... -->
-    <script type="text/javascript" src="~/js/DevExtreme/jquery.min.js"></script>
-     <!-- DevExtreme library -->
-    <script type="text/javascript" src="~/js/DevExtreme/dx.all.js"></script>
-    <script src="~/js/DevExtreme/localization/dx.messages.ru.js"></script>
-    <script src="~/js/DevExtreme/aspnet/dx.aspnet.data.js"></script>
 
+    <!-- DevExtreme library -->
+    <script src="~/devextreme/js/dx.all.js"></script>
+    <script src="~/devextreme/js/localization/dx.messages.ru.js"></script>
+    <script src="~/devextreme/js/dx.aspnet.data.js"></script>
     
-
     <!-- jquery vendor -->
     @*<script src="~/assets/js/lib/jquery.min.js"></script>*@
     <script src="~/assets/js/lib/jquery.nanoscroller.min.js"></script>
@@ -155,10 +143,9 @@
     <script src="~/assets/js/lib/menubar/sidebar.js"></script>
     <script src="~/assets/js/lib/preloader/pace.min.js"></script>
     <!-- sidebar -->
-
     <script src="~/assets/js/lib/bootstrap.min.js"></script>
     <script src="~/assets/js/scripts.js"></script>
     <!-- bootstrap -->
-    @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
