@@ -16,9 +16,9 @@
     <link href="~/devextreme/css/dx.light.css" rel="stylesheet" />
 
     <!-- jQuery -->
-    <script src="~/admin/js/jquery.js"></script>
+    @*<script src="~/admin/js/jquery.js"></script>*@
     @*  <script src="~/js/quill.min.js"></script>*@
-    @*<script src="~/devextreme/js/jquery.min.js"></script>*@
+    <script src="~/devextreme/js/jquery.min.js"></script>
     <script src="~/devextreme/js/dx-quill.min.js"></script>
  
     <!-- Styles -->
@@ -96,12 +96,14 @@
                                 <li><a asp-action="Create" asp-controller="Project" >Create</a></li>
                                 <li><a asp-action="CreateLocation" asp-controller="Project" >Create Location</a></li>
                                 <li><a asp-action="CreateStatus" asp-controller="Project" >Create Status</a></li>
+                                <li><a asp-action="Location" asp-controller="Project" >Location</a></li>
+                                <li><a asp-action="Status" asp-controller="Project" >Status</a></li>
                             </ul>
                         </li>
                         <li><a class="sidebar-sub-toggle">Service<span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
                             <ul>
-                                <li><a asp-action="Index" asp-controller="Service" >Project</a></li>                
+                                <li><a asp-action="Index" asp-controller="Service" >Service</a></li>                
                                 <li><a asp-action="Create" asp-controller="Service" >Create</a></li>
                             </ul>
                         </li>

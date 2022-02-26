@@ -27,7 +27,7 @@
 @section Scripts{
     <script>
         $(function () {
-            let url = `@API.GetAllAboutUs`;
+            let url = `@API.GetAllAbout`;
             console.log(url);
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
             $("#gridContainer").dxDataGrid({
@@ -84,11 +84,31 @@
                 //},
                 columns: [
                     {
-                        caption: '@SharedLocalizer["Main Image"]',
-                        dataField: "mainImage",
+                        caption: '@SharedLocalizer["Title"]',
+                        dataField: "title",
                         allowHeaderFiltering: false
                     }, 
                     {
+                        caption: '@SharedLocalizer["Short Description"]',
+                        dataField: "shortDesc",
+                        allowHeaderFiltering: false
+                    },
+                    {
+                        caption: '@SharedLocalizer["Description"]',
+                        dataField: "description",
+                        allowHeaderFiltering: false
+                    },
+                    {
+                        caption: '@SharedLocalizer["Main Image"]',
+                        dataField: "mainImage",
+                        allowHeaderFiltering: false
+                    },
+                     {
+                        caption: '@SharedLocalizer["Location Adress"]',
+                        dataField: "locationAdress",
+                        allowHeaderFiltering: false
+                    },
+                     {
                         caption: '@SharedLocalizer["Image"]',
                         dataField: "image",
                         allowHeaderFiltering: false
@@ -103,18 +123,16 @@
                         dataField: "fax",
                         allowHeaderFiltering: false
                     },
-                     {
+                    {
                         caption: '@SharedLocalizer["Mail"]',
                         dataField: "mail",
                         allowHeaderFiltering: false
                     },
-                    ,
-                     {
+                    {
                         caption: '@SharedLocalizer["Longitude"]',
                         dataField: "longitude",
                         allowHeaderFiltering: false
                     },
-                    ,
                      {
                         caption: '@SharedLocalizer["Latitude"]',
                         dataField: "latitude",

@@ -23,6 +23,35 @@ namespace HH.bll.Services.ProjectService
             _mapper = mapper;
             _imageService = imageService;
         }
+        public IEnumerable<Project> GetAlllProject()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var project = _dbContext.Project.Include(p => p.ProjectTranslates.Where(p => p.LanguageCulture == culture))
+                .Include(p => p.Client).Where(p => p.ClientId == p.Client.Id)
+                .Include(p => p.Location)
+                    .ThenInclude(p => p.LocationTranslates.Where(p => p.LanguageCulture == culture))
+                .Where(p => p.LocationId == p.Location.Id)
+                .Include(p => p.Status)
+                    .ThenInclude(p => p.StatusTranslates.Where(p => p.LanguageCulture == culture))
+                .Where(p => p.StatusId == p.StatusId);
+            var result = _mapper.Map<IEnumerable<Project>>(project);
+            return result;
+        }
+                
+        public IEnumerable<LocationDTO> GetAlllLocation()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var location = _dbContext.Location.Include(p => p.LocationTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<LocationDTO>>(location);
+            return result;
+        }
+        public IEnumerable<StatusDTO> GetAlllStatus()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var status = _dbContext.Status.Include(p => p.StatusTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<StatusDTO>>(status);
+            return result;
+        }
         public async Task CreateStatus(CreateStatusDTO modelDTO)
         {
             dal.Models.Project.Status status = _mapper.Map<dal.Models.Project.Status>(modelDTO);

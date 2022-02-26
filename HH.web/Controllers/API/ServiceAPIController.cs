@@ -17,6 +17,11 @@ namespace HH.web.Controllers.API
         {
             _service = service;
         }
+        [HttpGet("GetAlllService")]
+        public object GetAlllService()
+        {
+            return (_service.GetAlllService().AsQueryable());
+        }
         // GET: api/ServiceAPI/GetAllPublishService
         [HttpGet("GetAllPublishService")]
         public object GetAll()

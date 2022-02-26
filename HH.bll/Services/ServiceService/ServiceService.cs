@@ -25,6 +25,13 @@ namespace HH.bll.Services.ServiceService
             _mapper = mapper;
             _imageService = imageService;
         } 
+        public IEnumerable<Service> GetAlllService()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var service = _dbContext.Services.Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<Service>>(service);
+            return result;
+        }
         public async Task CreateService(CreateServiceDTO modelDTO)
         {
             if (modelDTO != null)

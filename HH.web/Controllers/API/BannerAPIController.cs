@@ -2,7 +2,6 @@
 using DevExtreme.AspNet.Mvc;
 using HH.bll.DTOs.BannerDTO;
 using HH.bll.Services.BannerService;
-using HH.dal.Models.Banner;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;

@@ -17,6 +17,11 @@ namespace HH.web.Controllers.API
         {
             _productService = productservice;
         }
+        [HttpGet("GetAlllProduct")]
+        public object GetAlllProduct()
+        {
+            return _productService.GetAlllProduct().AsQueryable();
+        }
         //GET: api/ProductAPI/GetOption
         [HttpGet("GetOption")]
         public object GetAll()

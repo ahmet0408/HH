@@ -49,7 +49,12 @@ namespace HH.web.Controllers
         {
             return View();
         }
-
+       
+        public IActionResult Delete(int? id)
+        {
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View();
+        }
 
     }
 }

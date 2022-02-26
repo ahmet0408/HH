@@ -24,6 +24,13 @@ namespace HH.bll.Services.AboutUsService
             _mapper = mapper;
             _imageService = imageService;
         }
+        public IEnumerable<About> GetAllAbout()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var about = _dbContext.AboutUs.Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<About>>(about);
+            return result;
+        }
         public async Task CreateAbout(CreateAboutUsDTO modelDTO)
         {
             if (modelDTO != null)
@@ -68,12 +75,6 @@ namespace HH.bll.Services.AboutUsService
             }
             _dbContext.AboutUs.Remove(aboutUs);
             await _dbContext.SaveChangesAsync();
-        }
-        public IEnumerable<dal.Models.AboutUs.AboutUs> GetAllAboutUs() 
-        {
-            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var aboutUs = _dbContext.AboutUs.ToList();
-            return aboutUs;
         }
         public AboutUsDTO GetAboutUs()
         {

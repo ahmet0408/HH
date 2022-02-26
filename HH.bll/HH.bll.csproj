@@ -14,8 +14,4 @@
     <ProjectReference Include="..\HH.dal\HH.dal.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\MissionDTO\NewFolder\" />
-  </ItemGroup>
-
 </Project>

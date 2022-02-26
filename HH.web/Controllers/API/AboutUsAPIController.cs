@@ -22,11 +22,11 @@ namespace HH.web.Controllers.API
         {
             _aboutUsservice = aboutUsService;
         }
-        [EnableCors("AllowOrigin")]
-        [HttpGet("GetAllAboutUs")]
-        public object GetAllboutUs(DataSourceLoadOptions loadOptions)
+
+        [HttpGet("GetAllAbout")]
+        public object GetAllbout(DataSourceLoadOptions loadOptions)
         {
-            return DataSourceLoader.Load<AboutUs>(_aboutUsservice.GetAllAboutUs().AsQueryable(), loadOptions);
+            return DataSourceLoader.Load<About>(_aboutUsservice.GetAllAbout().AsQueryable(), loadOptions);
 
         }
         [HttpGet("GetMainAboutUs")]
@@ -68,7 +68,7 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
-        [HttpDelete("{Id}")]
+        [HttpDelete("{id}")]
         public async Task DeleteAsync(int id)
         {
             await _aboutUsservice.RemoveAbout(id);

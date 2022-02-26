@@ -16,6 +16,21 @@ namespace HH.web.Controllers.API
         {
             _projectService = projectService;
         }
+        [HttpGet("GetAlllProject")]
+        public object GetAlllProject()
+        {
+            return _projectService.GetAlllProject().AsQueryable();
+        }
+        [HttpGet("GetAlllLocation")]
+        public object GetAlllLocation()
+        {
+            return _projectService.GetAlllLocation().AsQueryable();
+        }
+        [HttpGet("GetAlllStatus")]
+        public object GetAlllStatus()
+        {
+            return _projectService.GetAlllStatus().AsQueryable();
+        }
         //GET: api/ProjectAPI/GetStatus
         [HttpGet("GetStatus")]
         public object GetAll()

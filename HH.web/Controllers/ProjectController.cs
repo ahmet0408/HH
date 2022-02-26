@@ -23,6 +23,12 @@ namespace HH.web.Controllers
             return View();
         }
         [HttpGet]
+        public IActionResult Location()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult CreateLocation()
         {
             ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
@@ -35,10 +41,15 @@ namespace HH.web.Controllers
             {
                 await _projectService.CreateLocation(location);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Location");
             }
             ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
             return View(location);
+        }
+        [HttpGet]
+        public IActionResult Status()
+        {
+            return View();
         }
         [HttpGet]
         public IActionResult CreateStatus()
@@ -53,7 +64,7 @@ namespace HH.web.Controllers
             {
                 await _projectService.CreateStatus(status);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Status");
             }
             ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
             return View(status);

@@ -24,6 +24,13 @@ namespace HH.bll.Services.BannerService
             _mapper = mapper;
             _imageService = imageService;
         }
+        public IEnumerable<Banner> GetAllBanner()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var banner = _dbContext.Banner.Include(p => p.BannerTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<Banner>>(banner);
+            return result;
+        }
         public async Task CreateBanner(CreateBannerDTO modelDTO)
         {
             if (modelDTO != null && modelDTO.FormImage != null)
@@ -65,11 +72,6 @@ namespace HH.bll.Services.BannerService
             }
             _dbContext.Banner.Remove(banner);
             await _dbContext.SaveChangesAsync();
-        }
-        public IEnumerable<dal.Models.Banner.Banner> GetAllBanner() 
-        {
-            var banner = _dbContext.Banner.ToList();
-            return banner;
         }
         public BannerDTO GetBanner()
         {

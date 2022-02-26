@@ -10,6 +10,9 @@ namespace HH.bll.Services.ProjectService
 {
     public interface IProjectService
     {
+        IEnumerable<DTOs.ProjectDTO.Project> GetAlllProject();
+        IEnumerable<LocationDTO> GetAlllLocation();
+        IEnumerable<StatusDTO> GetAlllStatus();
         Task CreateStatus(CreateStatusDTO modelDTO);
         Task EditStatus(EditStatusDTO modelDTO);
         Task RemoveStatus(int id);

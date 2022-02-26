@@ -23,6 +23,13 @@ namespace HH.bll.Services.ProductService
             _imageService = imageService;
             _mapper = mapper;
         }
+        public IEnumerable<Product> GetAlllProduct()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var product = _dbContext.Product.Include(p => p.ProductTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<Product>>(product);
+            return result;
+        }
         public async Task CreateProduct(CreateProductDTO modelDTO)
         {
             if (modelDTO != null)

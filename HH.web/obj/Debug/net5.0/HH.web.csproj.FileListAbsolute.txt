@@ -468,3 +468,5 @@ C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Service\Create.
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Service\Index.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Product\CreateOption.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Product\CreateOptionContent.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Project\Location.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Project\Status.cshtml.g.cs

@@ -10,7 +10,7 @@ namespace HH.bll.Services.ProductService
 {
     public interface IProductService
     {
-        string Product(int id);
+        IEnumerable<bll.DTOs.ProductDTO.Product> GetAlllProduct();
         IEnumerable<Option> GetAll();
         IEnumerable<ProductTranslate> GetAllProduct();
         Task CreateProduct(CreateProductDTO modelDTO);

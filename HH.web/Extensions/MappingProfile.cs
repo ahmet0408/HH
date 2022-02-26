@@ -42,31 +42,37 @@ namespace HH.web.Extensions
                 .ForMember(p => p.Title, p => p.MapFrom(p => p.NewsTranslates.Select(p => p.Title).FirstOrDefault()))
                 .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.NewsTranslates.Select(p => p.ShortDesc).FirstOrDefault()))
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.NewsTranslates.Select(p => p.Description).FirstOrDefault()));
-   
-           
-            CreateMap<CreateServiceDTO, Service>();
+
+            CreateMap<dal.Models.Service.Service, bll.DTOs.ServicesDTO.Service>()
+                .ForMember(p => p.Name, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Name).FirstOrDefault()))
+                .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.ShortDesc).FirstOrDefault()))
+                .ForMember(p => p.Description, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Description).FirstOrDefault()));
+            CreateMap<CreateServiceDTO, dal.Models.Service.Service>();
             CreateMap<ServiceTranslateDTO, ServiceTranslate>();
-            CreateMap<EditServiceDTO, Service>();
-            CreateMap<Service, ServiceDTO>()
+            CreateMap<EditServiceDTO, dal.Models.Service.Service>();
+            CreateMap<dal.Models.Service.Service, ServiceDTO>()
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Name).FirstOrDefault()));
-            CreateMap<Service, ServiceDetailDTO>()
+            CreateMap<dal.Models.Service.Service, ServiceDetailDTO>()
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Name).FirstOrDefault()))
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Description).FirstOrDefault()));
-            CreateMap<Service, ProductDTO>()
+            CreateMap<dal.Models.Service.Service, ProductDTO>()
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Name).FirstOrDefault()))
                 .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.ShortDesc).FirstOrDefault()));
 
-
+            CreateMap<dal.Models.Product.Product, bll.DTOs.ProductDTO.Product>()
+                .ForMember(p => p.Name, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.Name).FirstOrDefault()))
+                .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.ShortDesc).FirstOrDefault()))
+                .ForMember(p => p.Description, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.Description).FirstOrDefault()));
             CreateMap<ProductTranslateDTO, ProductTranslate>();
-            CreateMap<CreateProductDTO, Product>();
+            CreateMap<CreateProductDTO, dal.Models.Product.Product>();
             CreateMap<CreateOptionDTO, Option>();
             CreateMap<CreateOptionContentDTO, OptionContent>();
             CreateMap<OptionContentTranslateDTO, OptionContentTranslate>();
-            CreateMap<Product, ProductDTO>()
+            CreateMap<dal.Models.Product.Product, ProductDTO>()
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.Name).FirstOrDefault()))
                 .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.ShortDesc).FirstOrDefault()));
             CreateMap<Option, OptionDTO>();
-            CreateMap<Product, ProductDetailDTO>()
+            CreateMap<dal.Models.Product.Product, ProductDetailDTO>()
                 .ForMember(p => p.OptionDTO, p => p.MapFrom(p => p.Option))
                 .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.ShortDesc).FirstOrDefault()))
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.Name).FirstOrDefault()))
@@ -76,6 +82,11 @@ namespace HH.web.Extensions
                 .ForMember(p => p.Title, p => p.MapFrom(p => p.OptionContentTranslates.Select(p => p.Title).FirstOrDefault()))
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.OptionContentTranslates.Select(p => p.Description).FirstOrDefault()));
 
+            CreateMap<AboutUs, About>()
+                .ForMember(p => p.Title, p => p.MapFrom(p => p.AboutUsTranslates.Select(p => p.Title).FirstOrDefault()))
+                .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.AboutUsTranslates.Select(p => p.ShortDesc).FirstOrDefault()))
+                .ForMember(p => p.Description, p => p.MapFrom(p => p.AboutUsTranslates.Select(p => p.Description).FirstOrDefault()))
+                .ForMember(p => p.LocationAdress, p => p.MapFrom(p => p.AboutUsTranslates.Select(p => p.LocationAdress).FirstOrDefault()));
             CreateMap<CreateAboutUsDTO, AboutUs>();
             CreateMap<EditAboutUsDTO, AboutUs>();
             CreateMap<AboutUsTranslateDTO, AboutUsTranslate>();
@@ -102,23 +113,35 @@ namespace HH.web.Extensions
             CreateMap<EditClientDTO, Client>();
             CreateMap<Client, ClientDTO>();
 
-            CreateMap<CreateBannerDTO, Banner>();
-            CreateMap<EditBannerDTO, Banner>();
+            CreateMap<dal.Models.Banner.Banner, bll.DTOs.BannerDTO.Banner>()
+                .ForMember(p => p.Title, p => p.MapFrom(p => p.BannerTranslates.Select(p => p.Title).FirstOrDefault()));
+            CreateMap<CreateBannerDTO, dal.Models.Banner.Banner>();
+            CreateMap<EditBannerDTO, dal.Models.Banner.Banner>();
             CreateMap<BannerTranslateDTO, BannerTranslate>();
-            CreateMap<Banner, BannerDTO>()
+            CreateMap<dal.Models.Banner.Banner, BannerDTO>()
                 .ForMember(p => p.Title, p => p.MapFrom(p => p.BannerTranslates.Select(p => p.Title).FirstOrDefault()));
 
+            CreateMap<dal.Models.Project.Project, bll.DTOs.ProjectDTO.Project>()
+                .ForMember(p => p.Title, p => p.MapFrom(p => p.ProjectTranslates.Select(p => p.Title).FirstOrDefault()))
+                .ForMember(p => p.Description, p => p.MapFrom(p => p.ProjectTranslates.Select(p => p.Description).FirstOrDefault()))
+                .ForMember(p => p.Client, p => p.MapFrom(p => p.Client.Name))
+                .ForMember(p => p.Location, p => p.MapFrom(p => p.Location.LocationTranslates.Select(p => p.Name).FirstOrDefault()))
+                .ForMember(p => p.Status, p => p.MapFrom(p => p.Status.StatusTranslates.Select(p => p.Name).FirstOrDefault()));
+            CreateMap<Status, StatusDTO>()
+                .ForMember(p => p.Name, p => p.MapFrom(p => p.StatusTranslates.Select(p => p.Name).FirstOrDefault()));
+            CreateMap<Location, LocationDTO>()
+                .ForMember(p => p.Name, p => p.MapFrom(p => p.LocationTranslates.Select(p => p.Name).FirstOrDefault()));
             CreateMap<CreateStatusDTO, Status>();
             CreateMap<StatusTranslateDTO, StatusTranslate>();
             CreateMap<EditStatusDTO, Status>();
             CreateMap<CreateLocationDTO, Location>();
             CreateMap<LocationTranslateDTO, LocationTranslate>();
             CreateMap<EditLocationDTO, Location>();
-            CreateMap<CreateProjectDTO, Project>();
+            CreateMap<CreateProjectDTO, dal.Models.Project.Project>();
             CreateMap<ProjectTranslateDTO, ProjectTranslate>();
-            CreateMap<Project, ProjectDTO>()
+            CreateMap<dal.Models.Project.Project, ProjectDTO>()
                 .ForMember(p => p.Title, p => p.MapFrom(p => p.ProjectTranslates.Select(p => p.Title).FirstOrDefault()));
-            CreateMap<Project, ProjectDetailDTO>()
+            CreateMap<dal.Models.Project.Project, ProjectDetailDTO>()
                 .ForMember(p => p.Title, p => p.MapFrom(p => p.ProjectTranslates.Select(p => p.Title).FirstOrDefault()))
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.ProjectTranslates.Select(p => p.Description).FirstOrDefault()))
                 .ForMember(p => p.Location, p => p.MapFrom(p => p.Location.LocationTranslates.Select(p => p.Name).FirstOrDefault()))
