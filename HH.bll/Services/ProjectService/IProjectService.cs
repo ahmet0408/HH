@@ -26,6 +26,7 @@ namespace HH.bll.Services.ProjectService
         Task EditLocation(EditLocationDTO modelDTO);
         Task RemoveLocation(int id);
         Task CreateProject(CreateProjectDTO modelDTO);
+        Task EditProject(EditProjectDTO modelDTO);
         Task RemoveProject(int id);
         IEnumerable<StatusTranslate> GetAll();
         IEnumerable<LocationTranslate> GetAllLocation();

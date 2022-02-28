@@ -138,7 +138,8 @@ namespace HH.web.Extensions
             CreateMap<LocationTranslateDTO, LocationTranslate>().ReverseMap();
             CreateMap<EditLocationDTO, Location>().ReverseMap();
             CreateMap<CreateProjectDTO, dal.Models.Project.Project>();
-            CreateMap<ProjectTranslateDTO, ProjectTranslate>();
+            CreateMap<EditProjectDTO, dal.Models.Project.Project>().ReverseMap();
+            CreateMap<ProjectTranslateDTO, ProjectTranslate>().ReverseMap();
             CreateMap<dal.Models.Project.Project, ProjectDTO>()
                 .ForMember(p => p.Title, p => p.MapFrom(p => p.ProjectTranslates.Select(p => p.Title).FirstOrDefault()));
             CreateMap<dal.Models.Project.Project, ProjectDetailDTO>()

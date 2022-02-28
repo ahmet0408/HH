@@ -88,6 +88,28 @@ namespace HH.web.Controllers
             return View(project);
         }
         [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var project = await _projectService.GetProjectForEditById(id);
+            if (project == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View(project);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditProjectDTO editProjectDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                await _projectService.EditProject(editProjectDTO);
+                return RedirectToAction("Index");
+            }
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View(editProjectDTO);
+        }
+        [HttpGet]
         public async Task<IActionResult> EditLocation(int id)
         {
             var location = await _projectService.GetLocationForEditById(id);

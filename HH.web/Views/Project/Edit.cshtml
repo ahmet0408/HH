@@ -103,7 +103,7 @@
                             {
                                 <img src="~/images/project/@Model.Image" class="img-responsive img-thumbnail" style="width: 130px;" />
                             }
-                            <input type="hidden" name="Icon" value="@Model.Image" />
+                            <input type="hidden" name="Image" value="@Model.Image" />
                             <div class="form-group">
                                 <label>@SharedLocalizer["StartDate"]</label>
                                 <input type="text" class="form-control" name="StartDate" value="@Model.StartDate" />
@@ -187,6 +187,7 @@
                 dataSource: getClient,
                 displayExpr: "name",
                 valueExpr: "id",
+                value: @Html.Raw(Json.Serialize(Model.ClientId)),
                 name: "ClientId",
                 searchEnabled: true
             });
@@ -194,6 +195,7 @@
                 dataSource: getStatus,
                 displayExpr: "name",
                 valueExpr: "statusId",
+                value: @Html.Raw(Json.Serialize(Model.StatusId)),
                 name: "StatusId",
                 searchEnabled: true
             });
@@ -201,6 +203,7 @@
                 dataSource: getLocation,
                 displayExpr: "name",
                 valueExpr: "locationId",
+                value: @Html.Raw(Json.Serialize(Model.LocationId)),
                 name: "LocationId",
                 searchEnabled: true
             });
