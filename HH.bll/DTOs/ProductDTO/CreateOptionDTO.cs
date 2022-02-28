@@ -10,6 +10,5 @@ namespace HH.bll.DTOs.ProductDTO
     {
         public string OptionCode { get; set; }
         public int ProductId { get; set; }
-        public string Productt { get; set; }
     }
 }

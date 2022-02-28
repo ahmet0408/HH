@@ -54,24 +54,15 @@ namespace HH.bll.Services.ProductService
         public async Task CreateOption(CreateOptionDTO modelDTO)
         {
             dal.Models.Product.Option option = _mapper.Map<dal.Models.Product.Option>(modelDTO);
-
-            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var product = _dbContext.ProductTranslates.Where(p => p.Name == modelDTO.Productt).FirstOrDefault();
-            option.ProductId = product.ProductId;
             await _dbContext.Option.AddAsync(option);
             await _dbContext.SaveChangesAsync();
             
         }
         public async Task CreateOptionContent(CreateOptionContentDTO modelDTO)
         {
-            if (modelDTO != null)
-            {
-                var option = await _dbContext.Option.Where(p => p.OptionCode == modelDTO.Optionn).FirstOrDefaultAsync();
-                modelDTO.OptionId = option.Id;
-                dal.Models.Product.OptionContent optionContent = _mapper.Map<dal.Models.Product.OptionContent>(modelDTO);
-                await _dbContext.OptionContent.AddAsync(optionContent);
-                await _dbContext.SaveChangesAsync();
-            }
+            dal.Models.Product.OptionContent optionContent = _mapper.Map<dal.Models.Product.OptionContent>(modelDTO);
+            await _dbContext.OptionContent.AddAsync(optionContent);
+            await _dbContext.SaveChangesAsync();            
         }
         public async Task EditProduct(EditProductDTO modelDTO)
         {

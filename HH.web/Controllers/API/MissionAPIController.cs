@@ -32,6 +32,11 @@ namespace HH.web.Controllers.API
             return (_missionService.GetAllPublishMission().AsQueryable());
         }
         //api/MissionAPI
+        [HttpGet("GetAllMissionButThis/{id}")]
+        public object GetAllMissionButThis(int id)
+        {
+            return _missionService.GetAllMissionButThis(id).AsQueryable();
+        }
         [HttpPost]
         public async Task<IActionResult> Post(CreateMissionDTO value)
         {

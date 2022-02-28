@@ -73,6 +73,19 @@ namespace HH.bll.Services.BannerService
             _dbContext.Banner.Remove(banner);
             await _dbContext.SaveChangesAsync();
         }
+        public IEnumerable<Banner> GetAllBannerButThis(int id)
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var banner = _dbContext.Banner.Where(p => p.Id != id).Include(p => p.BannerTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<Banner>>(banner);
+            return result;
+        }
+        public async Task<EditBannerDTO> GetBannerForEditById(int id)
+        {
+            var banner = await _dbContext.Banner.Include(p => p.BannerTranslates).SingleOrDefaultAsync(p => p.Id == id);
+            EditBannerDTO editBannerDTO = _mapper.Map<EditBannerDTO>(banner);
+            return editBannerDTO;
+        } 
         public BannerDTO GetBanner()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;

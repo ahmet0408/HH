@@ -72,6 +72,20 @@ namespace HH.bll.Services.ServiceService
             _dbContext.Services.Remove(service);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task<EditServiceDTO> GetServiceForEditById(int id)
+        {
+            var service = await _dbContext.Services.Include(p => p.ServiceTranslates).SingleOrDefaultAsync(p => p.Id == id);
+            EditServiceDTO editServiceDTO = _mapper.Map<EditServiceDTO>(service);
+            return editServiceDTO;
+        }
+        public IEnumerable<Service> GetAllServiceButThis(int id)
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var service = _dbContext.Services.Where(p => p.Id != id).Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<Service>>(service);
+            return result;
+        }
+
         public IEnumerable<ServiceDTO> GetAllPublishService()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;

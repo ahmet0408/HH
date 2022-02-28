@@ -64,6 +64,18 @@ namespace HH.bll.Services.ClientService
             _dbContext.Client.Remove(client);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task<EditClientDTO> GetClientForEditById(int id)
+        {
+            var client = await _dbContext.Client.FindAsync(id);
+            EditClientDTO editClientDTO = _mapper.Map<EditClientDTO>(client);
+            return editClientDTO;
+        }
+        public IEnumerable<ClientDTO> GetAllClientButThis(int id)
+        {
+            var client = _dbContext.Client.Where(p => p.Id != id);
+            var result = _mapper.Map<IEnumerable<ClientDTO>>(client);
+            return result;
+        }
         public IEnumerable<ClientDTO> GetAllClient()
         {
             var client = _dbContext.Client.ToList();

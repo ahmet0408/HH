@@ -154,22 +154,22 @@
          $("#client").dxSelectBox({
                 dataSource: getClient,
                 displayExpr: "name",
-                valueExpr: "name",
-                name: "Clientt",
+                valueExpr: "id",
+                name: "ClientId",
                 searchEnabled: true
             });
          $("#status").dxSelectBox({
                 dataSource: getStatus,
                 displayExpr: "name",
-                valueExpr: "name",
-                name: "Statuss",
+                valueExpr: "statusId",
+                name: "StatusId",
                 searchEnabled: true
             });
             $("#location").dxSelectBox({
                 dataSource: getLocation,
                 displayExpr: "name",
-                valueExpr: "name",
-                name: "Locationn",
+                valueExpr: "locationId",
+                name: "LocationId",
                 searchEnabled: true
             });
           $("#button").dxButton({

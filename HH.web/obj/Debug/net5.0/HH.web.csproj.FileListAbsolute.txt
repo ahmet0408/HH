@@ -470,3 +470,11 @@ C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Product\CreateO
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Product\CreateOptionContent.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Project\Location.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Project\Status.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Banner\Edit.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Client\Edit.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Company\Edit.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Mission\Edit.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Service\Edit.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Project\EditLocation.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Project\EditStatus.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Project\Edit.cshtml.g.cs

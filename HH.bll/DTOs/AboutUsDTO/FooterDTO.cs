@@ -11,8 +11,8 @@ namespace HH.bll.DTOs.AboutUsDTO
         public string Phone { get; set; }
         public string Fax { get; set; }
         public string Mail { get; set; }
-        public int Longitude { get; set; }
-        public int Latitude { get; set; }
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
         public string LocationAdress { get; set; }
     }
 }

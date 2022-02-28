@@ -1,0 +1,119 @@
+﻿@model HH.bll.DTOs.BannerDTO.EditBannerDTO
+@using HH.web
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using HH.bll.DTOs.LanguageDTO
+
+@{
+    ViewData["Title"] = SharedLocalizer["Edit Banner"];
+
+
+    int lngIndex = 0;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Edit Banner"]
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form asp-action="Edit" id="form" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            @foreach (LanguageDTO languageDTO in ViewBag.Languages)
+                            {
+                                <h2>@languageDTO.Name</h2>
+                                <hr />
+                                {
+                                    var bannerT = Model.BannerTranslates.FirstOrDefault(p => p.LanguageCulture == languageDTO.Culture);
+
+                                    if (bannerT != null)
+                                    {
+                                        <input type="hidden" name="BannerTranslates[@lngIndex].Id" value="@bannerT.Id" />
+                                        <input type="hidden" class="form-control" name="BannerTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Title"]</label>
+                                            <input type="text" class="form-control" name="BannerTranslates[@lngIndex].Title" value="@bannerT.Title" />
+                                        </div>
+                                    }
+                                }
+
+                                lngIndex++;
+                            }   
+
+                        </div>
+                            <div class="col-lg-6">
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Image"]</label>
+                                <div id="image"></div>
+                            </div>
+                            @if (Model.Image != null && Model.Image.Length > 0)
+                            {
+                                <img src="~/images/banner/@Model.Image" class="img-responsive img-thumbnail" style="width: 130px;" />
+                            }
+                            <input type="hidden" name="Image" value="@Model.Image" />
+                            <div class="form-group">
+                                <div id="published"></div>
+                            </div>
+                        </div>
+                    </div>
+
+               
+                <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+         var getMenus = new DevExpress.data.AspNet.createStore({
+             key: "id",
+             loadUrl: "/api/BannerAPI/GetAllBannerButThis/"+@Model.Id,
+             onBeforeSend: function (method, ajaxOptions) {
+                 ajaxOptions.xhrFields = { withCredentials: true };
+            }
+         });
+
+        $(function () {
+            $("#image").dxFileUploader({
+                                            selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                                            name: "FormImage",
+                                            labelText: '@SharedLocalizer["or drag picture"]',
+                                            accept: "image/*",
+                                            uploadMode: '@SharedLocalizer["or drag"]',
+                                            multiple: false,
+                                        });
+
+            let published = '@Model.IsPublish';
+            $("#published").dxCheckBox({
+                value: (published.toLowerCase() == 'true'),
+                text: '@SharedLocalizer["Active"]',
+                name: 'IsPublish',
+            });
+
+            $("#button").dxButton({
+                text: '@SharedLocalizer["Edit"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+        });
+    </script>
+
+}

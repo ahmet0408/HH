@@ -87,5 +87,54 @@ namespace HH.web.Controllers
             ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
             return View(project);
         }
+        [HttpGet]
+        public async Task<IActionResult> EditLocation(int id)
+        {
+            var location = await _projectService.GetLocationForEditById(id);
+            if (location == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View(location);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditLocation(EditLocationDTO editLocationDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                await _projectService.EditLocation(editLocationDTO);
+                return RedirectToAction("Location");
+            }
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View(editLocationDTO);
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditStatus(int id)
+        {
+            var status = await _projectService.GetStatusForEditById(id);
+            if (status == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View(status);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditStatus(EditStatusDTO editStatusDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                await _projectService.EditStatus(editStatusDTO);
+                return RedirectToAction("Index");
+            }
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View(editStatusDTO);
+        }
+        public IActionResult Delete(int? id)
+        {
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View();
+        }
     }
 }

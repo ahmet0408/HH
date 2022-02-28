@@ -10,7 +10,7 @@ namespace HH.bll.DTOs.ServicesDTO
     public class EditServiceDTO
     {
         public int Id { get; set; }
-        public ICollection<ServiceTranslateDTO> Translate { get; set;}
+        public ICollection<ServiceTranslateDTO> ServiceTranslates { get; set;}
         public string Image { get; set; }
         public IFormFile FormImage { get; set; }
         public bool IsPublish { get; set; }

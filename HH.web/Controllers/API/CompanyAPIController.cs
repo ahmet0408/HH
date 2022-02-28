@@ -37,6 +37,11 @@ namespace HH.web.Controllers.API
             NewsDetailDTO result =await  _companyservice.GetNewsPage(id);
             return result;
         }
+        [HttpGet("GetAllNewsButThis/{id}")]
+        public object GetAllNewsButThis(int id)
+        {
+            return _companyservice.GetAllNewsButThis(id).AsQueryable();
+        }
         //POST: api/Company
         [HttpPost]
         public async Task<IActionResult> Post(CreateNewsDTO value)

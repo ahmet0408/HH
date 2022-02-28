@@ -70,6 +70,19 @@ namespace HH.bll.Services.CompanyService
             _dbContext.News.Remove(news);
             await _dbContext.SaveChangesAsync();
         } 
+        public async Task<EditNewsDTO> GetNewsForEditById(int id)
+        {
+            var news = await _dbContext.News.Include(p => p.NewsTranslates).SingleOrDefaultAsync(p => p.Id == id);
+            EditNewsDTO editNewsDTO = _mapper.Map<EditNewsDTO>(news);
+            return editNewsDTO;
+        }
+        public IEnumerable<News> GetAllNewsButThis(int id)
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var news = _dbContext.News.Where(p => p.Id != id).Include(p => p.NewsTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<News>>(news);
+            return result;
+        }
         public IEnumerable<NewsDTO> GetAllPublishListNews()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;

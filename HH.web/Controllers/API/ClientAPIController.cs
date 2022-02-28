@@ -22,6 +22,11 @@ namespace HH.web.Controllers.API
         {
             return _clientService.GetAllClient().AsQueryable();
         }
+        [HttpGet("GetAllClientButThis/{id}")]
+        public object GetAllClientButThis(int id)
+        {
+            return _clientService.GetAllClientButThis(id).AsQueryable();
+        }
         //POST: api/ClientAPI
         [HttpPost]
         public async Task<IActionResult> Post(CreateClientDTO value)

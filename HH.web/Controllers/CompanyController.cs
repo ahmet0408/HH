@@ -40,5 +40,33 @@ namespace HH.web.Controllers
             ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
             return View(news);
         }
+        [HttpGet]
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var news = await _companyService.GetNewsForEditById(id);
+            if (news == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View(news);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditNewsDTO editNewsDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                await _companyService.EditNews(editNewsDTO);
+                return RedirectToAction("Index");
+            }
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View(editNewsDTO);
+        }
+        public IActionResult Delete(int? id)
+        {
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View();
+        }
     }
 }

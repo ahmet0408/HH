@@ -33,8 +33,8 @@ namespace HH.web.Extensions
                 .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.NewsTranslates.Select(p => p.ShortDesc).FirstOrDefault()))
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.NewsTranslates.Select(p => p.Description).FirstOrDefault()));
             CreateMap<CreateNewsDTO, dal.Models.Company.News>();
-            CreateMap<EditNewsDTO, dal.Models.Company.News>();           
-            CreateMap<NewsTranslateDTO, NewsTranslate>();
+            CreateMap<EditNewsDTO, dal.Models.Company.News>().ReverseMap();           
+            CreateMap<NewsTranslateDTO, NewsTranslate>().ReverseMap();
             CreateMap<dal.Models.Company.News, NewsDTO>()
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.NewsTranslates.Select(p => p.Name).FirstOrDefault()))
                 .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.NewsTranslates.Select(p => p.ShortDesc).FirstOrDefault()));
@@ -48,8 +48,8 @@ namespace HH.web.Extensions
                 .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.ShortDesc).FirstOrDefault()))
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Description).FirstOrDefault()));
             CreateMap<CreateServiceDTO, dal.Models.Service.Service>();
-            CreateMap<ServiceTranslateDTO, ServiceTranslate>();
-            CreateMap<EditServiceDTO, dal.Models.Service.Service>();
+            CreateMap<ServiceTranslateDTO, ServiceTranslate>().ReverseMap();
+            CreateMap<EditServiceDTO, dal.Models.Service.Service>().ReverseMap();
             CreateMap<dal.Models.Service.Service, ServiceDTO>()
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Name).FirstOrDefault()));
             CreateMap<dal.Models.Service.Service, ServiceDetailDTO>()
@@ -88,8 +88,8 @@ namespace HH.web.Extensions
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.AboutUsTranslates.Select(p => p.Description).FirstOrDefault()))
                 .ForMember(p => p.LocationAdress, p => p.MapFrom(p => p.AboutUsTranslates.Select(p => p.LocationAdress).FirstOrDefault()));
             CreateMap<CreateAboutUsDTO, AboutUs>();
-            CreateMap<EditAboutUsDTO, AboutUs>();
-            CreateMap<AboutUsTranslateDTO, AboutUsTranslate>();
+            CreateMap<AboutUs, EditAboutUsDTO>().ReverseMap();
+            CreateMap<AboutUsTranslate, AboutUsTranslateDTO>().ReverseMap();
             CreateMap<AboutUs, AboutUsDTO>()
                 .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.AboutUsTranslates.Select(p => p.ShortDesc).SingleOrDefault()));
             CreateMap<AboutUs, AboutUsDetailDTO>()
@@ -103,21 +103,21 @@ namespace HH.web.Extensions
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.MissionTranslates.Select(p => p.Name).FirstOrDefault()))
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.MissionTranslates.Select(p => p.Description).FirstOrDefault()));
             CreateMap<CreateMissionDTO, dal.Models.Mission.Mission>();
-            CreateMap<EditMissionDTO, dal.Models.Mission.Mission>();
-            CreateMap<MissionTranslateDTO, MissionTranslate>();
+            CreateMap<EditMissionDTO, dal.Models.Mission.Mission>().ReverseMap();
+            CreateMap<MissionTranslateDTO, MissionTranslate>().ReverseMap();
             CreateMap<dal.Models.Mission.Mission, MissionDTO>()
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.MissionTranslates.Select(p => p.Name).FirstOrDefault()))
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.MissionTranslates.Select(p => p.Description).FirstOrDefault()));
 
             CreateMap<CreateClientDTO, Client>();
-            CreateMap<EditClientDTO, Client>();
+            CreateMap<EditClientDTO, Client>().ReverseMap();
             CreateMap<Client, ClientDTO>();
 
             CreateMap<dal.Models.Banner.Banner, bll.DTOs.BannerDTO.Banner>()
                 .ForMember(p => p.Title, p => p.MapFrom(p => p.BannerTranslates.Select(p => p.Title).FirstOrDefault()));
             CreateMap<CreateBannerDTO, dal.Models.Banner.Banner>();
-            CreateMap<EditBannerDTO, dal.Models.Banner.Banner>();
-            CreateMap<BannerTranslateDTO, BannerTranslate>();
+            CreateMap<EditBannerDTO, dal.Models.Banner.Banner>().ReverseMap();
+            CreateMap<BannerTranslateDTO, BannerTranslate>().ReverseMap();
             CreateMap<dal.Models.Banner.Banner, BannerDTO>()
                 .ForMember(p => p.Title, p => p.MapFrom(p => p.BannerTranslates.Select(p => p.Title).FirstOrDefault()));
 
@@ -132,11 +132,11 @@ namespace HH.web.Extensions
             CreateMap<Location, LocationDTO>()
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.LocationTranslates.Select(p => p.Name).FirstOrDefault()));
             CreateMap<CreateStatusDTO, Status>();
-            CreateMap<StatusTranslateDTO, StatusTranslate>();
-            CreateMap<EditStatusDTO, Status>();
+            CreateMap<StatusTranslateDTO, StatusTranslate>().ReverseMap();
+            CreateMap<EditStatusDTO, Status>().ReverseMap();
             CreateMap<CreateLocationDTO, Location>();
-            CreateMap<LocationTranslateDTO, LocationTranslate>();
-            CreateMap<EditLocationDTO, Location>();
+            CreateMap<LocationTranslateDTO, LocationTranslate>().ReverseMap();
+            CreateMap<EditLocationDTO, Location>().ReverseMap();
             CreateMap<CreateProjectDTO, dal.Models.Project.Project>();
             CreateMap<ProjectTranslateDTO, ProjectTranslate>();
             CreateMap<dal.Models.Project.Project, ProjectDTO>()

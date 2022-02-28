@@ -99,11 +99,11 @@
                         width: 110,
                         buttons: [
                             {
-                                hint: '@SharedLocalizer["Edit"]',
+                                hint: '@SharedLocalizer["EditLocation"]',
                                 icon: "edit",
                                 onClick: function (e) {
                                     var idString = e.row.data.id;
-                                    var url = `@Url.Action("Edit", "Project")`;
+                                    var url = `@Url.Action("EditLocation", "Project")`;
                                     window.location = url + '?id=' + idString;
                                 }
                             },

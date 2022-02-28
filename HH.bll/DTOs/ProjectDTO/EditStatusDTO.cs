@@ -9,6 +9,6 @@ namespace HH.bll.DTOs.ProjectDTO
     public class EditStatusDTO
     {
         public int Id { get; set; }
-        public ICollection<StatusTranslateDTO> Translates { get; set; }
+        public ICollection<StatusTranslateDTO> StatusTranslates { get; set; }
     }
 }

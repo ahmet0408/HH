@@ -31,6 +31,12 @@ namespace HH.web.Controllers.API
         {
             return _bannerService.GetBanner();
         }
+        [HttpGet("GetAllBannerButThis/{id}")]
+        public object GetAllAboutButThis(int id)
+        {
+            return _bannerService.GetAllBannerButThis(id).AsQueryable();
+        }
+        
         //api/BannerAPI
         [HttpPost]
         public async Task<IActionResult> Post(CreateBannerDTO value)

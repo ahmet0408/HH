@@ -72,6 +72,19 @@ namespace HH.bll.Services.MissionService
             _dbContext.Mission.Remove(mission);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task<EditMissionDTO> GetMissionForEditById(int id)
+        {
+            var mission = await _dbContext.Mission.Include(p => p.MissionTranslates).SingleOrDefaultAsync(p => p.Id == id);
+            EditMissionDTO editMissionDTO = _mapper.Map<EditMissionDTO>(mission);
+            return editMissionDTO;
+        }
+        public IEnumerable<Mission> GetAllMissionButThis(int id)
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var mission = _dbContext.Mission.Where(p => p.Id != id).Include(p => p.MissionTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<Mission>>(mission);
+            return result;
+        }
         public IEnumerable<MissionDTO> GetAllPublishMission()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;

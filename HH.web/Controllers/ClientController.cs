@@ -34,6 +34,31 @@ namespace HH.web.Controllers
             }
             return View(client);
         }
+        [HttpGet]
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var about = await _clientService.GetClientForEditById(id);
+            if (about == null)
+            {
+                return NotFound();
+            }
+            return View(about);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditClientDTO editAboutUsDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                await _clientService.EditClient(editAboutUsDTO);
+                return RedirectToAction("Index");
+            }
+            return View(editAboutUsDTO);
+        }
+        public IActionResult Delete(int? id)
+        {
+            return View();
+        }
 
     }
 }

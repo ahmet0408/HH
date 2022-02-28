@@ -101,6 +101,21 @@ namespace HH.web.Controllers.API
             ProjectDetailDTO result =await _projectService.GetProjectPageById(id);
             return result;
         }
+        [HttpGet("GetAllLocationButThis/{id}")]
+        public object GetAllLocationButThis(int id)
+        {
+            return _projectService.GetAllLocationButThis(id).AsQueryable();
+        }
+        [HttpGet("GetAllStatusButThis/{id}")]
+        public object GetAllStatusButThis(int id)
+        {
+            return _projectService.GetAllStatusButThis(id).AsQueryable();
+        }
+        [HttpGet("GetAllProjectButThis/{id}")]
+        public object GetAllProjectButThis(int id)
+        {
+            return _projectService.GetAllProjectButThis(id).AsQueryable();
+        }
         //POST: api/ProjectAPI
         [HttpPost("CreateProject")]
         public async Task<IActionResult> CreateProject(CreateProjectDTO value)

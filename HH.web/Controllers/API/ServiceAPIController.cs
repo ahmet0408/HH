@@ -41,6 +41,11 @@ namespace HH.web.Controllers.API
         {
             return _service.GetAllService().AsQueryable();
         }
+        [HttpGet("GetAllServiceButThis/{id}")]
+        public object GetAllServiceButThis(int id)
+        {
+            return _service.GetAllServiceButThis(id).AsQueryable();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Post(CreateServiceDTO value)

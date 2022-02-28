@@ -45,11 +45,27 @@ namespace HH.web.Controllers
             return View(aboutUs);
         }
         [HttpGet]
-        public IActionResult Edit()
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var about = await _aboutService.GetAboutUsForEditById(id);
+            if (about == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View(about);
         }
-       
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditAboutUsDTO editAboutUsDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                await _aboutService.EditAbout(editAboutUsDTO);
+                return RedirectToAction("Index");
+            }
+            ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
+            return View(editAboutUsDTO);
+        }
         public IActionResult Delete(int? id)
         {
             ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);

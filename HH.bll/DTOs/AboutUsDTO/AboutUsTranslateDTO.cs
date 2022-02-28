@@ -8,6 +8,7 @@ namespace HH.bll.DTOs.AboutUsDTO
 {
     public class AboutUsTranslateDTO
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string ShortDesc { get; set; }
         public string Description { get; set; }

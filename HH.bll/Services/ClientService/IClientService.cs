@@ -9,6 +9,8 @@ namespace HH.bll.Services.ClientService
 {
     public interface IClientService
     {
+        Task<EditClientDTO> GetClientForEditById(int id);
+        IEnumerable<ClientDTO> GetAllClientButThis(int id);
         Task CreatClient(CreateClientDTO modelDTO);
         Task EditClient(EditClientDTO modelDTO);
         Task RemoveClient(int id);

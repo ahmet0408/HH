@@ -37,11 +37,13 @@ namespace HH.dal.Migrations
                     b.Property<bool>("IsPublish")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("Latitude")
-                        .HasColumnType("integer");
+                    b.Property<string>("Latitude")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<int>("Longitude")
-                        .HasColumnType("integer");
+                    b.Property<string>("Longitude")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Mail")
                         .IsRequired()

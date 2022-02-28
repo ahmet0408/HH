@@ -47,9 +47,20 @@ namespace HH.web.Controllers.API
             FooterDTO result = await _aboutUsservice.GetFooter();
             return Ok(result);
         }
-
+        [HttpGet("GetAllAboutButThis/{id}")]
+        public object GetAllAboutButThis(int id)
+        {
+            return _aboutUsservice.GetAllAboutButThis(id).AsQueryable();
+        }
+        [HttpGet("GetAllAbout/{id}")]
+        public async Task<IActionResult> Gett(int id)
+        {
+            About about = await _aboutUsservice.GetAboutByIdAsync(id);
+            return Ok(about);
+        }
+        //POST: api/AboutUsAPI
         [HttpPost]
-        public async Task<IActionResult> Post(CreateAboutUsDTO value)
+        public async Task<IActionResult> Post([FromForm] CreateAboutUsDTO value)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +70,7 @@ namespace HH.web.Controllers.API
             return BadRequest();
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(EditAboutUsDTO value)
+        public async Task<IActionResult> Put([FromBody] EditAboutUsDTO value)
         {
             if (ModelState.IsValid)
             {

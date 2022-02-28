@@ -76,6 +76,26 @@ namespace HH.bll.Services.AboutUsService
             _dbContext.AboutUs.Remove(aboutUs);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task<EditAboutUsDTO> GetAboutUsForEditById(int id)
+        {
+            var about = await _dbContext.AboutUs.Include(p => p.AboutUsTranslates).SingleOrDefaultAsync(p => p.Id == id);
+            EditAboutUsDTO editAboutUsDTO = _mapper.Map<EditAboutUsDTO>(about);
+            return editAboutUsDTO;
+        }
+        public async Task<About> GetAboutByIdAsync(int id)
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var about = await _dbContext.AboutUs.Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture)).SingleOrDefaultAsync(p => p.Id == id);
+            About result = _mapper.Map<About>(about);
+            return result;
+        }
+        public IEnumerable<About> GetAllAboutButThis(int id)
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var about = _dbContext.AboutUs.Where(p => p.Id != id).Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<About>>(about);
+            return result;
+        }
         public AboutUsDTO GetAboutUs()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;

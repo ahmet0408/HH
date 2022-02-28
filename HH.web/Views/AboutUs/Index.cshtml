@@ -28,7 +28,6 @@
     <script>
         $(function () {
             let url = `@API.GetAllAbout`;
-            console.log(url);
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
             $("#gridContainer").dxDataGrid({
                 dataSource: DevExpress.data.AspNet.createStore({
@@ -77,11 +76,11 @@
                 searchPanel: {
                     visible: true
                 },
-                //stateStoring: {
-                //    enabled: true,
-                //    type: "localStorage",
-                //    storageKey: "AboutUsAdmin"
-                //},
+                stateStoring: {
+                    enabled: true,
+                    type: "localStorage",
+                    storageKey: "AboutUsAdmin"
+                },
                 columns: [
                     {
                         caption: '@SharedLocalizer["Title"]',

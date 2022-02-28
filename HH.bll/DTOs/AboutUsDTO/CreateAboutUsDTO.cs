@@ -22,9 +22,9 @@ namespace HH.bll.DTOs.AboutUsDTO
         [Required]
         public string Mail { get; set; }
         [Required]
-        public int Longitude { get; set; }
+        public string Longitude { get; set; }
         [Required]
-        public int Latitude { get; set; }
+        public string Latitude { get; set; }
         [Required]
         public bool IsPublish { get; set; }
     }

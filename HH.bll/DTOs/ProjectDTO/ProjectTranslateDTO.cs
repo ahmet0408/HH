@@ -8,6 +8,7 @@ namespace HH.bll.DTOs.ProjectDTO
 {
     public class ProjectTranslateDTO
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string LanguageCulture { get; set; }

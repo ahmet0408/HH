@@ -1,18 +1,239 @@
-﻿@using HH.web
+﻿@model HH.bll.DTOs.AboutUsDTO.EditAboutUsDTO
+@using HH.web
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 @inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using HH.bll.DTOs.LanguageDTO
 
 @{
-    ViewData["Title"] = SharedLocalizer["About Us"];
+    ViewData["Title"] = SharedLocalizer["Edit AboutUs"];
+
+
+    int lngIndex = 0;
 }
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                @SharedLocalizer["About Us"]
+                @SharedLocalizer["Edit About Us"]
             </h1>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form asp-action="Edit" id="form" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            @foreach (LanguageDTO languageDTO in ViewBag.Languages)
+                            {
+                                <h2>@languageDTO.Name</h2>
+                                <hr />
+                                {
+                                    var aboutUsT = Model.AboutUsTranslates.FirstOrDefault(p => p.LanguageCulture == languageDTO.Culture);
+
+                                    if (aboutUsT != null)
+                                    {
+                                        <input type="hidden" name="AboutUsTranslates[@lngIndex].Id" value="@aboutUsT.Id" />
+                                        <input type="hidden" class="form-control" name="AboutUsTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Title"]</label>
+                                            <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Title" value="@aboutUsT.Title" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Short Description"]</label>
+                                            <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].ShortDesc" value="@aboutUsT.ShortDesc" />
+                                        </div>
+                                        @*<div class="form-group">
+                                            <label>@SharedLocalizer["Description"]</label>
+                                            <input type="text" class="form-control" name="MenuTranslates[@lngIndex].Description" value="@aboutUsT.Description" />
+                                        </div>*@
+                                        <label>@SharedLocalizer["Description"]</label>
+                                        <div id="description-editorr-@lngIndex"></div>
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Location Adress"]</label>
+                                            <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].LocationAdress" value="@aboutUsT.LocationAdress" />
+                                        </div>
+                                    }
+                                    @*else
+                                    {
+                                        <input type="hidden" class="form-control" name="AboutUsTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Title"]</label>
+                                            <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Title" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Short Description"]</label>
+                                            <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].ShortDesc" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Description"]</label>
+                                            <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Description" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Location Adress"]</label>
+                                            <input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].LocationAdress" />
+                                        </div>
+                                    }*@
+                                    <script>
+                                    $( function() {
+                                        $("#description-editorr-@lngIndex").dxHtmlEditor({
+                                            height: 250,
+                                            toolbar: {
+                                                items: [
+                                                    "undo", "redo", "separator",
+                                                    {
+                                                        formatName: "header",
+                                                        formatValues: [false, 1, 2, 3, 4, 5]
+                                                    },
+                                                    {
+                                                        formatName: "size",
+                                                        formatValues: ["8pt", "10pt", "12pt", "14pt", "18pt", "24pt", "36pt"]
+                                                    },
+                                                        "bold", "italic", "strike", "underline", "separator",
+                                                             "alignLeft", "alignCenter", "alignRight", "alignJustify", "separator",
+                                                              "orderedList", "bulletList", "separator",
+                                                              "color", "background", "separator",
+                                                               "link", "image", "separator",
+                                                               "clear", "codeBlock", "blockquote",
+                                                    {
+                                                        widget: "dxButton",
+                                                        options: {
+                                                            text: "Show markup",
+                                                            stylingMode: "text",
+                                                            onClick: function () {
+                                                                popupInstance.show();
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            name: `AboutUsTranslates[@lngIndex].Description`,
+                                            value: @Json.Serialize(@aboutUsT.Description),
+                                        }).dxHtmlEditor("instance");
+                                    });
+                                </script>
+                                }
+
+                                lngIndex++;
+                            }   
+
+                        </div>
+                            <div class="col-lg-6">
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />
+                             <div class="form-group">
+                                <label>@SharedLocalizer["MainImage"]</label>
+                                <div id="mainImage"></div>
+                            </div>
+                            @if (Model.MainImage != null && Model.MainImage.Length > 0)
+                            {
+                                <img src="~/images/aboutUs/@Model.MainImage" class="img-responsive img-thumbnail" style="width: 130px;" />
+                            }
+                            <input type="hidden" name="MainImage" value="@Model.MainImage" />
+
+                           
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Image"]</label>
+                                <div id="image"></div>
+                            </div>
+                            @if (Model.Image != null && Model.Image.Length > 0)
+                            {
+                                <img src="~/images/aboutUs/@Model.Image" class="img-responsive img-thumbnail" style="width: 130px;" />
+                            }
+                            <input type="hidden" name="Image" value="@Model.Image" />
+                            
+                            @*<div class="form-group">
+                                <label>@SharedLocalizer["Main Image"]</label>
+                                <input type="file" class="form-control" name="Link" value="@Model.FormMainImage" />
+                            </div>*@
+                            @*<div class="form-group">
+                                <label>@SharedLocalizer["Image"]</label>
+                                <input type="file" class="form-control" name="Link" value="@Model.MainImage" />
+                            </div>*@
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Phone"]</label>
+                                <input type="text" class="form-control" name="Phone" value="@Model.Phone" />
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Fax"]</label>
+                                <input type="text" class="form-control" name="Fax" value="@Model.Fax" />
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Mail"]</label>
+                                <input type="email" class="form-control" name="Mail" value="@Model.Mail" />
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Longitude"]</label>
+                                <input type="text" class="form-control" name="Longitude" value="@Model.Longitude" />
+                            </div>
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Latitude"]</label>
+                                <input type="text" class="form-control" name="Latitude" value="@Model.Latitude" />
+                            </div>
+                            <div class="form-group">
+                                <div id="published"></div>
+                            </div>
+                        </div>
+                    </div>
+
+               
+                <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+@section Scripts{
+    <script>
+         var getMenus = new DevExpress.data.AspNet.createStore({
+             key: "id",
+             loadUrl: "/api/AboutUsAPI/GetAllAboutButThis/"+@Model.Id,
+             onBeforeSend: function (method, ajaxOptions) {
+                 ajaxOptions.xhrFields = { withCredentials: true };
+            }
+         });
+
+        $(function () {
+            $("#mainImage").dxFileUploader({
+                                            selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                                            name: "FormMainImage",
+                                            labelText: '@SharedLocalizer["or drag picture"]',
+                                            accept: "image/*",
+                                            uploadMode: '@SharedLocalizer["or drag"]',
+                                            multiple: false,
+                                        });
+            $("#image").dxFileUploader({
+                                            selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                                            name: "FormImage",
+                                            labelText: '@SharedLocalizer["or drag picture"]',
+                                            accept: "image/*",
+                                            uploadMode: '@SharedLocalizer["or drag"]',
+                                            multiple: false,
+                                        });
+
+            let published = '@Model.IsPublish';
+            $("#published").dxCheckBox({
+                value: (published.toLowerCase() == 'true'),
+                text: '@SharedLocalizer["Active"]',
+                name: 'IsPublish',
+            });
+
+            $("#button").dxButton({
+                text: '@SharedLocalizer["Edit"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+        });
+    </script>
+
+}

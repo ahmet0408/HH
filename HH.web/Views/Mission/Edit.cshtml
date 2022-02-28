@@ -1,0 +1,162 @@
+﻿@model HH.bll.DTOs.MissionDTO.EditMissionDTO
+@using HH.web
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using HH.bll.DTOs.LanguageDTO
+
+@{
+    ViewData["Title"] = SharedLocalizer["Edit Mission"];
+
+
+    int lngIndex = 0;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Edit Mission"]
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form asp-action="Edit" id="form" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            @foreach (LanguageDTO languageDTO in ViewBag.Languages)
+                            {
+                                <h2>@languageDTO.Name</h2>
+                                <hr />
+                                {
+                                    var missionT = Model.MissionTranslates.FirstOrDefault(p => p.LanguageCulture == languageDTO.Culture);
+
+                                    if (missionT != null)
+                                    {
+                                        <input type="hidden" name="MissionTranslates[@lngIndex].Id" value="@missionT.Id" />
+                                        <input type="hidden" class="form-control" name="MissionTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Name"]</label>
+                                            <input type="text" class="form-control" name="MissionTranslates[@lngIndex].Name" value="@missionT.Name" />
+                                        </div>                                       
+                                        <label>@SharedLocalizer["Description"]</label>
+                                        <div id="description-editorr-@lngIndex"></div>
+                              
+                                    }
+                                    <script>
+                                    $( function() {
+                                        $("#description-editorr-@lngIndex").dxHtmlEditor({
+                                            height: 250,
+                                            toolbar: {
+                                                items: [
+                                                    "undo", "redo", "separator",
+                                                    {
+                                                        formatName: "header",
+                                                        formatValues: [false, 1, 2, 3, 4, 5]
+                                                    },
+                                                    {
+                                                        formatName: "size",
+                                                        formatValues: ["8pt", "10pt", "12pt", "14pt", "18pt", "24pt", "36pt"]
+                                                    },
+                                                        "bold", "italic", "strike", "underline", "separator",
+                                                             "alignLeft", "alignCenter", "alignRight", "alignJustify", "separator",
+                                                              "orderedList", "bulletList", "separator",
+                                                              "color", "background", "separator",
+                                                               "link", "image", "separator",
+                                                               "clear", "codeBlock", "blockquote",
+                                                    {
+                                                        widget: "dxButton",
+                                                        options: {
+                                                            text: "Show markup",
+                                                            stylingMode: "text",
+                                                            onClick: function () {
+                                                                popupInstance.show();
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            name: `MissionTranslates[@lngIndex].Description`,
+                                            value: @Json.Serialize(@missionT.Description),
+                                        }).dxHtmlEditor("instance");
+                                    });
+                                </script>
+                                }
+
+                                lngIndex++;
+                            }   
+
+                        </div>
+                            <div class="col-lg-6">
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />
+                                                        
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Icon"]</label>
+                                <div id="image"></div>
+                            </div>
+                            @if (Model.Icon != null && Model.Icon.Length > 0)
+                            {
+                                <img src="~/images/mission/@Model.Icon" class="img-responsive img-thumbnail" style="width: 130px;" />
+                            }
+                            <input type="hidden" name="Icon" value="@Model.Icon" />
+                                <div class="form-group">
+                                <div id="published"></div>
+                            </div>
+                        </div>
+                    </div>
+
+               
+                <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+         var getMenus = new DevExpress.data.AspNet.createStore({
+             key: "id",
+             loadUrl: "/api/CompanyAPI/GetAllMissionButThis/"+@Model.Id,
+             onBeforeSend: function (method, ajaxOptions) {
+                 ajaxOptions.xhrFields = { withCredentials: true };
+            }
+         });
+
+        $(function () {
+            
+            $("#image").dxFileUploader({
+                                            selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                                            name: "FormIcon",
+                                            labelText: '@SharedLocalizer["or drag picture"]',
+                                            accept: "image/*",
+                                            uploadMode: '@SharedLocalizer["or drag"]',
+                                            multiple: false,
+                                        });
+
+            let published = '@Model.IsPublish';
+            $("#published").dxCheckBox({
+                value: (published.toLowerCase() == 'true'),
+                text: '@SharedLocalizer["Active"]',
+                name: 'IsPublish',
+            });
+
+            $("#button").dxButton({
+                text: '@SharedLocalizer["Edit"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+        });
+    </script>
+
+}

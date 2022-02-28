@@ -41,7 +41,7 @@
                     }
                 }),
                 onInitNewRow: function(e) {
-                    var url = `@Url.Action("Create", "Status")`;
+                    var url = `@Url.Action("CreateStatus", "Project")`;
                     window.location = url;
                 },
                 filterPanel: {
@@ -96,7 +96,7 @@
                                 icon: "edit",
                                 onClick: function (e) {
                                     var idString = e.row.data.id;
-                                    var url = `@Url.Action("Edit", "Status")`;
+                                    var url = `@Url.Action("EditStatus", "Project")`;
                                     window.location = url + '?id=' + idString;
                                 }
                             },

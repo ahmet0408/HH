@@ -92,18 +92,30 @@ namespace HH.bll.Services.ProjectService
         {
             if (modelDTO != null)
             {
-                var client = _dbContext.Client.Where(p => p.Name == modelDTO.Clientt).FirstOrDefault();
-                var status = _dbContext.StatusTranslates.Where(p => p.Name == modelDTO.Statuss).FirstOrDefault();
-                var location = _dbContext.LocationTranslates.Where(p => p.Name == modelDTO.Locationn).FirstOrDefault();
-                modelDTO.ClientId = client.Id;
-                modelDTO.StatusId = status.StatusId;
-                modelDTO.LocationId = location.LocationId;
                 dal.Models.Project.Project project = _mapper.Map<dal.Models.Project.Project>(modelDTO);
                 if (modelDTO.FormImage != null)
                 {
                     project.Image = await _imageService.UploadImage(modelDTO.FormImage, "project");
                 }
                 await _dbContext.Project.AddAsync(project);
+                await _dbContext.SaveChangesAsync();
+            }
+        }
+        public async Task EditProject(EditProjectDTO modelDTO)
+        {
+            if (modelDTO != null)
+            {
+                dal.Models.Project.Project project = _mapper.Map<dal.Models.Project.Project>(modelDTO);
+                if (modelDTO.FormImage != null)
+                {
+                    _imageService.DeleteImage(modelDTO.Image, "project");
+                    project.Image = await _imageService.UploadImage(modelDTO.FormImage, "project");
+                }
+                else
+                {
+                    project.Image = modelDTO.Image;
+                }
+                _dbContext.Project.Update(project);
                 await _dbContext.SaveChangesAsync();
             }
         }
@@ -116,6 +128,45 @@ namespace HH.bll.Services.ProjectService
             }
             _dbContext.Project.Remove(project);
             await _dbContext.SaveChangesAsync();
+        }
+        public async Task<EditLocationDTO> GetLocationForEditById(int id)
+        {
+            var location = await _dbContext.Location.Include(p => p.LocationTranslates).SingleOrDefaultAsync(p => p.Id == id);
+            EditLocationDTO editLocationDTO = _mapper.Map<EditLocationDTO>(location);
+            return editLocationDTO;
+        }
+        public IEnumerable<LocationDTO> GetAllLocationButThis(int id)
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var location = _dbContext.Location.Where(p => p.Id != id).Include(p => p.LocationTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<LocationDTO>>(location);
+            return result;
+        }
+        public IEnumerable<StatusDTO> GetAllStatusButThis(int id)
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var status = _dbContext.Status.Where(p => p.Id != id).Include(p => p.StatusTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<StatusDTO>>(status);
+            return result;
+        }
+        public async Task<EditStatusDTO> GetStatusForEditById(int id)
+        {
+            var status = await _dbContext.Status.Include(p => p.StatusTranslates).SingleOrDefaultAsync(p => p.Id == id);
+            EditStatusDTO editStatusDTO = _mapper.Map<EditStatusDTO>(status);
+            return editStatusDTO;
+        }
+        public async Task<EditProjectDTO> GetProjectForEditById(int id)
+        {
+            var project = await _dbContext.Project.Include(p => p.ProjectTranslates).SingleOrDefaultAsync(p => p.Id == id);
+            EditProjectDTO editProjectDTO = _mapper.Map<EditProjectDTO>(project);
+            return editProjectDTO;
+        }
+        public IEnumerable<Project> GetAllProjectButThis(int id)
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var project = _dbContext.Project.Where(p => p.Id != id).Include(p => p.ProjectTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<Project>>(project);
+            return result;
         }
         public IEnumerable<dal.Models.Project.StatusTranslate> GetAll()
         {

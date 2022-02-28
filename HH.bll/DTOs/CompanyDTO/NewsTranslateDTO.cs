@@ -9,6 +9,7 @@ namespace HH.bll.DTOs.CompanyDTO
 {
     public class NewsTranslateDTO
     {
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

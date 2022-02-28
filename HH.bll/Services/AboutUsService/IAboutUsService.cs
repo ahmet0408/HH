@@ -17,5 +17,8 @@ namespace HH.bll.Services.AboutUsService
         IEnumerable<About> GetAllAbout();
         Task<AboutUsDetailDTO> GetAboutUsDetail();
         Task<FooterDTO> GetFooter();
+        IEnumerable<About> GetAllAboutButThis(int id);
+        Task<EditAboutUsDTO> GetAboutUsForEditById(int id);
+        Task<About> GetAboutByIdAsync(int id);
     }
 }

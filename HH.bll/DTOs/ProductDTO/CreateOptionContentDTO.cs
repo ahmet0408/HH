@@ -13,6 +13,5 @@ namespace HH.bll.DTOs.ProductDTO
         [Required]
         public int SortOrder { get; set; }
         public int OptionId { get; set; }
-        public string Optionn { get; set; }
     }
 }
