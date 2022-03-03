@@ -103,7 +103,7 @@ namespace HH.bll.Services.ProductService
         public async Task<ProductDetailDTO> GetProductPage(int id)
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var product = await _dbContext.Product.Include(p => p.ProductTranslates.Where(p => p.LanguageCulture == culture)).Include(p => p.Option).FirstOrDefaultAsync(p => p.Id == id);
+            var product = await _dbContext.Product.Include(p => p.ProductTranslates.Where(p => p.LanguageCulture == culture)).FirstOrDefaultAsync(p => p.Id == id);
             return _mapper.Map<ProductDetailDTO>(product);   
         }
         public IEnumerable<OptionDetailDTO> GetAllOptionDetailByOptionId(int id)

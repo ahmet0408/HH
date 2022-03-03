@@ -355,12 +355,7 @@ namespace HH.dal.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Option");
                 });
@@ -440,6 +435,21 @@ namespace HH.dal.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("HH.dal.Models.Product.ProductOption", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("OptionId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ProductId", "OptionId");
+
+                    b.HasIndex("OptionId");
+
+                    b.ToTable("ProductOption");
                 });
 
             modelBuilder.Entity("HH.dal.Models.Product.ProductTranslate", b =>
@@ -911,17 +921,6 @@ namespace HH.dal.Migrations
                     b.Navigation("Mission");
                 });
 
-            modelBuilder.Entity("HH.dal.Models.Product.Option", b =>
-                {
-                    b.HasOne("HH.dal.Models.Product.Product", "Product")
-                        .WithMany("Option")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("HH.dal.Models.Product.OptionContent", b =>
                 {
                     b.HasOne("HH.dal.Models.Product.Option", "Option")
@@ -942,6 +941,25 @@ namespace HH.dal.Migrations
                         .IsRequired();
 
                     b.Navigation("OptionContent");
+                });
+
+            modelBuilder.Entity("HH.dal.Models.Product.ProductOption", b =>
+                {
+                    b.HasOne("HH.dal.Models.Product.Option", "Option")
+                        .WithMany("ProductOption")
+                        .HasForeignKey("OptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HH.dal.Models.Product.Product", "Product")
+                        .WithMany("ProductOption")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Option");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("HH.dal.Models.Product.ProductTranslate", b =>
@@ -1100,6 +1118,8 @@ namespace HH.dal.Migrations
             modelBuilder.Entity("HH.dal.Models.Product.Option", b =>
                 {
                     b.Navigation("OptionContent");
+
+                    b.Navigation("ProductOption");
                 });
 
             modelBuilder.Entity("HH.dal.Models.Product.OptionContent", b =>
@@ -1109,7 +1129,7 @@ namespace HH.dal.Migrations
 
             modelBuilder.Entity("HH.dal.Models.Product.Product", b =>
                 {
-                    b.Navigation("Option");
+                    b.Navigation("ProductOption");
 
                     b.Navigation("ProductTranslates");
                 });

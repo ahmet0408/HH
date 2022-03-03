@@ -60,7 +60,7 @@ namespace HH.web.Controllers.API
             return BadRequest();
         }
         //api/BannerAPI/2
-        [HttpDelete("{id}")]
+        [HttpDelete("GetAllBanner/{id}")]
         public async Task DeleteAsync(int id)
         {
             await _bannerService.RemoveBanner(id);

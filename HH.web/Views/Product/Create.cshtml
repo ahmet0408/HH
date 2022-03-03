@@ -109,64 +109,14 @@
                                 <label>@SharedLocalizer["DownloadFile"]</label>
                                 <input type="file" class="form-control" name="FormDownloadFile" />
                             </div>
-                             <div class="form-group">
-                                <label>@SharedLocalizer["Active"]</label><br />
-                                <input type="checkbox" class="form-control" asp-for="IsPublish"/>
-                            </div>
-                            @*<div class="btn">
-                                <input type="button" style="cursor: pointer" class="form-control" onclick="GFG_Fun();return false;" value=@SharedLocalizer["AddOption"] />
-                            </div>
-                            <div id="option"></div>
-                            <script>
-                               
-    // Create a break line element
-    var br = document.createElement("br");
-    var x = 0;var q;
-    function GFG_Fun() {
-    
-    // Create an input element for Full Name
-    var FN = document.createElement("input");
-    FN.setAttribute("type", "text");
-    FN.setAttribute("name", "OptionCode");
-    FN.setAttribute("placeholder", "OptionCode");
-    x=x+1;q="content"+x.toString();
-    var s = document.createElement("input");
-    s.setAttribute("class", q);
-    s.setAttribute("style", "cursor: pointer");
-    s.setAttribute("type", "button");
-    s.setAttribute("onclick",`xcontent("${q}"); return false;`)
-    s.setAttribute("value", "Add Content");
-    
-    
-    // create a submit button
-    var c = document.createElement("div");
-    c.setAttribute("class", q);
-     
-    document.getElementById("option").appendChild(FN);
-    document.getElementById("option").appendChild(s);
-    document.getElementById("option").appendChild(br.cloneNode());
-    document.getElementById("option").appendChild(c);
-    \document.getElementById("option").appendChild(br.cloneNode());
-    document.getElementById("option").appendChild(br.cloneNode());
-
-
-            }
-             
-            function xcontent(e) {
-              
-    var SO = document.createElement("input");
-    SO.setAttribute("type", "text");
-    SO.setAttribute("name", "SortOrder");
-    SO.setAttribute("placeholder", "SortOrder");
-    
-    var list = document.getElementsByClassName(e)[1];
-    list.appendChild(SO);
-    list.appendChild(br.cloneNode());
-
-
-    
-    }
-        </script>*@
+                              <div class="form-group">
+                                <div id="published"></div>
+                            </div> 
+                            <div class="form-group">
+                                <div id="option">
+                                    @Html.EditorFor(model => model.ProductOption)
+                                </div>
+                            </div>                           
                        </div>
                  </div>
                      <div class="dx-fieldset">
@@ -181,7 +131,48 @@
 </div>
 @section Scripts {
     <script>
+        function arrayToObject(arr) {
+    var obj = {};
+    for (var i = 0; i < arr.length; ++i){
+        obj[i] = arr[i];
+    }
+    return obj;
+}
      $(function () {
+         let changedBySelectBox;
+  let titleSelectBox;
+  let clearSelectionButton;
+  const dataGrid = $('#option').dxDataGrid({
+    dataSource: "/api/ProductAPI/GetOption",
+    keyExpr: 'id',
+    
+    showBorders: true,
+    name: "ProductOption",
+    selection: {
+      mode: 'multiple',
+    },
+    columns: [{
+    dataField: 'id',
+    caption: 'Option Id',
+    valueExpr: 'id'
+    },
+        {
+      dataField: 'optionCode',
+      caption: 'Option Name',
+      valueExpr: 'optionCode'
+    }],
+    onSelectionChanged(selectedItems) {
+        let options = [];
+        const data = selectedItems.selectedRowsData; 
+     console.log(data); 
+    }
+    
+  }).dxDataGrid('instance');
+         $("#published").dxCheckBox({
+                value: true,
+                text: '@SharedLocalizer["Active"]',
+                name: 'IsPublish',
+            });
           $("#button").dxButton({
                 text: '@SharedLocalizer["Add"]',
                 type: "success",

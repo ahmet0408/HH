@@ -15,6 +15,5 @@ namespace HH.bll.DTOs.CompanyDTO
         public IFormFile FormImage { get; set; }
         [Required]
         public bool IsPublish { get; set; }
-
     }
 }

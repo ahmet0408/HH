@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Internal;
 using HH.bll.DTOs.ProductDTO;
 using HH.bll.DTOs.ServicesDTO;
 using HH.bll.Services.ImageService;
@@ -93,19 +94,27 @@ namespace HH.bll.Services.ServiceService
             var result = _mapper.Map<IEnumerable<ServiceDTO>>(service);
             return result;
         }
-        public async Task<ServiceDetailDTO> GetServiceDetailById(int id)
+        public IEnumerable<ServiceDetailDTO> GetServiceDetailById(int? id)
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var service = await _dbContext.Services.Where(p => p.IsPublish == true).Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture)).SingleOrDefaultAsync(p => p.Id == id);
-            ServiceDetailDTO result = _mapper.Map<ServiceDetailDTO>(service);
-            return result;
+            var service = _dbContext.Services.Where(p => p.IsPublish == true).Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture)).ToList();
+                var item = service.FirstOrDefault(p => p.Id == id);
+                var ser = service.Remove(item);
+                var serr = service.Prepend(item);
+                var result = _mapper.Map<IEnumerable<ServiceDetailDTO>>(serr);
+                return result;
         }
+        
         public IEnumerable<ProductDTO> GetAllService()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var service = _dbContext.Services.Where(p => p.IsPublish == true).Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture));
+            var service = _dbContext.Services.Where(p => p.IsPublish == true).Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture)).ToList();
+            var product = _dbContext.Product.Where(p => p.IsPublish == true).Include(p => p.ProductTranslates.Where(p => p.LanguageCulture == culture)).ToList();
             var result = _mapper.Map<IEnumerable<ProductDTO>>(service);
-            return result;
+            var result1 = _mapper.Map<IEnumerable<ProductDTO>>(product);
+            var mixed = result.Concat(result1);
+            var shuffledList = mixed.OrderBy(x => Guid.NewGuid()).ToList();
+            return shuffledList;
         }
     }
 }

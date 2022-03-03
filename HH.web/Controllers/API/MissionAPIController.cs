@@ -59,7 +59,7 @@ namespace HH.web.Controllers.API
             return BadRequest();
         }
         //api/MissionAPI/1
-        [HttpDelete("{id}")]
+        [HttpDelete("GetAllMission/{id}")]
         public async Task DeleteAsync(int id)
         {
             await _missionService.RemoveMission(id);

@@ -18,7 +18,7 @@ namespace HH.web.Utilities
         public static string GetProductPage { get; } = "/api/ProductAPI/GetProductPage/{id}";
         public static string GetAllOptionContent { get; } = "/api/ProductAPI/GetAllOptionDetailByOptionId/{id}";
         public static string GetService { get; } = "/api/ServiceAPI/GetAllPublishService";
-        public static string GetServicePage { get; } = "/api/ServiceAPI/GetServiceDetailById{id}";
+        public static string GetServicePage { get; } = "/api/ServiceAPI/GetServiceDetailById/{id}";
         public static string GetAllService { get; } = "/api/ServiceAPI/GetAllServiceForProduct";
         public static string GetAllClient { get; } = "/api/ClientAPI";
         public static string GetFooter { get; } = "/api/AboutUsAPI/GetFooter";

@@ -51,7 +51,8 @@ namespace HH.web.Extensions
             CreateMap<ServiceTranslateDTO, ServiceTranslate>().ReverseMap();
             CreateMap<EditServiceDTO, dal.Models.Service.Service>().ReverseMap();
             CreateMap<dal.Models.Service.Service, ServiceDTO>()
-                .ForMember(p => p.Name, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Name).FirstOrDefault()));
+                .ForMember(p => p.Name, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Name).FirstOrDefault()))
+                .ForMember(p => p.Description, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Description).FirstOrDefault()));
             CreateMap<dal.Models.Service.Service, ServiceDetailDTO>()
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Name).FirstOrDefault()))
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Description).FirstOrDefault()));
@@ -64,7 +65,8 @@ namespace HH.web.Extensions
                 .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.ShortDesc).FirstOrDefault()))
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.Description).FirstOrDefault()));
             CreateMap<ProductTranslateDTO, ProductTranslate>();
-            CreateMap<CreateProductDTO, dal.Models.Product.Product>();
+            CreateMap<ProductOptionDTO, ProductOption>();
+            CreateMap<CreateProductDTO, dal.Models.Product.Product>(); 
             CreateMap<CreateOptionDTO, Option>();
             CreateMap<CreateOptionContentDTO, OptionContent>();
             CreateMap<OptionContentTranslateDTO, OptionContentTranslate>();
@@ -73,7 +75,6 @@ namespace HH.web.Extensions
                 .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.ShortDesc).FirstOrDefault()));
             CreateMap<Option, OptionDTO>();
             CreateMap<dal.Models.Product.Product, ProductDetailDTO>()
-                .ForMember(p => p.OptionDTO, p => p.MapFrom(p => p.Option))
                 .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.ShortDesc).FirstOrDefault()))
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.Name).FirstOrDefault()))
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.ProductTranslates.Select(p => p.Description).FirstOrDefault()));

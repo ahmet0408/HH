@@ -30,10 +30,9 @@ namespace HH.web.Controllers.API
         }
         //GET: api/ServiceAPI/GetServiceDetailById/1
         [HttpGet("GetServiceDetailById/{id}")]
-        public async Task<ServiceDetailDTO> Get(int id)
+        public object Get(int id)
         {
-            ServiceDetailDTO result = await _service.GetServiceDetailById(id);
-            return result;
+            return _service.GetServiceDetailById(id).AsQueryable();
         }
         //GET: api/ServiceAPI/GetAllServiceForProduct
         [HttpGet("GetAllServiceForProduct")]
@@ -67,7 +66,7 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("GetAlllService/{id}")]
         public async Task DeleteAsync(int id)
         {
             await _service.RemoveService(id);

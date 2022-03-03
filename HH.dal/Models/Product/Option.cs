@@ -9,9 +9,8 @@ namespace HH.dal.Models.Product
     public class Option
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
         public string OptionCode { get; set; }
         public ICollection<OptionContent> OptionContent { get; set; }
+        public ICollection<ProductOption> ProductOption { get; set; }
     }
 }

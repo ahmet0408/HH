@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using HH.dal.Models.Product;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,8 +10,7 @@ using System.Threading.Tasks;
 namespace HH.bll.DTOs.ProductDTO
 {
     public class CreateProductDTO
-    {
-        public ICollection<ProductTranslateDTO> ProductTranslates { get; set; }
+    {   
         [Required]
         public bool IsPublish { get; set; }
         [Required]
@@ -19,5 +19,7 @@ namespace HH.bll.DTOs.ProductDTO
         public int SortOrder { get; set; }
         public IFormFile FormRequestFile { get; set; }
         public IFormFile FormDownloadFile { get; set; }
+        public ICollection<ProductTranslateDTO> ProductTranslates { get; set; }
+        public ICollection<ProductOptionDTO> ProductOption { get; set; }
     }
 }

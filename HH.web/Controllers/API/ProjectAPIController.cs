@@ -60,7 +60,7 @@ namespace HH.web.Controllers.API
             return BadRequest();
         }
         //DELETE: api/ProjectAPI/RemoveStatus/1
-        [HttpDelete("RemoveStatus/{id}")]
+        [HttpDelete("GetAlllStatus/{id}")]
         public async Task RemoveStatus(int id)
         {
             await _projectService.RemoveStatus(id);
@@ -83,7 +83,7 @@ namespace HH.web.Controllers.API
             return BadRequest();
         }
         //DELETE: api/ProjectAPI/RemoveLocation/1
-        [HttpDelete("RemoveLocation/{Id}")]
+        [HttpDelete("GetAlllLocation/{Id}")]
         public async Task RemoveLocation(int id)
         {
             await _projectService.RemoveLocation(id);
@@ -128,7 +128,7 @@ namespace HH.web.Controllers.API
             return BadRequest();
         }
         //DELETE: api/ProjectAPI/1
-        [HttpDelete("{id}")]
+        [HttpDelete("GetAlllProject/{id}")]
         public async Task RemoveProject(int id)
         {
             await _projectService.RemoveProject(id);

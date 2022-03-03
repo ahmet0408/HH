@@ -17,7 +17,7 @@ namespace HH.bll.Services.ServiceService
         Task EditService(EditServiceDTO modelDTO);
         Task RemoveService(int id);
         IEnumerable<ServiceDTO> GetAllPublishService();
-        Task<ServiceDetailDTO> GetServiceDetailById(int id);
+        IEnumerable<ServiceDetailDTO> GetServiceDetailById(int? id);
         IEnumerable<ProductDTO> GetAllService();
     }
 }

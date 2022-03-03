@@ -9,6 +9,5 @@ namespace HH.bll.DTOs.ProductDTO
     public class CreateOptionDTO
     {
         public string OptionCode { get; set; }
-        public int ProductId { get; set; }
     }
 }

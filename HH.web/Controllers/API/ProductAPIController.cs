@@ -74,7 +74,7 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("GetAlllProduct/{id}")]
         public async Task DeleteAsync(int id)
         {
             await _productService.RemoveProduct(id);

@@ -14,7 +14,6 @@ namespace HH.dal.Data.Configuration.ProductConfiguration
         public void Configure(EntityTypeBuilder<Option> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.ProductId).IsRequired();
             builder.Property(x => x.OptionCode).IsRequired();
             builder.HasMany(x => x.OptionContent).WithOne(x => x.Option).HasForeignKey(x => x.OptionId).OnDelete(DeleteBehavior.Cascade);
         }

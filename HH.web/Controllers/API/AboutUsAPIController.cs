@@ -79,7 +79,7 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("GetAllAbout/{id}")]
         public async Task DeleteAsync(int id)
         {
             await _aboutUsservice.RemoveAbout(id);

@@ -36,6 +36,7 @@ namespace HH.dal.Data
         public DbSet<OptionContentTranslate> OptionContentTranslates { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductTranslate> ProductTranslates { get; set; }
+        public DbSet<ProductOption> ProductOption { get; set; }
         public DbSet<Location> Location { get; set; }
         public DbSet<LocationTranslate> LocationTranslates { get; set; }
         public DbSet<Project> Project { get; set; }

@@ -42,9 +42,8 @@
                                 <input type="file" class="form-control" name="FormImage" />
                             </div>
                              <div class="form-group">
-                                <label>@SharedLocalizer["Active"]</label><br />
-                                <input type="checkbox" class="form-control" asp-for="IsPublish"/>
-                            </div>                       
+                                <div id="published"></div>
+                            </div>                        
                     </div>
                 </div>
                  <div class="dx-fieldset">
@@ -60,6 +59,11 @@
 @section Scripts {
     <script>
      $(function () {
+         $("#published").dxCheckBox({
+                value: true,
+                text: '@SharedLocalizer["Active"]',
+                name: 'IsPublish',
+            });
           $("#button").dxButton({
                 text: '@SharedLocalizer["Add"]',
                 type: "success",

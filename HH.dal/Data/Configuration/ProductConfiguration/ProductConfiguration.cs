@@ -19,7 +19,6 @@ namespace HH.dal.Data.Configuration.ProductConfiguration
             builder.Property(x => x.SortOrder).IsRequired();
             builder.Property(x => x.RequestFile).IsRequired(false);
             builder.Property(x => x.DownloadFile).IsRequired(false);
-            builder.HasMany(x => x.Option).WithOne(x => x.Product).HasForeignKey(x => x.ProductId).OnDelete(DeleteBehavior.Cascade);
             builder.HasMany(x => x.ProductTranslates).WithOne(x => x.Product).HasForeignKey(x => x.ProductId).OnDelete(DeleteBehavior.Cascade);
         }
     }

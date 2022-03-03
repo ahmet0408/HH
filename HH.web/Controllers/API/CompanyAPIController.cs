@@ -65,7 +65,7 @@ namespace HH.web.Controllers.API
             return BadRequest();
         }
         //DELETE: api/Company/{id}
-        [HttpDelete("{id}")]
+        [HttpDelete("GetAllNews/{id}")]
         public async Task DeleteAsync(int id)
         {
             await _companyservice.RemoveNews(id);

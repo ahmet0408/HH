@@ -28,10 +28,10 @@
                                 <label>@SharedLocalizer["OptionName"]</label>
                                 <input type="text" class="form-control" name="OptionCode" />
                             </div>
-                             <div class="form-group">
+                             @*<div class="form-group">
                                 <label>@SharedLocalizer["Product"]</label>
                                 <div id="product"></div>
-                            </div>
+                            </div>*@
                               
                        </div>
                 </div>
@@ -57,13 +57,7 @@
         });
        
      $(function () {
-         $("#product").dxSelectBox({
-                dataSource: getProduct,
-                displayExpr: "name",
-                valueExpr: "productId",
-                name: "productId",
-                searchEnabled: true
-            });
+      
         
           $("#button").dxButton({
                 text: '@SharedLocalizer["Add"]',

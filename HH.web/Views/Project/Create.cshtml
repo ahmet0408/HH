@@ -111,9 +111,8 @@
                             </div>
                             
                              <div class="form-group">
-                                <label>@SharedLocalizer["Active"]</label>
-                                <input type="checkbox" class="form-control" asp-for="IsPublish"/>
-                            </div>                       
+                                <div id="published"></div>
+                            </div>                        
                        </div>
                 </div>
                  <div class="dx-fieldset">
@@ -151,6 +150,11 @@
             }
         });
      $(function () {
+         $("#published").dxCheckBox({
+                value: true,
+                text: '@SharedLocalizer["Active"]',
+                name: 'IsPublish',
+            });
          $("#client").dxSelectBox({
                 dataSource: getClient,
                 displayExpr: "name",
