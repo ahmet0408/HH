@@ -92,10 +92,12 @@
                                 lngIndex++;
                             }
                         </div>
-                        <div class="col-lg-6"> 
+                        <div class="col-lg-6">
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />
                             <div class="form-group">
                                 <label>@SharedLocalizer["Image"]</label>
-                                <input type="file" class="form-control" name="FormImage" />
+                                <div id="image"></div>
                             </div>
                             <div class="form-group">
                                 <label>@SharedLocalizer["SortOrder"]</label>
@@ -103,20 +105,19 @@
                             </div>
                             <div class="form-group">
                                 <label>@SharedLocalizer["RequestFile"]</label>
-                                <input type="file" class="form-control" name="FormRequestFile" />
+                                <div id="requestFile"></div>
                             </div>
                             <div class="form-group">
                                 <label>@SharedLocalizer["DownloadFile"]</label>
-                                <input type="file" class="form-control" name="FormDownloadFile" />
+                                <div id="downloadFile"></div>
                             </div>
                               <div class="form-group">
                                 <div id="published"></div>
                             </div> 
                             <div class="form-group">
-                                <div id="option">
-                                    @Html.EditorFor(model => model.ProductOption)
-                                </div>
-                            </div>                           
+                                <div id="option"></div>
+                            </div>  
+                            <input type="hidden" id="options" asp-for="OptionIds" />
                        </div>
                  </div>
                      <div class="dx-fieldset">
@@ -131,43 +132,73 @@
 </div>
 @section Scripts {
     <script>
-        function arrayToObject(arr) {
-    var obj = {};
-    for (var i = 0; i < arr.length; ++i){
-        obj[i] = arr[i];
-    }
-    return obj;
-}
      $(function () {
+         $("#image").dxFileUploader({
+                selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                name: "FormImage",
+                labelText: '@SharedLocalizer["or drag picture"]',
+                accept: "image/*",
+                uploadMode: "or drag",
+                multiple: false,
+            }).dxValidator({
+                validationRules: [{
+                    type: "required",
+                    message: '@SharedLocalizer["Upload picture"]'
+                }]
+            });
+            $("#requestFile").dxFileUploader({
+                selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                name: "FormRequestFile",
+                labelText: '@SharedLocalizer["or drag picture"]',
+                accept: "image/*",
+                uploadMode: "or drag",
+                multiple: false,
+            }).dxValidator({
+                validationRules: [{
+                    type: "required",
+                    message: '@SharedLocalizer["Upload picture"]'
+                }]
+            });
+            $("#downloadFile").dxFileUploader({
+                selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                name: "FormDownloadFile",
+                labelText: '@SharedLocalizer["or drag picture"]',
+                accept: "image/*",
+                uploadMode: "or drag",
+                multiple: false,
+            }).dxValidator({
+                validationRules: [{
+                    type: "required",
+                    message: '@SharedLocalizer["Upload picture"]'
+                }]
+            });
          let changedBySelectBox;
   let titleSelectBox;
   let clearSelectionButton;
   const dataGrid = $('#option').dxDataGrid({
-    dataSource: "/api/ProductAPI/GetOption",
-    keyExpr: 'id',
-    
+    dataSource: "/api/ProductAPI/GetAllOption",
+    keyExpr: 'optionId',
     showBorders: true,
     name: "ProductOption",
     selection: {
       mode: 'multiple',
     },
-    columns: [{
-    dataField: 'id',
-    caption: 'Option Id',
-    valueExpr: 'id'
-    },
+    columns: [
         {
       dataField: 'optionCode',
       caption: 'Option Name',
       valueExpr: 'optionCode'
     }],
     onSelectionChanged(selectedItems) {
-        let options = [];
+        console.log(selectedItems);
         const data = selectedItems.selectedRowsData; 
-     console.log(data); 
-    }
-    
-  }).dxDataGrid('instance');
+        $("#options").val(
+                data
+                    .map((value) => `${value.optionId}`)
+                    .join(", ")
+            );
+        }
+    }).dxDataGrid('instance');
          $("#published").dxCheckBox({
                 value: true,
                 text: '@SharedLocalizer["Active"]',

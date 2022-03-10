@@ -3,7 +3,7 @@ using AutoMapper.Internal;
 using HH.bll.DTOs.ProductDTO;
 using HH.bll.DTOs.ServicesDTO;
 using HH.bll.Services.ImageService;
-using HH.dal.Data;
+using HH.web.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,13 +26,7 @@ namespace HH.bll.Services.ServiceService
             _mapper = mapper;
             _imageService = imageService;
         } 
-        public IEnumerable<Service> GetAlllService()
-        {
-            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var service = _dbContext.Services.Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture));
-            var result = _mapper.Map<IEnumerable<Service>>(service);
-            return result;
-        }
+        
         public async Task CreateService(CreateServiceDTO modelDTO)
         {
             if (modelDTO != null)
@@ -73,19 +67,20 @@ namespace HH.bll.Services.ServiceService
             _dbContext.Services.Remove(service);
             await _dbContext.SaveChangesAsync();
         }
+        public IEnumerable<Service> GetAllService()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var service = _dbContext.Services.Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<Service>>(service);
+            return result;
+        }
         public async Task<EditServiceDTO> GetServiceForEditById(int id)
         {
             var service = await _dbContext.Services.Include(p => p.ServiceTranslates).SingleOrDefaultAsync(p => p.Id == id);
             EditServiceDTO editServiceDTO = _mapper.Map<EditServiceDTO>(service);
             return editServiceDTO;
         }
-        public IEnumerable<Service> GetAllServiceButThis(int id)
-        {
-            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var service = _dbContext.Services.Where(p => p.Id != id).Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture));
-            var result = _mapper.Map<IEnumerable<Service>>(service);
-            return result;
-        }
+        
 
         public IEnumerable<ServiceDTO> GetAllPublishService()
         {
@@ -105,13 +100,13 @@ namespace HH.bll.Services.ServiceService
                 return result;
         }
         
-        public IEnumerable<ProductDTO> GetAllService()
+        public IEnumerable<ProductServiceDTO> ProductAndService()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
             var service = _dbContext.Services.Where(p => p.IsPublish == true).Include(p => p.ServiceTranslates.Where(p => p.LanguageCulture == culture)).ToList();
             var product = _dbContext.Product.Where(p => p.IsPublish == true).Include(p => p.ProductTranslates.Where(p => p.LanguageCulture == culture)).ToList();
-            var result = _mapper.Map<IEnumerable<ProductDTO>>(service);
-            var result1 = _mapper.Map<IEnumerable<ProductDTO>>(product);
+            var result = _mapper.Map<IEnumerable<ProductServiceDTO>>(service);
+            var result1 = _mapper.Map<IEnumerable<ProductServiceDTO>>(product);
             var mixed = result.Concat(result1);
             var shuffledList = mixed.OrderBy(x => Guid.NewGuid()).ToList();
             return shuffledList;

@@ -35,8 +35,8 @@
         @*sidebar-hide-to-hide sidebar-shrink sidebar-gestures*@
             <div class="nano">
                 <div class="nano-content">
-                    <div class="logo"><a href="index.html">
-                                <span>Focus</span></a></div>
+                    <div class="logo"><a asp-action="Index" asp-controller="Admin">
+                                <span>Halkara@Hyzmat</span></a></div>
                     <ul>
                         <li><a class="sidebar-sub-toggle">About Us<span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
@@ -69,9 +69,7 @@
                         <li><a class="sidebar-sub-toggle">Contact<span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
                             <ul>
-                                <li><a href="CreateAbout.html">Create</a></li>
-                                <li><a href="EditAbout.html">Edit</a></li>
-                                <li><a href="RemoveAbout.html">Remove</a></li>
+                                <li><a asp-action="Index" asp-controller="Contact">Contact</a></li>                                  
                             </ul>
                         </li>
                         <li><a class="sidebar-sub-toggle">Mission<span

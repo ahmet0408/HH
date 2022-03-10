@@ -19,24 +19,21 @@ namespace HH.web.Controllers.API
         {
             _bannerService = bannerService;
         }
+
         [HttpGet("GetAllBanner")]
         public object GetAllBanner(DataSourceLoadOptions loadOptions)
         {
             return DataSourceLoader.Load<Banner>(_bannerService.GetAllBanner().AsQueryable(), loadOptions);
 
         }
-        //api/BannerAPI
+
         [HttpGet]
-        public BannerDTO Get()
+        public async Task<IActionResult> Get()
         {
-            return _bannerService.GetBanner();
+            BannerDTO result = await _bannerService.GetBanner();
+            return Ok(result);
         }
-        [HttpGet("GetAllBannerButThis/{id}")]
-        public object GetAllAboutButThis(int id)
-        {
-            return _bannerService.GetAllBannerButThis(id).AsQueryable();
-        }
-        
+     
         //api/BannerAPI
         [HttpPost]
         public async Task<IActionResult> Post(CreateBannerDTO value)

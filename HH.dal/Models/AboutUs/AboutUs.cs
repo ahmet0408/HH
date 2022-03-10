@@ -9,7 +9,6 @@ namespace HH.dal.Models.AboutUs
     public class AboutUs
     {
         public int Id { get; set; }
-        public string MainImage { get; set; }
         public string Image { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }

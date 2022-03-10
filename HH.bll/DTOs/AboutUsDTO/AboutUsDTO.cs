@@ -10,7 +10,7 @@ namespace HH.bll.DTOs.AboutUsDTO
 {
     public class AboutUsDTO
     {
-        public string MainImage { get; set; }
+        public string Image { get; set; }
         public string ShortDesc { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using HH.bll.DTOs.ClientDTO;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using HH.bll.DTOs.ClientDTO;
 using HH.bll.Services.ClientService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,14 +20,15 @@ namespace HH.web.Controllers.API
         }
         //GET: api/ClientAPI
         [HttpGet]
-        public object Get()
+        public object Get(DataSourceLoadOptions loadOptions)
         {
-            return _clientService.GetAllClient().AsQueryable();
+            return DataSourceLoader.Load<ClientDTO>(_clientService.GetAllClient().AsQueryable(), loadOptions);
         }
         [HttpGet("GetAllClientButThis/{id}")]
-        public object GetAllClientButThis(int id)
+        public IActionResult GetAllClientButThis(int id)
         {
-            return _clientService.GetAllClientButThis(id).AsQueryable();
+            var result = _clientService.GetAllClientButThis(id);
+            return Ok(result);
         }
         //POST: api/ClientAPI
         [HttpPost]

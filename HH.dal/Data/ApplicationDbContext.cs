@@ -8,6 +8,7 @@ using HH.dal.Models.Mission;
 using HH.dal.Models.Product;
 using HH.dal.Models.Project;
 using HH.dal.Models.Service;
+using HH.dal.Models.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,10 +17,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HH.dal.Data
+namespace HH.web.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
         public DbSet<AboutUs> AboutUs { get; set; }
         public DbSet<AboutUsTranslate> AboutUsTranslates { get; set; }
         public DbSet<Banner> Banner { get; set; }

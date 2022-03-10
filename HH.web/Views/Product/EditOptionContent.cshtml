@@ -1,0 +1,133 @@
+﻿@model HH.bll.DTOs.ProductDTO.EditOptionContentDTO
+@using HH.web
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using HH.bll.DTOs.LanguageDTO
+
+@{
+    ViewData["Title"] = SharedLocalizer["Edit OptionContent"];
+
+
+    int lngIndex = 0;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Edit OptionContent"]
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form asp-action="EditOptionContent" id="form" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            @foreach (LanguageDTO languageDTO in ViewBag.Languages)
+                            {
+                                <h2>@languageDTO.Name</h2>
+                                <hr />
+                                {
+                                    var optionContentT = Model.OptionContentTranslates.FirstOrDefault(p => p.LanguageCulture == languageDTO.Culture);
+
+                                    if (optionContentT != null)
+                                    {
+                                        <input type="hidden" name="OptionContentTranslates[@lngIndex].Id" value="@optionContentT.Id" />
+                                        <input type="hidden" class="form-control" name="OptionContentTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Title"]</label>
+                                            <input type="text" class="form-control" name="OptionContentTranslates[@lngIndex].Title" value="@optionContentT.Title" />
+                                        </div>                                       
+                                        <label>@SharedLocalizer["Description"]</label>
+                                        <div id="description-editorr-@lngIndex"></div>
+                              
+                                    }
+                                    <script>
+                                    $( function() {
+                                        $("#description-editorr-@lngIndex").dxHtmlEditor({
+                                            height: 250,
+                                            toolbar: {
+                                                items: [
+                                                    "undo", "redo", "separator",
+                                                    {
+                                                        formatName: "header",
+                                                        formatValues: [false, 1, 2, 3, 4, 5]
+                                                    },
+                                                    {
+                                                        formatName: "size",
+                                                        formatValues: ["8pt", "10pt", "12pt", "14pt", "18pt", "24pt", "36pt"]
+                                                    },
+                                                        "bold", "italic", "strike", "underline", "separator",
+                                                             "alignLeft", "alignCenter", "alignRight", "alignJustify", "separator",
+                                                              "orderedList", "bulletList", "separator",
+                                                              "color", "background", "separator",
+                                                               "link", "image", "separator",
+                                                               "clear", "codeBlock", "blockquote",
+                                                    {
+                                                        widget: "dxButton",
+                                                        options: {
+                                                            text: "Show markup",
+                                                            stylingMode: "text",
+                                                            onClick: function () {
+                                                                popupInstance.show();
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            name: `OptionContentTranslates[@lngIndex].Description`,
+                                            value: @Json.Serialize(@optionContentT.Description),
+                                        }).dxHtmlEditor("instance");
+                                    });
+                                </script>
+                                }
+
+                                lngIndex++;
+                            }   
+
+                        </div>
+                            <div class="col-lg-6">
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />
+                             <input type="hidden" name="PreviousUrl" value="@Model.PreviousUrl" />
+                               <div class="form-group">
+                                <label>@SharedLocalizer["SortOrder"]</label>
+                                <input type="text" class="form-control" name="SortOrder" value="@Model.SortOrder" />
+                            </div>
+                            <input type="hidden" name="OptionId" value="@Model.OptionId" />
+                               
+                        </div>
+                    </div>
+
+               
+                <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+           
+
+            $("#button").dxButton({
+                text: '@SharedLocalizer["Edit"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+        });
+    </script>
+
+}

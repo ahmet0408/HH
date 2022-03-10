@@ -10,12 +10,11 @@ namespace HH.bll.Services.CompanyService
     public interface ICompanyService
     {
         Task<EditNewsDTO> GetNewsForEditById(int id);
-        IEnumerable<News> GetAllNewsButThis(int id);
         Task CreateNews(CreateNewsDTO modelDTO);
         Task RemoveNews(int id);
         Task EditNews(EditNewsDTO modelDTO);
         IEnumerable<News> GetAllNews();
-        IEnumerable<NewsDTO> GetAllPublishListNews();
+        IEnumerable<NewsDTO> GetAllPublishNews();
         Task<NewsDetailDTO> GetNewsPage(int id);
     }
 }

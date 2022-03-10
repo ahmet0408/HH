@@ -29,7 +29,7 @@
                             @foreach (LanguageDTO languageDTO in ViewBag.Languages)
                             {
                                 <h2>@languageDTO.Name</h2>
-                                <hr />
+                                
                                 <input type="hidden" class="form-control" name="StatusTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />                                                         
                                    <div class="form-group">
                                    <label>@SharedLocalizer["Name"]</label>

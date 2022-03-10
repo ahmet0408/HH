@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using HH.bll.DTOs.MissionDTO;
 using HH.bll.Services.ImageService;
-using HH.dal.Data;
+using HH.web.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,13 +23,6 @@ namespace HH.bll.Services.MissionService
             _dbContext = dbContext;
             _mapper = mapper;
             _imageService = imageService;
-        }
-        public IEnumerable<Mission> GetAllMission()
-        {
-            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var mission = _dbContext.Mission.Include(p => p.MissionTranslates.Where(p => p.LanguageCulture == culture));
-            var result = _mapper.Map<IEnumerable<Mission>>(mission);
-            return result;
         }
         public async Task CreateMission(CreateMissionDTO modelDTO)
         {
@@ -72,18 +65,18 @@ namespace HH.bll.Services.MissionService
             _dbContext.Mission.Remove(mission);
             await _dbContext.SaveChangesAsync();
         }
+        public IEnumerable<Mission> GetAllMission()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var mission = _dbContext.Mission.Include(p => p.MissionTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<Mission>>(mission);
+            return result;
+        }
         public async Task<EditMissionDTO> GetMissionForEditById(int id)
         {
             var mission = await _dbContext.Mission.Include(p => p.MissionTranslates).SingleOrDefaultAsync(p => p.Id == id);
             EditMissionDTO editMissionDTO = _mapper.Map<EditMissionDTO>(mission);
             return editMissionDTO;
-        }
-        public IEnumerable<Mission> GetAllMissionButThis(int id)
-        {
-            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var mission = _dbContext.Mission.Where(p => p.Id != id).Include(p => p.MissionTranslates.Where(p => p.LanguageCulture == culture));
-            var result = _mapper.Map<IEnumerable<Mission>>(mission);
-            return result;
         }
         public IEnumerable<MissionDTO> GetAllPublishMission()
         {

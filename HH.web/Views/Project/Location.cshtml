@@ -27,8 +27,7 @@
 @section Scripts{
     <script>
         $(function () {
-            let url = `@API.GetAlllLocation`;
-            console.log(url);
+            let url = `@API.GetAllLocation`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
             $("#gridContainer").dxDataGrid({
                 dataSource: DevExpress.data.AspNet.createStore({
@@ -85,13 +84,13 @@
                 columns: [
                     {
                         caption: '@SharedLocalizer["Name"]',
-                        dataField: "name",
+                        dataField: "locationTranslates[0].name",
                         allowHeaderFiltering: false
                     },                   
                      {
                         caption: '@SharedLocalizer["Active"]',
                         dataField: "isPublish",
-                        width: "130",
+                        width: "230",
                         allowHeaderFiltering: false
                     },
                     {

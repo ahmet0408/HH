@@ -1,0 +1,153 @@
+﻿@model HH.bll.DTOs.ProductDTO.EditOptionDTO
+@using HH.web.Utilities;
+@using HH.web
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using HH.bll.DTOs.LanguageDTO
+
+@{
+    ViewData["Title"] = SharedLocalizer["Edit Option"];
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Edit Option"]
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form asp-action="EditOption" id="form" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="OptionId" />
+                    <div class="form-row">
+                            <div class="col-lg-6">
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />                                                        
+                             <div class="form-group">
+                                <label>@SharedLocalizer["Option Name"]</label>
+                                <input type="text" class="form-control" name="OptionCode" value="@Model.OptionCode" />
+                            </div>
+                            <input type="hidden" name="PreviousUrl" value="@Model.PreviousUrl" />
+                        </div>
+                    </div>               
+                <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+     <div class="row">
+        <div id="gridContainer">
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            let url = `@API.GetAllOptionContent`+@Model.OptionId;
+            var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+            $("#gridContainer").dxDataGrid({
+                dataSource: DevExpress.data.AspNet.createStore({
+                    key: "id",
+                    loadUrl: url,
+                    insertUrl: url,
+                    updateUrl: url,
+                    deleteUrl: url,
+                    onBeforeSend: function (method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                    }
+                }),
+                onInitNewRow: function(e) {
+                    var url = `@Url.Action("CreateOptionContent", "Product")`;
+                    window.location = url;
+                },
+                filterPanel: {
+                    visible: false
+                },
+                filterRow: { visible: false },
+                remoteOperations: true,
+                onRowUpdating: function (e) {
+                    e.newData = Object.assign(e.oldData, e.newData)
+                },
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
+                paging: {
+                    pageSize: 100
+                },
+                editing: {
+                    useIcons: true,
+                    allowUpdating: true,
+                    allowDeleting: true,
+                    allowAdding: true
+                },
+                headerFilter: {
+                    visible: true
+                },
+                wordWrapEnabled: true,
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                searchPanel: {
+                    visible: false
+                },
+                //stateStoring: {
+                //    enabled: true,
+                //    type: "localStorage",
+                //    storageKey: "AboutUsAdmin"
+                //},
+                columns: [
+                    {
+                        caption: '@SharedLocalizer["Title"]',
+                        dataField: "title",
+                        allowHeaderFiltering: false
+                    },                   
+                    {
+                        caption: '@SharedLocalizer["Description"]',
+                        dataField: "description",
+                        allowHeaderFiltering: false
+                    },
+                     {
+                        caption: '@SharedLocalizer["SortOrder"]',
+                        dataField: "sortOrder",
+                        allowHeaderFiltering: false
+                    },
+                    {
+                        type: "buttons",
+                        width: 110,
+                        buttons: [
+                            {
+                                hint: '@SharedLocalizer["Edit"]',
+                                icon: "edit",
+                                onClick: function (e) {
+                                    var idString = e.row.data.id;
+                                    var url = `@Url.Action("EditOptionContent", "Product")`;
+                                    window.location = url + '?id=' + idString;
+                                }
+                            },
+                            "delete"
+                        ]
+                    }
+                ]
+            });
+                $("#button").dxButton({
+                text: '@SharedLocalizer["Edit"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+        });
+    </script>
+
+}

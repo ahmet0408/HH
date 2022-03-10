@@ -148,7 +148,7 @@ namespace HH.web.Controllers
             if (ModelState.IsValid)
             {
                 await _projectService.EditStatus(editStatusDTO);
-                return RedirectToAction("Index");
+                return RedirectToAction("Status");
             }
             ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
             return View(editStatusDTO);

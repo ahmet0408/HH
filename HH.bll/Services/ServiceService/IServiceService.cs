@@ -11,13 +11,12 @@ namespace HH.bll.Services.ServiceService
     public interface IServiceService
     {
         Task<EditServiceDTO> GetServiceForEditById(int id);
-        IEnumerable<Service> GetAllServiceButThis(int id);
-        IEnumerable<Service> GetAlllService();
+        IEnumerable<Service> GetAllService();
         Task CreateService(CreateServiceDTO modelDTO);
         Task EditService(EditServiceDTO modelDTO);
         Task RemoveService(int id);
         IEnumerable<ServiceDTO> GetAllPublishService();
         IEnumerable<ServiceDetailDTO> GetServiceDetailById(int? id);
-        IEnumerable<ProductDTO> GetAllService();
+        IEnumerable<ProductServiceDTO> ProductAndService();
     }
 }

@@ -26,15 +26,15 @@
                     <div class="form-row">
                             <div class="col-lg-6"> 
                             <div class="form-group">
-                                <label>@SharedLocalizer["Logo"]</label>
-                                <input type="file" class="form-control" name="FormLogo" />
+                                <label>@SharedLocalizer["Logo*"]</label>
+                                <div id="logo"></div>
                             </div>
                              <div class="form-group">
-                                <label>@SharedLocalizer["Name"]</label>
+                                <label>@SharedLocalizer["Name*"]</label>
                                 <input type="text" class="form-control" name="Name" />
                             </div>                       
                             <div class="form-group">
-                                <label>@SharedLocalizer["Link"]</label>
+                                <label>@SharedLocalizer["Link*"]</label>
                                 <input type="text" class="form-control" name="Link" />
                             </div>                       
                     </div>
@@ -52,6 +52,19 @@
 @section Scripts {
     <script>
      $(function () {
+         $("#logo").dxFileUploader({
+                selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                name: "FormLogo",
+                labelText: '@SharedLocalizer["or drag picture"]',
+                accept: "image/*",
+                uploadMode: "or drag",
+                multiple: false,
+            }).dxValidator({
+                validationRules: [{
+                    type: "required",
+                    message: '@SharedLocalizer["Upload picture"]'
+                }]
+            });
           $("#button").dxButton({
                 text: '@SharedLocalizer["Add"]',
                 type: "success",

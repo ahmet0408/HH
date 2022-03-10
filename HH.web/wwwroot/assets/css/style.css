@@ -1169,10 +1169,6 @@ a.dt-button.active:not(.disabled) {
   text-align: right;
   font-size: 20px;
 }
-[contenteditable]:hover,
-[contenteditable]:focus {
-  background: #a4b3fe;
-}
 .control-bar {
   position: relative;
   z-index: 100;

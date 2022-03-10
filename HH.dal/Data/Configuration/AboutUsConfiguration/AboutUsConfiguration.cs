@@ -14,7 +14,6 @@ namespace HH.dal.Data.Configuration.AboutUsConfiguration
         public void Configure(EntityTypeBuilder<AboutUs> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.MainImage).IsRequired();
             builder.Property(x => x.Image).IsRequired();
             builder.Property(x => x.Phone).IsRequired();
             builder.Property(x => x.Fax).IsRequired();

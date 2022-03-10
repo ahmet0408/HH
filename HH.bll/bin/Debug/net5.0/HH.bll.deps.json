@@ -57,6 +57,22 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Identity.UI/5.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.FileProviders.Embedded": "5.0.0",
+          "Microsoft.Extensions.Identity.Stores": "5.0.0"
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.AspNetCore.Identity.UI.Views.V4.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.52605"
+          },
+          "lib/net5.0/Microsoft.AspNetCore.Identity.UI.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.52605"
+          }
+        }
+      },
       "Microsoft.CSharp/4.7.0": {},
       "Microsoft.EntityFrameworkCore/5.0.0": {
         "dependencies": {
@@ -144,6 +160,11 @@
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.21.52210"
           }
+        }
+      },
+      "Microsoft.Extensions.FileProviders.Embedded/5.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.FileProviders.Abstractions": "6.0.0"
         }
       },
       "Microsoft.Extensions.Hosting.Abstractions/6.0.0": {
@@ -246,6 +267,7 @@
       "HH.dal/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.0",
+          "Microsoft.AspNetCore.Identity.UI": "5.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.0"
         },
@@ -295,6 +317,13 @@
       "sha512": "sha512-AfAFu+ndWsohAwIdek489Xi0kAAKQ8j6x/Q1e3sAHpfy9Keraj6tPp0tpjh8VeQJb1TlMcuiqJGxatgEGiN1IA==",
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/5.0.0",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Identity.UI/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2rx9bkkecYW5/Qp74CeteE3FS930kgTSg4nSiuVXRvf95ZXu+BQDTNKfngi1FDaqSfHbicxnyvMRLtEPYWEcVA==",
+      "path": "microsoft.aspnetcore.identity.ui/5.0.0",
+      "hashPath": "microsoft.aspnetcore.identity.ui.5.0.0.nupkg.sha512"
     },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",
@@ -372,6 +401,13 @@
       "sha512": "sha512-0pd4/fho0gC12rQswaGQxbU34jOS1TPS8lZPpkFCH68ppQjHNHYle9iRuHeev1LhrJ94YPvzcRd8UmIuFk23Qw==",
       "path": "microsoft.extensions.fileproviders.abstractions/6.0.0",
       "hashPath": "microsoft.extensions.fileproviders.abstractions.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.FileProviders.Embedded/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2Of7fsjZi1UilxtZMHKchQqdzXxwAxjGhRvmQI1ih5+Oq+xWVHlNrJdIXMYf7u0Z7aVlHZfKOH8sNGfyH4ZRNw==",
+      "path": "microsoft.extensions.fileproviders.embedded/5.0.0",
+      "hashPath": "microsoft.extensions.fileproviders.embedded.5.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Hosting.Abstractions/6.0.0": {
       "type": "package",

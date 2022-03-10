@@ -13,12 +13,10 @@ namespace HH.bll.Services.AboutUsService
         Task CreateAbout(CreateAboutUsDTO modelDTO);
         Task EditAbout(EditAboutUsDTO modelDTO);
         Task RemoveAbout(int id);
-        AboutUsDTO GetAboutUs();
+        Task<AboutUsDTO> GetAboutUs();
         IEnumerable<About> GetAllAbout();
         Task<AboutUsDetailDTO> GetAboutUsDetail();
         Task<FooterDTO> GetFooter();
-        IEnumerable<About> GetAllAboutButThis(int id);
         Task<EditAboutUsDTO> GetAboutUsForEditById(int id);
-        Task<About> GetAboutByIdAsync(int id);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using HH.bll.DTOs.AboutUsDTO;
 using HH.bll.Services.ImageService;
-using HH.dal.Data;
+using HH.web.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,23 +24,12 @@ namespace HH.bll.Services.AboutUsService
             _mapper = mapper;
             _imageService = imageService;
         }
-        public IEnumerable<About> GetAllAbout()
-        {
-            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var about = _dbContext.AboutUs.Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture));
-            var result = _mapper.Map<IEnumerable<About>>(about);
-            return result;
-        }
         public async Task CreateAbout(CreateAboutUsDTO modelDTO)
         {
             if (modelDTO != null)
             {
                 dal.Models.AboutUs.AboutUs aboutUs = _mapper.Map<dal.Models.AboutUs.AboutUs>(modelDTO);
-                if (modelDTO.FormMainImage != null) 
-                {
-                    aboutUs.MainImage = await _imageService.UploadImage(modelDTO.FormMainImage, FilePath);
-                }
-                if (modelDTO.FormImage != null)
+               if (modelDTO.FormImage != null)
                 {
                     aboutUs.Image = await _imageService.UploadImage(modelDTO.FormImage, FilePath);
                 }
@@ -76,30 +65,23 @@ namespace HH.bll.Services.AboutUsService
             _dbContext.AboutUs.Remove(aboutUs);
             await _dbContext.SaveChangesAsync();
         }
+        public IEnumerable<About> GetAllAbout()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var about = _dbContext.AboutUs.Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<About>>(about);
+            return result;
+        }
         public async Task<EditAboutUsDTO> GetAboutUsForEditById(int id)
         {
             var about = await _dbContext.AboutUs.Include(p => p.AboutUsTranslates).SingleOrDefaultAsync(p => p.Id == id);
             EditAboutUsDTO editAboutUsDTO = _mapper.Map<EditAboutUsDTO>(about);
             return editAboutUsDTO;
         }
-        public async Task<About> GetAboutByIdAsync(int id)
+        public async Task<AboutUsDTO> GetAboutUs()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var about = await _dbContext.AboutUs.Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture)).SingleOrDefaultAsync(p => p.Id == id);
-            About result = _mapper.Map<About>(about);
-            return result;
-        }
-        public IEnumerable<About> GetAllAboutButThis(int id)
-        {
-            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var about = _dbContext.AboutUs.Where(p => p.Id != id).Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture));
-            var result = _mapper.Map<IEnumerable<About>>(about);
-            return result;
-        }
-        public AboutUsDTO GetAboutUs()
-        {
-            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var aboutUs =_dbContext.AboutUs.Where(p => p.IsPublish == true).Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture)).FirstOrDefault();
+            var aboutUs =await _dbContext.AboutUs.Where(p => p.IsPublish == true).Include(p => p.AboutUsTranslates.Where(p => p.LanguageCulture == culture)).SingleOrDefaultAsync();
             var result = _mapper.Map<AboutUsDTO>(aboutUs);
             return result;
         }

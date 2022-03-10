@@ -1,4 +1,6 @@
-﻿using HH.bll.DTOs.ProductDTO;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using HH.bll.DTOs.ProductDTO;
 using HH.bll.Services.ProductService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,22 +19,17 @@ namespace HH.web.Controllers.API
         {
             _productService = productservice;
         }
-        [HttpGet("GetAlllProduct")]
-        public object GetAlllProduct()
+        
+        //GET: api/ProductAPI/GetAllProduct
+        [HttpGet("GetAllProduct")]
+        public object GetAllProduct(DataSourceLoadOptions loadOptions)
         {
-            return _productService.GetAlllProduct().AsQueryable();
+            return DataSourceLoader.Load<Product>(_productService.GetAllProduct().AsQueryable(), loadOptions);
         }
-        //GET: api/ProductAPI/GetOption
-        [HttpGet("GetOption")]
-        public object GetAll()
+        [HttpGet("GetAllOptionContentForOption/{id}")]
+        public object GetAllOptionContentForOption(int id, DataSourceLoadOptions loadOptions)
         {
-            return (_productService.GetAll().AsQueryable());
-        }
-        //GET: api/ProductAPI/GetProduct
-        [HttpGet("GetProduct")]
-        public object GetAllProduct()
-        {
-            return (_productService.GetAllProduct().AsQueryable());
+            return DataSourceLoader.Load<OptionContent>(_productService.GetAllOptionContentForOption(id).AsQueryable(), loadOptions);
         }
         //GET: api/ProductAPI/GetAllPublishProduct
         [HttpGet("GetAllPublishProduct")]
@@ -40,18 +37,18 @@ namespace HH.web.Controllers.API
         {
             return (_productService.GetAllPublishProductDTO().AsQueryable());
         }
-        //GET: api/Product/GetProductPage/1
+        //GET: api/ProductAPI/GetProductPage/1
         [HttpGet("GetProductPage/{id}")]
         public async Task<ProductDetailDTO> Get(int id)
         {
             ProductDetailDTO result = await _productService.GetProductPage(id);
             return result;
         }
-        //GET: api/Product/GetAllOptionDetailByOptionId/1
-        [HttpGet("GetAllOptionDetailByOptionId/{id}")]
-        public object GetOptionContent(int id)
+        //GET: api/ProductAPI/GetAllOption
+        [HttpGet("GetAllOption")]
+        public object GetAllOption(DataSourceLoadOptions loadOptions)
         {
-            return (_productService.GetAllOptionDetailByOptionId(id).AsQueryable());
+            return DataSourceLoader.Load<dal.Models.Product.Option>(_productService.GetOptions().AsQueryable(), loadOptions);
         }
         //POST: api/Product
         [HttpPost]
@@ -74,10 +71,15 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
-        [HttpDelete("GetAlllProduct/{id}")]
+        [HttpDelete("GetAllProduct/{id}")]
         public async Task DeleteAsync(int id)
         {
             await _productService.RemoveProduct(id);
+        }
+        [HttpDelete("GetAllOption/{id}")]
+        public async Task Delete(int id)
+        {
+            await _productService.RemoveOption(id);
         }
     }
 }

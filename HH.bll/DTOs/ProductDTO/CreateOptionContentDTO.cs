@@ -12,6 +12,7 @@ namespace HH.bll.DTOs.ProductDTO
         public ICollection<OptionContentTranslateDTO> OptionContentTranslates { get; set; }
         [Required]
         public int SortOrder { get; set; }
+        [Required]
         public int OptionId { get; set; }
     }
 }

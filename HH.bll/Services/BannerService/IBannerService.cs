@@ -10,11 +10,10 @@ namespace HH.bll.Services.BannerService
     public interface IBannerService
     {
         Task<EditBannerDTO> GetBannerForEditById(int id);
-        IEnumerable<Banner> GetAllBannerButThis(int id);
         Task CreateBanner(CreateBannerDTO modelDTO);
         Task EditBanner(EditBannerDTO modelDTO);
         Task RemoveBanner(int id);
-        BannerDTO GetBanner();
+        Task<BannerDTO> GetBanner();
         IEnumerable<Banner> GetAllBanner();
     }
 }

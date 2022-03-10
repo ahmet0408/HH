@@ -8,7 +8,7 @@ namespace HH.dal.Models.Product
 {
     public class Product
     {
-        public int Id { get; set; }
+        public int ProductId { get; set; }
         public bool IsPublish { get; set; }
         public string Image { get; set; }
         public int SortOrder { get; set; }

@@ -12,8 +12,6 @@ namespace HH.bll.DTOs.AboutUsDTO
     {
         public ICollection<AboutUsTranslateDTO> AboutUsTranslates { get; set; }
         [Required]
-        public IFormFile FormMainImage { get; set; }
-        [Required]
         public IFormFile FormImage { get; set; }
         [Required]
         public string Phone { get; set; }

@@ -124,14 +124,6 @@
 
 @section Scripts{
     <script>
-         var getMenus = new DevExpress.data.AspNet.createStore({
-             key: "id",
-             loadUrl: "/api/CompanyAPI/GetAllMissionButThis/"+@Model.Id,
-             onBeforeSend: function (method, ajaxOptions) {
-                 ajaxOptions.xhrFields = { withCredentials: true };
-            }
-         });
-
         $(function () {
             
             $("#image").dxFileUploader({

@@ -18,6 +18,7 @@ namespace HH.bll.DTOs.CompanyDTO
         public string ShortDesc { get; set; }
         [Required]
         public string Description { get; set; }
+        [Required]
         public string LanguageCulture { get; set; }
     }
 }

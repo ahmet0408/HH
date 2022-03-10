@@ -1,4 +1,6 @@
-﻿using HH.bll.DTOs.ServicesDTO;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using HH.bll.DTOs.ServicesDTO;
 using HH.bll.Services.ServiceService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,33 +19,31 @@ namespace HH.web.Controllers.API
         {
             _service = service;
         }
-        [HttpGet("GetAlllService")]
-        public object GetAlllService()
+        [HttpGet("GetAllService")]
+        public object GetAllService(DataSourceLoadOptions loadOptions)
         {
-            return (_service.GetAlllService().AsQueryable());
+            return DataSourceLoader.Load<Service>(_service.GetAllService().AsQueryable(), loadOptions);
         }
         // GET: api/ServiceAPI/GetAllPublishService
         [HttpGet("GetAllPublishService")]
-        public object GetAll()
+        public IActionResult GetAll()
         {
-            return (_service.GetAllPublishService().AsQueryable());  
+            var result = _service.GetAllPublishService();
+            return Ok(result);
         }
         //GET: api/ServiceAPI/GetServiceDetailById/1
         [HttpGet("GetServiceDetailById/{id}")]
-        public object Get(int id)
+        public IActionResult Get(int id)
         {
-            return _service.GetServiceDetailById(id).AsQueryable();
+            var result = _service.GetServiceDetailById(id);
+            return Ok(result);
         }
         //GET: api/ServiceAPI/GetAllServiceForProduct
         [HttpGet("GetAllServiceForProduct")]
-        public object GetAllService()
+        public IActionResult GetAllServiceForProduct()
         {
-            return _service.GetAllService().AsQueryable();
-        }
-        [HttpGet("GetAllServiceButThis/{id}")]
-        public object GetAllServiceButThis(int id)
-        {
-            return _service.GetAllServiceButThis(id).AsQueryable();
+            var result = _service.ProductAndService();
+            return Ok(result);
         }
 
         [HttpPost]
@@ -66,7 +66,7 @@ namespace HH.web.Controllers.API
             }
             return BadRequest();
         }
-        [HttpDelete("GetAlllService/{id}")]
+        [HttpDelete("GetAllService/{id}")]
         public async Task DeleteAsync(int id)
         {
             await _service.RemoveService(id);

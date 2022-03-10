@@ -13,7 +13,7 @@ namespace HH.dal.Data.Configuration.ProductConfiguration
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => x.ProductId);
             builder.Property(x => x.IsPublish).IsRequired();
             builder.Property(x => x.Image).IsRequired();
             builder.Property(x => x.SortOrder).IsRequired();

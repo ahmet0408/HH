@@ -27,7 +27,7 @@
 @section Scripts{
     <script>
         $(function () {
-            let url = `@API.GetAlllService`;
+            let url = `@API.GetAllService`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
             $("#gridContainer").dxDataGrid({
                 dataSource: DevExpress.data.AspNet.createStore({

@@ -20,23 +20,18 @@ namespace HH.web.Controllers.API
             _missionService = missionService;
         }
         [HttpGet("GetAllMission")]
-        public object GetAllNews(DataSourceLoadOptions loadOptions)
+        public object GetAllMission(DataSourceLoadOptions loadOptions)
         {
             return DataSourceLoader.Load<Mission>(_missionService.GetAllMission().AsQueryable(), loadOptions);
-
         }
         //api/MissionAPI
         [HttpGet]
-        public object Get()
+        public IActionResult Get()
         {
-            return (_missionService.GetAllPublishMission().AsQueryable());
+            var result = _missionService.GetAllPublishMission();
+            return Ok(result);
         }
-        //api/MissionAPI
-        [HttpGet("GetAllMissionButThis/{id}")]
-        public object GetAllMissionButThis(int id)
-        {
-            return _missionService.GetAllMissionButThis(id).AsQueryable();
-        }
+        
         [HttpPost]
         public async Task<IActionResult> Post(CreateMissionDTO value)
         {

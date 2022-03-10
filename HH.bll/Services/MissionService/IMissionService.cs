@@ -10,7 +10,6 @@ namespace HH.bll.Services.MissionService
     public interface IMissionService
     {
         Task<EditMissionDTO> GetMissionForEditById(int id);
-        IEnumerable<Mission> GetAllMissionButThis(int id);
         Task CreateMission(CreateMissionDTO modelDTO);
         Task EditMission(EditMissionDTO modelDTO);
         Task RemoveMission(int id);

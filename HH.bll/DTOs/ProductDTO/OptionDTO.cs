@@ -10,5 +10,6 @@ namespace HH.bll.DTOs.ProductDTO
     {
         public int Id { get; set; }
         public string OptionCode { get; set; }
+        public ICollection<OptionDetailDTO> optionDetailDTOs { get; set; }
     }
 }

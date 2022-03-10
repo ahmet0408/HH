@@ -26,9 +26,10 @@ namespace HH.web.Controllers.API
         }
         //GET: api/Company/GetAllPublishNews
         [HttpGet("GetAllPublishNews")]
-        public object GetAll()
+        public IActionResult GetAllPublishNews()
         {
-            return _companyservice.GetAllPublishListNews().AsQueryable();
+            var result = _companyservice.GetAllPublishNews();
+            return Ok(result);
         }
         //GET: api/Company/GetNewsPage/1
         [HttpGet("GetNewsPage/{id}")]
@@ -37,11 +38,7 @@ namespace HH.web.Controllers.API
             NewsDetailDTO result =await  _companyservice.GetNewsPage(id);
             return result;
         }
-        [HttpGet("GetAllNewsButThis/{id}")]
-        public object GetAllNewsButThis(int id)
-        {
-            return _companyservice.GetAllNewsButThis(id).AsQueryable();
-        }
+
         //POST: api/Company
         [HttpPost]
         public async Task<IActionResult> Post(CreateNewsDTO value)

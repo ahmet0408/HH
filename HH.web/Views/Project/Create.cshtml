@@ -85,9 +85,11 @@
                             }
                         </div>
                         <div class="col-lg-6"> 
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />
                             <div class="form-group">
                                 <label>@SharedLocalizer["Image"]</label>
-                                <input type="file" class="form-control" name="FormImage" />
+                                <div id="image"></div>
                             </div>
                             <div class="form-group">
                                 <label>@SharedLocalizer["StartDate"]</label>
@@ -137,19 +139,32 @@
         });
         var getStatus = new DevExpress.data.AspNet.createStore({
             key: "id",
-            loadUrl: "/api/ProjectAPI/GetStatus",
+            loadUrl: "/api/ProjectAPI/GetAllStatus",
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
         });
         var getLocation = new DevExpress.data.AspNet.createStore({
             key: "id",
-            loadUrl: "/api/ProjectAPI/GetLocation",
+            loadUrl: "/api/ProjectAPI/GetAllLocation",
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
         });
      $(function () {
+         $("#image").dxFileUploader({
+                selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                name: "FormImage",
+                labelText: '@SharedLocalizer["or drag picture"]',
+                accept: "image/*",
+                uploadMode: "or drag",
+                multiple: false,
+            }).dxValidator({
+                validationRules: [{
+                    type: "required",
+                    message: '@SharedLocalizer["Upload picture"]'
+                }]
+            });
          $("#published").dxCheckBox({
                 value: true,
                 text: '@SharedLocalizer["Active"]',
@@ -164,15 +179,15 @@
             });
          $("#status").dxSelectBox({
                 dataSource: getStatus,
-                displayExpr: "name",
-                valueExpr: "statusId",
+                displayExpr: "statusTranslates[0].name",
+                valueExpr: "id",
                 name: "StatusId",
                 searchEnabled: true
             });
             $("#location").dxSelectBox({
                 dataSource: getLocation,
-                displayExpr: "name",
-                valueExpr: "locationId",
+                displayExpr: "locationTranslates[0].name",
+                valueExpr: "id",
                 name: "LocationId",
                 searchEnabled: true
             });

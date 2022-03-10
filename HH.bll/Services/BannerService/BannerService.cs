@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using HH.bll.DTOs.BannerDTO;
 using HH.bll.Services.ImageService;
-using HH.dal.Data;
+using HH.web.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,13 +23,6 @@ namespace HH.bll.Services.BannerService
             _dbContext = dbContext;
             _mapper = mapper;
             _imageService = imageService;
-        }
-        public IEnumerable<Banner> GetAllBanner()
-        {
-            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var banner = _dbContext.Banner.Include(p => p.BannerTranslates.Where(p => p.LanguageCulture == culture));
-            var result = _mapper.Map<IEnumerable<Banner>>(banner);
-            return result;
         }
         public async Task CreateBanner(CreateBannerDTO modelDTO)
         {
@@ -73,10 +66,10 @@ namespace HH.bll.Services.BannerService
             _dbContext.Banner.Remove(banner);
             await _dbContext.SaveChangesAsync();
         }
-        public IEnumerable<Banner> GetAllBannerButThis(int id)
+        public IEnumerable<Banner> GetAllBanner()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var banner = _dbContext.Banner.Where(p => p.Id != id).Include(p => p.BannerTranslates.Where(p => p.LanguageCulture == culture));
+            var banner = _dbContext.Banner.Include(p => p.BannerTranslates.Where(p => p.LanguageCulture == culture));
             var result = _mapper.Map<IEnumerable<Banner>>(banner);
             return result;
         }
@@ -86,10 +79,10 @@ namespace HH.bll.Services.BannerService
             EditBannerDTO editBannerDTO = _mapper.Map<EditBannerDTO>(banner);
             return editBannerDTO;
         } 
-        public BannerDTO GetBanner()
+        public async Task<BannerDTO> GetBanner()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            var banner = _dbContext.Banner.Include(p => p.BannerTranslates.Where(p => p.LanguageCulture == culture)).FirstOrDefault(p => p.IsPublish == true);
+            var banner =await _dbContext.Banner.Include(p => p.BannerTranslates.Where(p => p.LanguageCulture == culture)).FirstOrDefaultAsync(p => p.IsPublish == true);
             BannerDTO result = _mapper.Map<BannerDTO>(banner);
             return result;
         }

@@ -144,13 +144,6 @@
 
 @section Scripts{
     <script>
-         var getProject = new DevExpress.data.AspNet.createStore({
-             key: "id",
-             loadUrl: "/api/CompanyAPI/GetAllProjectButThis/"+@Model.Id,
-             onBeforeSend: function (method, ajaxOptions) {
-                 ajaxOptions.xhrFields = { withCredentials: true };
-            }
-         });
           var getClient = new DevExpress.data.AspNet.createStore({
             key: "id",
             loadUrl: "/api/ClientAPI",

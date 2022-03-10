@@ -1,5 +1,4 @@
-﻿using HH.dal.Models.Product;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,6 +19,6 @@ namespace HH.bll.DTOs.ProductDTO
         public IFormFile FormRequestFile { get; set; }
         public IFormFile FormDownloadFile { get; set; }
         public ICollection<ProductTranslateDTO> ProductTranslates { get; set; }
-        public ICollection<ProductOptionDTO> ProductOption { get; set; }
+        public string OptionIds { get; set; }
     }
 }

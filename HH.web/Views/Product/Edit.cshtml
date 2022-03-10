@@ -1,0 +1,302 @@
+﻿@model HH.bll.DTOs.ProductDTO.EditProductDTO
+@using HH.web
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using HH.bll.DTOs.LanguageDTO
+
+@{
+    ViewData["Title"] = SharedLocalizer["Edit Product"];
+
+
+    int lngIndex = 0;
+    int p = 0;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Edit Product"]
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form asp-action="Edit" id="form" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="ProductId" />
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            @foreach (LanguageDTO languageDTO in ViewBag.Languages)
+                            {
+                                <h2>@languageDTO.Name</h2>
+                                <hr />
+                                {
+                                    var productT = Model.ProductTranslates.FirstOrDefault(p => p.LanguageCulture == languageDTO.Culture);
+
+                                    if (productT != null)
+                                    {
+                                        <input type="hidden" name="ProductTranslates[@lngIndex].Id" value="@productT.Id" />
+                                        <input type="hidden" class="form-control" name="ProductTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Name"]</label>
+                                            <input type="text" class="form-control" name="ProductTranslates[@lngIndex].Name" value="@productT.Name" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["ShortDesc"]</label>
+                                            <input type="text" class="form-control" name="ProductTranslates[@lngIndex].ShortDesc" value="@productT.ShortDesc" />
+                                        </div>
+                                        <label>@SharedLocalizer["Description"]</label>
+                                        <div id="description-editorr-@lngIndex"></div>
+                              
+                                    }
+                                    <script>
+                                    $( function() {
+                                        $("#description-editorr-@lngIndex").dxHtmlEditor({
+                                            height: 250,
+                                            toolbar: {
+                                                items: [
+                                                    "undo", "redo", "separator",
+                                                    {
+                                                        formatName: "header",
+                                                        formatValues: [false, 1, 2, 3, 4, 5]
+                                                    },
+                                                    {
+                                                        formatName: "size",
+                                                        formatValues: ["8pt", "10pt", "12pt", "14pt", "18pt", "24pt", "36pt"]
+                                                    },
+                                                        "bold", "italic", "strike", "underline", "separator",
+                                                             "alignLeft", "alignCenter", "alignRight", "alignJustify", "separator",
+                                                              "orderedList", "bulletList", "separator",
+                                                              "color", "background", "separator",
+                                                               "link", "image", "separator",
+                                                               "clear", "codeBlock", "blockquote",
+                                                    {
+                                                        widget: "dxButton",
+                                                        options: {
+                                                            text: "Show markup",
+                                                            stylingMode: "text",
+                                                            onClick: function () {
+                                                                popupInstance.show();
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            name: `ProductTranslates[@lngIndex].Description`,
+                                            value: @Json.Serialize(@productT.Description),
+                                        }).dxHtmlEditor("instance");
+                                    });
+                                </script>
+                                }
+
+                                lngIndex++;
+                            }   
+
+                        </div>
+                            <div class="col-lg-6">
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />
+                                                        
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Image"]</label>
+                                <div id="image"></div>
+                            </div>
+                            @if (Model.Image != null && Model.Image.Length > 0)
+                            {
+                                <img src="~/images/service/@Model.Image" class="img-responsive img-thumbnail" style="width: 130px;" />
+                            }
+                            <input type="hidden" name="Image" value="@Model.Image" />
+
+                            <div class="form-group">
+                                <label>@SharedLocalizer["RequestFile"]</label>
+                                <div id="requestFile"></div>
+                            </div>
+                            @if (Model.RequestFile != null && Model.RequestFile.Length > 0)
+                            {
+                                <img src="~/images/service/@Model.RequestFile" class="img-responsive img-thumbnail" style="width: 130px;" />
+                            }
+                            <input type="hidden" name="RequestFile" value="@Model.RequestFile" />
+
+                            <div class="form-group">
+                                <label>@SharedLocalizer["DownloadFile"]</label>
+                                <div id="downloadFile"></div>
+                            </div>
+                            @if (Model.DownloadFile != null && Model.DownloadFile.Length > 0)
+                            {
+                                <img src="~/images/service/@Model.DownloadFile" class="img-responsive img-thumbnail" style="width: 130px;" />
+                            }
+                            <input type="hidden" name="DownloadFile" value="@Model.DownloadFile" />
+                            <div class="form-group">
+                                <label>@SharedLocalizer["SortOrder"]</label>
+                                <input type="text" class="form-control" name="SortOrder" value="@Model.SortOrder" />
+                            </div>                           
+                            <div class="form-group">
+                                <div id="published"></div>
+                            </div> 
+                            <div class="form-group">
+                                <div id="option"></div>
+                            </div>
+                            <input type="hidden" name="OptionIds" value="@Model.OptionIds" />
+                            @foreach (var item in Model.OptionIds)
+                           {
+                            p++;
+                            <input type="hidden" class="demo" value=@item />
+                           }
+                           <input id="sum" type="hidden" value=@p />
+                           <input type="hidden" id="options" asp-for="OptionIs" />
+                             </div>
+                    </div>               
+                <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {           
+            $("#image").dxFileUploader({
+                                            selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                                            name: "FormImage",
+                                            labelText: '@SharedLocalizer["or drag picture"]',
+                                            accept: "image/*",
+                                            uploadMode: '@SharedLocalizer["or drag"]',
+                                            multiple: false,
+                                        });
+             $("#requestFile").dxFileUploader({
+                                            selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                                            name: "FormRequestFile",
+                                            labelText: '@SharedLocalizer["or drag picture"]',
+                                            accept: "image/*",
+                                            uploadMode: '@SharedLocalizer["or drag"]',
+                                            multiple: false,
+                                        });
+          $("#downloadFile").dxFileUploader({
+                                            selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                                            name: "FormDownloadFile",
+                                            labelText: '@SharedLocalizer["or drag picture"]',
+                                            accept: "image/*",
+                                            uploadMode: '@SharedLocalizer["or drag"]',
+                                            multiple: false,
+                                        });
+        var count = document.getElementById("sum").value;
+        var options=[],r ="";
+        for (let i=0;i<=count-1;i++){
+        var option = document.getElementsByClassName("demo")[i].value;
+            options.push(option);
+            r = r + option.toString()+',';
+        }
+        r = r.slice(0, -1);
+        document.getElementById("options").value=r;
+    
+    const url =  "/api/ProductAPI/GetAllOption";
+    var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
+    const dataGrid = $('#option').dxDataGrid({
+        dataSource: DevExpress.data.AspNet.createStore({
+                    key: "optionId",
+                    loadUrl: url,
+                    insertUrl: url,
+                    updateUrl: url,
+                    deleteUrl: url,
+                    onBeforeSend: function (method, ajaxOptions) {
+                        ajaxOptions.xhrFields = { withCredentials: true };
+                    }
+                }),
+                onInitNewRow: function(e) {
+                    var url = `@Url.Action("CreateOption", "Product")`;
+                    window.location = url;
+                },
+                filterPanel: {
+                    visible: false
+                },
+                filterRow: { visible: false },
+                remoteOperations: true,
+                onRowUpdating: function (e) {
+                    e.newData = Object.assign(e.oldData, e.newData)
+                },
+                scrolling: {
+                    mode: "virtual",
+                    rowRenderingMode: "virtual"
+                },
+                paging: {
+                    pageSize: 100
+                },
+                editing: {
+                    useIcons: true,
+                    allowUpdating: true,
+                    allowDeleting: true,
+                    allowAdding: false
+                },
+                headerFilter: {
+                    visible: false
+                },
+                wordWrapEnabled: true,
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                searchPanel: {
+                    visible: false
+                },
+    showBorders: true,
+    
+    selection: {
+      mode: 'multiple',
+    },
+    columns: [
+        {
+      dataField: 'optionCode',
+      caption: 'OptionCode'
+    },
+    {
+                        type: "buttons",
+                        width: 110,
+                        buttons: [
+                            {
+                                hint: '@SharedLocalizer["Edit"]',
+                                icon: "edit",
+                                onClick: function (e) {
+                                    var idString = e.row.data.optionId;
+                                    var url = `@Url.Action("EditOption", "Product")`;
+                                    window.location = url + '?id=' + idString;
+                                }
+                            },
+                            "delete"
+                        ]
+                    }
+    ],
+    selectedRowKeys: options,
+    onSelectionChanged(selectedItems) {
+        const data = selectedItems.selectedRowsData; 
+        $("#options").val(
+                data
+                    .map((value) => `${value.optionId}`)
+                    .join(", ")
+            );
+        }    
+    }).dxDataGrid('instance');
+             let published = '@Model.IsPublish';
+            $("#published").dxCheckBox({
+                value: (published.toLowerCase() == 'true'),
+                text: '@SharedLocalizer["Active"]',
+                name: 'IsPublish',
+            });
+
+            $("#button").dxButton({
+                text: '@SharedLocalizer["Edit"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+            });
+    </script>
+
+}

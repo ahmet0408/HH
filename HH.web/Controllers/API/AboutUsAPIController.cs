@@ -30,9 +30,10 @@ namespace HH.web.Controllers.API
 
         }
         [HttpGet("GetMainAboutUs")]
-        public AboutUsDTO Get()
+        public async Task<IActionResult> GetMainAboutUs()
         {
-            return _aboutUsservice.GetAboutUs();
+            AboutUsDTO result = await _aboutUsservice.GetAboutUs();
+            return Ok(result);
             
         }
         [HttpGet("GetAboutUsDetail")]
@@ -46,17 +47,6 @@ namespace HH.web.Controllers.API
         {
             FooterDTO result = await _aboutUsservice.GetFooter();
             return Ok(result);
-        }
-        [HttpGet("GetAllAboutButThis/{id}")]
-        public object GetAllAboutButThis(int id)
-        {
-            return _aboutUsservice.GetAllAboutButThis(id).AsQueryable();
-        }
-        [HttpGet("GetAllAbout/{id}")]
-        public async Task<IActionResult> Gett(int id)
-        {
-            About about = await _aboutUsservice.GetAboutByIdAsync(id);
-            return Ok(about);
         }
         //POST: api/AboutUsAPI
         [HttpPost]

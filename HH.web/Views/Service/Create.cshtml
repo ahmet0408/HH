@@ -48,9 +48,11 @@
                             }
                         </div>
                         <div class="col-lg-6"> 
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />
                             <div class="form-group">
                                 <label>@SharedLocalizer["Image"]</label>
-                                <input type="file" class="form-control" name="FormImage" />
+                                <div id="image"></div>
                             </div>
                              <div class="form-group">
                                 <div id="published"></div>
@@ -70,6 +72,19 @@
 @section Scripts {
     <script>
      $(function () {
+         $("#image").dxFileUploader({
+                selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                name: "FormImage",
+                labelText: '@SharedLocalizer["or drag picture"]',
+                accept: "image/*",
+                uploadMode: "or drag",
+                multiple: false,
+            }).dxValidator({
+                validationRules: [{
+                    type: "required",
+                    message: '@SharedLocalizer["Upload picture"]'
+                }]
+            });
           $("#published").dxCheckBox({
                 value: true,
                 text: '@SharedLocalizer["Active"]',

@@ -27,7 +27,7 @@
 @section Scripts{
     <script>
         $(function () {
-            let url = `@API.GetAlllStatus`;
+            let url = `@API.GetAllStatus`;
             var returnUrl = '@Context.Request.Path@Context.Request.QueryString';
             $("#gridContainer").dxDataGrid({
                 dataSource: DevExpress.data.AspNet.createStore({
@@ -84,7 +84,7 @@
                 columns: [
                     {
                         caption: '@SharedLocalizer["Name"]',
-                        dataField: "name",
+                        dataField: "statusTranslates[0].name",
                         allowHeaderFiltering: false
                     },
                     {

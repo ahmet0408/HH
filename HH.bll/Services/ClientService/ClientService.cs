@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using HH.bll.DTOs.ClientDTO;
 using HH.bll.Services.ImageService;
-using HH.dal.Data;
+using HH.web.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

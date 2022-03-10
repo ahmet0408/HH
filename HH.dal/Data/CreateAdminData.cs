@@ -1,4 +1,7 @@
 ﻿using HH.dal.Models.Language;
+using HH.dal.Models.User;
+using HH.web.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,6 +22,7 @@ namespace HH.dal.Data
                 var services = scope.ServiceProvider;
                 var _dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 await _dbContext.Database.MigrateAsync();
+               
 
                 List<Language> languages = new List<Language>();
                 languages.Add(new Language() { Culture = "ru", Name = "Русский", DisplayOrder = 0, IsPublish = true });

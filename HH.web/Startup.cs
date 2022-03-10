@@ -1,9 +1,11 @@
-using AutoMapper;
-using HH.dal.Data;
+﻿using AutoMapper;
+using HH.web.Data;
+using HH.dal.Models.User;
 using HH.web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -47,12 +49,11 @@ namespace HH.web
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseNpgsql(
                    Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
-            //services.AddHangfire(config =>
-               //config.UsePostgreSqlStorage(Configuration.GetConnectionString("DefaultConnnection")));
             services.AddControllersWithViews()
             .AddNewtonsoftJson(options =>
              options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
+            
             services.AddControllersWithViews()
             .AddDataAnnotationsLocalization(options =>
                 {
@@ -64,6 +65,9 @@ namespace HH.web
             services.AddControllers();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddRepositories();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddAuthorization();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.Configure<RequestLocalizationOptions>(options =>
@@ -80,7 +84,7 @@ namespace HH.web
                     culture.NumberFormat.NumberDecimalSeparator = ".";
                 }
 
-                options.DefaultRequestCulture = new RequestCulture("ru");
+                options.DefaultRequestCulture = new RequestCulture("tk");
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
             });
@@ -133,6 +137,7 @@ namespace HH.web
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             });
+            app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -141,7 +146,7 @@ namespace HH.web
                 endpoints.MapControllers();
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Admin}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
             WebRootPath = env.WebRootPath;

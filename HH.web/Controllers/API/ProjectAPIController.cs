@@ -1,4 +1,6 @@
-﻿using HH.bll.DTOs.ProjectDTO;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using HH.bll.DTOs.ProjectDTO;
 using HH.bll.Services.ProjectService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,26 +18,22 @@ namespace HH.web.Controllers.API
         {
             _projectService = projectService;
         }
-        [HttpGet("GetAlllProject")]
-        public object GetAlllProject()
+        [HttpGet("GetAllProject")]
+        public object GetAllProject(DataSourceLoadOptions loadOptions)
         {
-            return _projectService.GetAlllProject().AsQueryable();
-        }
-        [HttpGet("GetAlllLocation")]
-        public object GetAlllLocation()
-        {
-            return _projectService.GetAlllLocation().AsQueryable();
-        }
-        [HttpGet("GetAlllStatus")]
-        public object GetAlllStatus()
-        {
-            return _projectService.GetAlllStatus().AsQueryable();
+            return DataSourceLoader.Load<Project>(_projectService.GetAllProject().AsQueryable(), loadOptions);
         }
         //GET: api/ProjectAPI/GetStatus
-        [HttpGet("GetStatus")]
-        public object GetAll()
+        [HttpGet("GetAllStatus")]
+        public object GetAllStatus(DataSourceLoadOptions loadOptions)
         {
-            return _projectService.GetAll().AsQueryable();
+            return DataSourceLoader.Load<dal.Models.Project.Status>(_projectService.GetAllStatus().AsQueryable(), loadOptions);
+        }
+        //GET: api/ProjectAPI/GetLocation
+        [HttpGet("GetAllLocation")]
+        public object GetAllLocation(DataSourceLoadOptions loadOptions)
+        {
+            return DataSourceLoader.Load<dal.Models.Project.Location>(_projectService.GetAllLocation().AsQueryable(), loadOptions);
         }
         //POST: api/ProjectAPI/CreateStatus
         [HttpPost("CreateStatus")]
@@ -60,17 +58,12 @@ namespace HH.web.Controllers.API
             return BadRequest();
         }
         //DELETE: api/ProjectAPI/RemoveStatus/1
-        [HttpDelete("GetAlllStatus/{id}")]
+        [HttpDelete("GetAllStatus/{id}")]
         public async Task RemoveStatus(int id)
         {
             await _projectService.RemoveStatus(id);
         }
-        //GET: api/ProjectAPI/GetLocation
-        [HttpGet("GetLocation")]
-        public object GetAllLocation()
-        {
-            return _projectService.GetAllLocation().AsQueryable();
-        }
+        
         //POST: api/ProjectAPI/CreteLocation
         [HttpPost("CreateLocation")]
         public async Task<IActionResult> CreateLocation(CreateLocationDTO value)
@@ -83,16 +76,17 @@ namespace HH.web.Controllers.API
             return BadRequest();
         }
         //DELETE: api/ProjectAPI/RemoveLocation/1
-        [HttpDelete("GetAlllLocation/{Id}")]
+        [HttpDelete("GetAllLocation/{Id}")]
         public async Task RemoveLocation(int id)
         {
             await _projectService.RemoveLocation(id);
         }
         //GET: api/ProjectAPI/
         [HttpGet]
-        public object Get()
+        public IActionResult Get()
         {
-            return _projectService.GetAllPublishProject().AsQueryable();
+            var result = _projectService.GetAllPublishProject();
+            return Ok(result);
         } 
         //GET: api/ProjectAPI/1
         [HttpGet("{id}")]
@@ -100,21 +94,6 @@ namespace HH.web.Controllers.API
         {
             ProjectDetailDTO result =await _projectService.GetProjectPageById(id);
             return result;
-        }
-        [HttpGet("GetAllLocationButThis/{id}")]
-        public object GetAllLocationButThis(int id)
-        {
-            return _projectService.GetAllLocationButThis(id).AsQueryable();
-        }
-        [HttpGet("GetAllStatusButThis/{id}")]
-        public object GetAllStatusButThis(int id)
-        {
-            return _projectService.GetAllStatusButThis(id).AsQueryable();
-        }
-        [HttpGet("GetAllProjectButThis/{id}")]
-        public object GetAllProjectButThis(int id)
-        {
-            return _projectService.GetAllProjectButThis(id).AsQueryable();
         }
         //POST: api/ProjectAPI
         [HttpPost("CreateProject")]
@@ -128,7 +107,7 @@ namespace HH.web.Controllers.API
             return BadRequest();
         }
         //DELETE: api/ProjectAPI/1
-        [HttpDelete("GetAlllProject/{id}")]
+        [HttpDelete("GetAllProject/{id}")]
         public async Task RemoveProject(int id)
         {
             await _projectService.RemoveProject(id);

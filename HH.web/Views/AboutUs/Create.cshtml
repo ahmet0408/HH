@@ -31,20 +31,14 @@
                                 <h2>@languageDTO.Name</h2>
                                 <hr />
                                 <input type="hidden" class="form-control" name="AboutUsTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />                     
-                                    <label>@SharedLocalizer["Title"]</label>
+                                    <label>@SharedLocalizer["Title*"]</label>
                                     <div id="title-@lngIndex"></div>
-                                    <label>@SharedLocalizer["ShortDescription"]</label>
+                                    <label>@SharedLocalizer["ShortDescription*"]</label>
                                     <div id="shortdesc-@lngIndex"></div>
-                                    <label>@SharedLocalizer["Description"]</label>
-                                    <div id="description-editorr-@lngIndex"></div>
-                                    <label>@SharedLocalizer["Location"]</label>
+                                    <label>@SharedLocalizer["Description*"]</label>
+                                    <div id="description-editorr-@lngIndex"></div>                                    
+                                    <label>@SharedLocalizer["Location*"]</label>
                                     <div id="location-@lngIndex"></div>
-
-                                    @*<input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Title" />*@
-                                    @*<input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].ShortDesc" />*@
-                                    @*<input  type="text" class="form-control" name="AboutUsTranslates[@lngIndex].Description" />*@
-                                    @*<input type="text" class="form-control" name="AboutUsTranslates[@lngIndex].LocationAdress" />*@
-
                                     <script>
                                     $( function() {
                                         $("#title-@lngIndex").dxTextBox({
@@ -112,32 +106,30 @@
                             }
                         </div>
                         <div class="col-lg-6">  
-                            <div class="form-group">
-                                    <label>@SharedLocalizer["MainImage"]</label>
-                                    <div id="mainImage"></div>
-                                </div>
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />
                                 <div class="form-group">
-                                    <label>@SharedLocalizer["Image"]</label>
+                                    <label>@SharedLocalizer["Image*"]</label>
                                     <div id="image"></div>
                                 </div>
                             <div class="form-group">
-                                <label>@SharedLocalizer["Phone"]</label>
+                                <label>@SharedLocalizer["Phone*"]</label>
                                 <input type="text" class="form-control" name="Phone" />
                             </div>
                             <div class="form-group">
-                                <label>@SharedLocalizer["Fax"]</label>
+                                <label>@SharedLocalizer["Fax*"]</label>
                                 <input type="text" class="form-control" name="Fax" />
                             </div>
                             <div class="form-group">
-                                <label>@SharedLocalizer["Mail"]</label>
+                                <label>@SharedLocalizer["Mail*"]</label>
                                 <input type="email" class="form-control" name="Mail" />
                             </div>
                              <div class="form-group">
-                                <label>@SharedLocalizer["Longitude"]</label>
+                                <label>@SharedLocalizer["Longitude*"]</label>
                                 <input type="text" class="form-control" name="Longitude" />
                             </div>
                              <div class="form-group">
-                                <label>@SharedLocalizer["Latitude"]</label>
+                                <label>@SharedLocalizer["Latitude*"]</label>
                                 <input type="text" class="form-control" name="Latitude" />
                             </div>
                               <div class="form-group">
@@ -158,19 +150,7 @@
 @section Scripts {
     <script>
      $(function () {
-         $("#mainImage").dxFileUploader({
-                                            selectButtonText: '@SharedLocalizer["Choose a picture"]',
-                                            name: "FormMainImage",
-                                            labelText: '@SharedLocalizer["or drag picture"]',
-                                            accept: "image/*",
-                                            uploadMode: '@SharedLocalizer["or drag"]',
-                                            multiple: false,
-                                        }).dxValidator({
-                                            validationRules: [{
-                                                type: "required",
-                                                message: '@SharedLocalizer["Upload  picture"]'
-                                            }]
-                                        });
+        
                  $("#image").dxFileUploader({
                                             selectButtonText: '@SharedLocalizer["Choose a picture"]',
                                             name: "FormImage",

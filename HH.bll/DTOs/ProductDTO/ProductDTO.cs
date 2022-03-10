@@ -8,7 +8,7 @@ namespace HH.bll.DTOs.ProductDTO
 {
     public class ProductDTO
     {
-        public int Id { get; set; }
+        public int ProductId { get; set; }
         public string Name { get; set; }
         public string ShortDesc { get; set; }
         public string Image { get; set; }

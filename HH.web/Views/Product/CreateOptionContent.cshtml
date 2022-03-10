@@ -29,18 +29,62 @@
                                 <h2>@languageDTO.Name</h2>
                                 <hr />
                                 <input type="hidden" class="form-control" name="OptionContentTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />                                                         
-                                    <div class="form-group">
                                     <label>@SharedLocalizer["Title"]</label>
-                                     <input type="text" class="form-control" name="OptionContentTranslates[@lngIndex].Title" />
-                                    </div>
-                                     <div class="form-group">
+                                    <div id="title-@lngIndex"></div>
                                     <label>@SharedLocalizer["Description"]</label>
-                                     <input type="text" class="form-control" name="OptionContentTranslates[@lngIndex].Description" />
-                                    </div>
+                                    <div id="description-editor-@lngIndex"></div>
+                                    <script>
+                                    $( function() {
+                                        $("#title-@lngIndex").dxTextBox({
+                                            name: "OptionContentTranslates[@lngIndex].Title"
+                                        }).dxValidator({
+                                            validationRules: [{
+                                                type: "required",
+                                                message: '@SharedLocalizer["Enter"]'
+                                            }]
+                                        });
+                                        $("#description-editor-@lngIndex").dxHtmlEditor({
+                                            height: 250,
+                                            toolbar: {
+                                                items: [
+                                                    "undo", "redo", "separator",
+                                                    {
+                                                        formatName: "header",
+                                                        formatValues: [false, 1, 2, 3, 4, 5]
+                                                    },
+                                                    {
+                                                        formatName: "size",
+                                                        formatValues: ["8pt", "10pt", "12pt", "14pt", "18pt", "24pt", "36pt"]
+                                                    },
+                                                        "bold", "italic", "strike", "underline", "separator",
+                                                             "alignLeft", "alignCenter", "alignRight", "alignJustify", "separator",
+                                                              "orderedList", "bulletList", "separator",
+                                                              "color", "background", "separator",
+                                                               "link", "image", "separator",
+                                                               "clear", "codeBlock", "blockquote",
+                                                    {
+                                                        widget: "dxButton",
+                                                        options: {
+                                                            text: "Show markup",
+                                                            stylingMode: "text",
+                                                            onClick: function () {
+                                                                popupInstance.show();
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            name: `OptionContentTranslates[@lngIndex].Description`,
+                                        }).dxHtmlEditor("instance");
+                                    });
+                                </script>
+
                                 lngIndex++;
                             }
                         </div>
-                        <div class="col-lg-6"> 
+                        <div class="col-lg-6">
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />
                             <div class="form-group">
                                 <label>@SharedLocalizer["SortOrder"]</label>
                                 <input type="number" class="form-control" name="SortOrder" />
@@ -67,7 +111,7 @@
     <script>
         var getOption = new DevExpress.data.AspNet.createStore({
             key: "id",
-            loadUrl: "/api/ProductAPI/GetOption",
+            loadUrl: "/api/ProductAPI/GetAllOption",
             onBeforeSend: function (method, ajaxOptions) {
                 ajaxOptions.xhrFields = { withCredentials: true };
             }
