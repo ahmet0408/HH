@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using HH.web.Data;
-using HH.dal.Models.User;
 using HH.web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -65,9 +64,6 @@ namespace HH.web
             services.AddControllers();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddRepositories();
-            services.AddControllersWithViews();
-            services.AddRazorPages();
-            services.AddAuthorization();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.Configure<RequestLocalizationOptions>(options =>
@@ -84,7 +80,7 @@ namespace HH.web
                     culture.NumberFormat.NumberDecimalSeparator = ".";
                 }
 
-                options.DefaultRequestCulture = new RequestCulture("tk");
+                options.DefaultRequestCulture = new RequestCulture("ru");
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
             });
@@ -129,7 +125,6 @@ namespace HH.web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRequestLocalization();
-            app.UseRouting();
             app.UseCors(builder =>
             {
                 builder

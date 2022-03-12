@@ -1,5 +1,4 @@
 ﻿using HH.dal.Models.Language;
-using HH.dal.Models.User;
 using HH.web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

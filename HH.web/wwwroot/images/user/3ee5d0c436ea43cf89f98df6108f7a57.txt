@@ -1,0 +1,30 @@
+let changedBySelectBox;
+  let titleSelectBox;
+  let clearSelectionButton;
+
+  const dataGrid = $('#option').dxDataGrid({
+    dataSource: "/api/ProductAPI/GetOption",
+    keyExpr: 'id',
+    showBorders: true,
+    selection: {
+      mode: 'multiple',
+    },
+    columns: [{
+      dataField: 'optionCode',
+      caption: 'Option Name',
+    }],
+    onSelectionChanged(selectedItems) {
+      const data = selectedItems.selectedRowsData;
+      console.log(data);
+      if (data.length > 0) {
+        $('#selected-items-container').text(
+          data
+            .map((value) => `${value.id}`)
+            .join(', '),
+        );
+      } else {
+        $('#selected-items-container').text('Nobody has been selected');
+      }
+     
+    },
+  }).dxDataGrid('instance');

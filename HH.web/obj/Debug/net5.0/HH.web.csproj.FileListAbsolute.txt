@@ -291,6 +291,16 @@ C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\DevExtreme.AspNet.Core.dll
 C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\DevExtreme.AspNet.Data.dll
 C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\Humanizer.dll
+C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\IdentityModel.dll
+C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\IdentityServer4.dll
+C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\IdentityServer4.AspNetIdentity.dll
+C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\IdentityServer4.EntityFramework.dll
+C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\IdentityServer4.EntityFramework.Storage.dll
+C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\IdentityServer4.Storage.dll
+C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\Microsoft.AspNetCore.ApiAuthorization.IdentityServer.dll
+C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
 C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
 C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\User\Desktop\hh.web\HH.web\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
@@ -495,3 +505,5 @@ C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\HH.web.dll
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\ref\HH.web.dll
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\HH.web.pdb
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\HH.web.genruntimeconfig.cache
+C:\Users\User\Desktop\HH.web\HH.web\obj\Debug\net5.0\Razor\Views\Admin\Login.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Contact\Index.cshtml.g.cs

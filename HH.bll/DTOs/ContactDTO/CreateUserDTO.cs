@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace HH.bll.DTOs.ContactDTO
         [Required]
         public string Idea { get; set; }
         [Required]
+        public IFormFile FormFile { get; set; }
         public string File { get; set; }
     }
 }

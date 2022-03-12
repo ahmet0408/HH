@@ -10,6 +10,8 @@ namespace HH.bll.Services.ContactService
     public interface IContactService
     {
         Task CreateUser(CreateUserDTO modelDTO);
+        Task RemoveUser(int id);
         IEnumerable<UserDTO> GetAllUser();
+
     }
 }

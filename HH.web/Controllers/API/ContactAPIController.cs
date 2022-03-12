@@ -1,5 +1,8 @@
-﻿using HH.bll.DTOs.ContactDTO;
+﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
+using HH.bll.DTOs.ContactDTO;
 using HH.bll.Services.ContactService;
+using HH.dal.Models.Contact;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -16,13 +19,14 @@ namespace HH.web.Controllers.API
         {
             _contactService = contactService;
         }
-        [HttpGet]
-        public object Get()
+        [HttpGet("GetAllUser")]
+        public object GetAllUser(DataSourceLoadOptions loadOptions)
         {
-            return (_contactService.GetAllUser().AsQueryable());
+            return DataSourceLoader.Load<UserDTO>(_contactService.GetAllUser().AsQueryable(), loadOptions);
         }
+        //POST:api/ContactAPI
         [HttpPost]
-        public async Task<IActionResult> Post(CreateUserDTO value)
+        public async Task<IActionResult> Post( [FromForm] CreateUserDTO value)
         {
 
             if (ModelState.IsValid)
@@ -31,6 +35,12 @@ namespace HH.web.Controllers.API
                 return Ok(value);
             }
             return BadRequest();
+        }
+        //DELETE: api/ContactAPI/GetAllUser
+        [HttpDelete("GetAllUser/{id}")]
+        public async Task Delete(int id)
+        {
+            await _contactService.RemoveUser(id);
         }
     }
 }

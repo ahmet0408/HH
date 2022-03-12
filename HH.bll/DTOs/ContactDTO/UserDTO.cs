@@ -8,6 +8,7 @@ namespace HH.bll.DTOs.ContactDTO
 {
     public class UserDTO
     {
+        public int Id { get; set; }
         public string Test { get; set; }
         public string NatureOfBusiness { get; set; }
         public string Adress { get; set; }
