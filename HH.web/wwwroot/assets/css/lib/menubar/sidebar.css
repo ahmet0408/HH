@@ -236,7 +236,7 @@ body {
 }
 
 .sidebar-hide .sidebar.sidebar-hide-to-small .nano-content>ul>li>a>i {
-    width: auto;
+    width: 60px;
     font-size: 1.2rem;
 }
 

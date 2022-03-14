@@ -4,7 +4,6 @@ using HH.bll.DTOs.AboutUsDTO;
 using HH.bll.Services.AboutUsService;
 using HH.dal.Models.AboutUs;
 using Microsoft.AspNetCore.Cors;
-//using HH.web.Binder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

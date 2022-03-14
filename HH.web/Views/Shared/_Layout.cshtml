@@ -15,23 +15,20 @@
     <link href="~/devextreme/css/dx.common.css" rel="stylesheet" />
     <link href="~/devextreme/css/dx.light.css" rel="stylesheet" />
 
-    <!-- jQuery -->
-    @*<script src="~/admin/js/jquery.js"></script>*@
-    @*  <script src="~/js/quill.min.js"></script>*@
     <script src="~/devextreme/js/jquery.min.js"></script>
     <script src="~/devextreme/js/dx-quill.min.js"></script>
  
     <!-- Styles -->
-    <link href="~/assets/css/lib/font-awesome.min.css" rel="stylesheet">
-    <link href="~/assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="~/assets/css/lib/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/assets/css/lib/themify-icons.css" rel="stylesheet" />
     <link href="~/assets/css/lib/owl.theme.default.min.css" rel="stylesheet" />
-    <link href="~/assets/css/lib/menubar/sidebar.css" rel="stylesheet">
-    <link href="~/assets/css/lib/bootstrap.min.css" rel="stylesheet">
-    <link href="~/assets/css/lib/helper.css" rel="stylesheet">
-    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/css/lib/menubar/sidebar.css" rel="stylesheet" />
+    <link href="~/assets/css/lib/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/css/lib/helper.css" rel="stylesheet" />
+    <link href="~/assets/css/style.css" rel="stylesheet" />
 </head>
 <body >
-    <div class="sidebar  sidebar-shrink sidebar-gestures    ">
+    <div class="sidebar  sidebar-hide-to-hide sidebar-shrink sidebar-gestures    ">
         @*sidebar-hide-to-small sidebar-shrink sidebar-gestures*@
             <div class="nano">
                 <div class="nano-content">
@@ -125,14 +122,28 @@
             </div>
         </div>
     </div>
-
-    <div  style="margin-left: 250px">
+    <div class="content-wrap">
+        @*<div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">*@
+                        @*<main role="main">*@
+                          @RenderBody()
+                        @*</main>*@
+              @*      </div>
+                </div>
+            </div>
+        </div>*@
+    </div>
+    @*<div  style="margin-left: 250px">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+    </div>*@
 
     <!-- DevExtreme library -->
+    
+   
     <script src="~/devextreme/js/dx.all.js"></script>
     <script src="~/devextreme/js/localization/dx.messages.ru.js"></script>
     <script src="~/devextreme/js/dx.aspnet.data.js"></script>

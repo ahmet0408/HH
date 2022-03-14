@@ -459,6 +459,7 @@ C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\AboutUs\Create.
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\AboutUs\Edit.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\AboutUs\Index.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Admin\Login.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Banner\Create.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Banner\Edit.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Banner\Index.cshtml.g.cs
@@ -468,6 +469,7 @@ C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Client\Index.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Company\Create.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Company\Edit.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Company\Index.cshtml.g.cs
+C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Contact\Index.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Mission\Create.cshtml.g.cs
@@ -505,5 +507,3 @@ C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\HH.web.dll
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\ref\HH.web.dll
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\HH.web.pdb
 C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\HH.web.genruntimeconfig.cache
-C:\Users\User\Desktop\HH.web\HH.web\obj\Debug\net5.0\Razor\Views\Admin\Login.cshtml.g.cs
-C:\Users\User\Desktop\hh.web\HH.web\obj\Debug\net5.0\Razor\Views\Contact\Index.cshtml.g.cs
