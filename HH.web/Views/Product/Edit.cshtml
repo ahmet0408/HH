@@ -116,7 +116,7 @@
                             </div>
                             @if (Model.RequestFile != null && Model.RequestFile.Length > 0)
                             {
-                                <img src="~/images/service/@Model.RequestFile" class="img-responsive img-thumbnail" style="width: 130px;" />
+                                <iframe src="~/images/service/@Model.RequestFile"></iframe>
                             }
                             <input type="hidden" name="RequestFile" value="@Model.RequestFile" />
 
@@ -126,7 +126,7 @@
                             </div>
                             @if (Model.DownloadFile != null && Model.DownloadFile.Length > 0)
                             {
-                                <img src="~/images/service/@Model.DownloadFile" class="img-responsive img-thumbnail" style="width: 130px;" />
+                                <iframe src="~/images/service/@Model.DownloadFile"></iframe>
                             }
                             <input type="hidden" name="DownloadFile" value="@Model.DownloadFile" />
                             <div class="form-group">
@@ -139,7 +139,7 @@
                             <div class="form-group">
                                 <div id="option"></div>
                             </div>
-                            <input type="hidden" name="OptionIds" value="@Model.OptionIds" />
+                            <input type="hidden" name="OptionIds" value="23" />
                             @foreach (var item in Model.OptionIds)
                            {
                             p++;
@@ -172,17 +172,17 @@
                                             multiple: false,
                                         });
              $("#requestFile").dxFileUploader({
-                                            selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                                            selectButtonText: '@SharedLocalizer["Choose a file"]',
                                             name: "FormRequestFile",
-                                            labelText: '@SharedLocalizer["or drag picture"]',
+                                            labelText: '@SharedLocalizer["or drag file"]',
                                             accept: "image/*",
                                             uploadMode: '@SharedLocalizer["or drag"]',
                                             multiple: false,
                                         });
           $("#downloadFile").dxFileUploader({
-                                            selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                                            selectButtonText: '@SharedLocalizer["Choose a file"]',
                                             name: "FormDownloadFile",
-                                            labelText: '@SharedLocalizer["or drag picture"]',
+                                            labelText: '@SharedLocalizer["or drag file"]',
                                             accept: "image/*",
                                             uploadMode: '@SharedLocalizer["or drag"]',
                                             multiple: false,

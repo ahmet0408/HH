@@ -128,12 +128,13 @@ namespace HH.web.Controllers
             {
                 return NotFound();
             }
+            ViewBag.ModelOid = product.OptionIds;
             ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
             return View(product);
         }
         [HttpPost]
         public async Task<IActionResult> Edit(EditProductDTO editProductDTO)
-        {
+        { 
             if (ModelState.IsValid)
             {
                 await _productService.EditProduct(editProductDTO);

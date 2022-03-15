@@ -1,4 +1,5 @@
-﻿using HH.dal.Models.AboutUs;
+﻿using HH.dal;
+using HH.dal.Models.AboutUs;
 using HH.dal.Models.Banner;
 using HH.dal.Models.Client;
 using HH.dal.Models.Company;
@@ -29,6 +30,7 @@ namespace HH.web.Data
         public DbSet<News> News { get; set; }
         public DbSet<NewsTranslate> NewsTranslates { get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Mission> Mission { get; set; }
         public DbSet<MissionTranslate> MissionTranslates { get; set; }

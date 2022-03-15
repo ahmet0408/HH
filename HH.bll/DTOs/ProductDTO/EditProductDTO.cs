@@ -23,6 +23,6 @@ namespace HH.bll.DTOs.ProductDTO
         public IFormFile FormDownloadFile { get; set; }
         public ICollection<ProductTranslateDTO> ProductTranslates { get; set; }
         public string OptionIs { get; set; }
-        public int[] OptionIds { get; set; }
+        public int[] OptionIds { get; set; } 
     }
 }
