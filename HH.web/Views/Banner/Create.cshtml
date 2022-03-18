@@ -31,7 +31,7 @@
                                 <h2>@languageDTO.Name</h2>
                                 <hr />
                                 <input type="hidden" class="form-control" name="BannerTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
-                                    <label>@SharedLocalizer["Title*"]</label>
+                                    <label>@SharedLocalizer["Title"] *</label>
                                     <input type="text" class="form-control" name="BannerTranslates[@lngIndex].Title" />
                                 lngIndex++;
                             }
@@ -40,7 +40,7 @@
                             <h2>@SharedLocalizer["Data"]</h2>
                             <hr />
                             <div class="form-group">
-                                <label>@SharedLocalizer["Image*"]</label>
+                                <label>@SharedLocalizer["Picture"] *</label>
                                 <div id="image"></div>
                             </div>
                              <div class="form-group">

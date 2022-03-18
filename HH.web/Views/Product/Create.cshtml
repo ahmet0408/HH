@@ -29,11 +29,11 @@
                                 <h2>@languageDTO.Name</h2>
                                 <hr />
                                 <input type="hidden" class="form-control" name="ProductTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />                                                         
-                                    <label>@SharedLocalizer["Name"]</label>
+                                    <label>@SharedLocalizer["Name"] *</label>
                                     <div id="name-@lngIndex"></div>
-                                    <label>@SharedLocalizer["ShortDescription"]</label>
+                                    <label>@SharedLocalizer["Short description"] *</label>
                                     <div id="shortdesc-@lngIndex"></div>
-                                    <label>@SharedLocalizer["Description"]</label>
+                                    <label>@SharedLocalizer["Description"] *</label>
                                     <div id="description-editor-@lngIndex"></div>
                                     <script>
                                     $( function() {
@@ -96,11 +96,11 @@
                             <h2>@SharedLocalizer["Data"]</h2>
                             <hr />
                             <div class="form-group">
-                                <label>@SharedLocalizer["Image"]</label>
+                                <label>@SharedLocalizer["Picture"] *</label>
                                 <div id="image"></div>
                             </div>
                             <div class="form-group">
-                                <label>@SharedLocalizer["SortOrder"]</label>
+                                <label>@SharedLocalizer["Sort order"] *</label>
                                 <input type="number" class="form-control" name="SortOrder" />
                             </div>
                             <div class="form-group">
@@ -147,29 +147,29 @@
                 }]
             });
             $("#requestFile").dxFileUploader({
-                selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                selectButtonText: '@SharedLocalizer["Choose a file"]',
                 name: "FormRequestFile",
-                labelText: '@SharedLocalizer["or drag picture"]',
-                accept: "image/*",
+                labelText: '@SharedLocalizer["or drag file"]',
+                accept: "*",
                 uploadMode: "or drag",
                 multiple: false,
             }).dxValidator({
                 validationRules: [{
                     type: "required",
-                    message: '@SharedLocalizer["Upload picture"]'
+                    message: '@SharedLocalizer["Upload file"]'
                 }]
             });
             $("#downloadFile").dxFileUploader({
-                selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                selectButtonText: '@SharedLocalizer["Choose a file"]',
                 name: "FormDownloadFile",
-                labelText: '@SharedLocalizer["or drag picture"]',
-                accept: "image/*",
+                labelText: '@SharedLocalizer["or drag file"]',
+                accept: "*",
                 uploadMode: "or drag",
                 multiple: false,
             }).dxValidator({
                 validationRules: [{
                     type: "required",
-                    message: '@SharedLocalizer["Upload picture"]'
+                    message: '@SharedLocalizer["Upload file"]'
                 }]
             });
          let changedBySelectBox;

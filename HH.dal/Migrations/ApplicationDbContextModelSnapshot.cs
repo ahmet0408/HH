@@ -163,6 +163,50 @@ namespace HH.dal.Migrations
                     b.ToTable("Client");
                 });
 
+            modelBuilder.Entity("HH.dal.Models.Company.License", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("File")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsPublish")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("License");
+                });
+
+            modelBuilder.Entity("HH.dal.Models.Company.LicenseTranslate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("LanguageCulture")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("LicenseId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LicenseId");
+
+                    b.ToTable("LicenseTranslates");
+                });
+
             modelBuilder.Entity("HH.dal.Models.Company.News", b =>
                 {
                     b.Property<int>("Id")
@@ -741,6 +785,10 @@ namespace HH.dal.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("text");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
@@ -791,6 +839,8 @@ namespace HH.dal.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -877,6 +927,19 @@ namespace HH.dal.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("HH.dal.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
             modelBuilder.Entity("HH.dal.Models.AboutUs.AboutUsTranslate", b =>
                 {
                     b.HasOne("HH.dal.Models.AboutUs.AboutUs", "AboutUs")
@@ -897,6 +960,17 @@ namespace HH.dal.Migrations
                         .IsRequired();
 
                     b.Navigation("Banner");
+                });
+
+            modelBuilder.Entity("HH.dal.Models.Company.LicenseTranslate", b =>
+                {
+                    b.HasOne("HH.dal.Models.Company.License", "License")
+                        .WithMany("LicenseTranslates")
+                        .HasForeignKey("LicenseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("License");
                 });
 
             modelBuilder.Entity("HH.dal.Models.Company.NewsTranslate", b =>
@@ -1103,6 +1177,11 @@ namespace HH.dal.Migrations
             modelBuilder.Entity("HH.dal.Models.Banner.Banner", b =>
                 {
                     b.Navigation("BannerTranslates");
+                });
+
+            modelBuilder.Entity("HH.dal.Models.Company.License", b =>
+                {
+                    b.Navigation("LicenseTranslates");
                 });
 
             modelBuilder.Entity("HH.dal.Models.Company.News", b =>

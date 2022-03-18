@@ -31,9 +31,9 @@
                                 <h2>@languageDTO.Name</h2>
                                 <hr />
                                 <input type="hidden" class="form-control" name="ProjectTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />                                                         
-                                    <label>@SharedLocalizer["Title"]</label>
+                                    <label>@SharedLocalizer["Title"] *</label>
                                     <div id="title-@lngIndex"></div>
-                                    <label>@SharedLocalizer["Description"]</label>
+                                    <label>@SharedLocalizer["Description"] *</label>
                                     <div id="description-editor-@lngIndex"></div>
                                     <script>
                                     $( function() {
@@ -88,7 +88,7 @@
                             <h2>@SharedLocalizer["Data"]</h2>
                             <hr />
                             <div class="form-group">
-                                <label>@SharedLocalizer["Image"]</label>
+                                <label>@SharedLocalizer["Picture"] *</label>
                                 <div id="image"></div>
                             </div>
                             <div class="form-group">
@@ -100,15 +100,15 @@
                                 <input type="date" class="form-control" name="EndDate" />
                             </div>
                             <div class="form-group">
-                                <label>@SharedLocalizer["Client"]</label>
+                                <label>@SharedLocalizer["Client"] *</label>
                                 <div id="client"></div>
                             </div>
                             <div class="form-group">
-                                <label>@SharedLocalizer["Status"]</label>
+                                <label>@SharedLocalizer["Status"] *</label>
                                 <div id="status"></div>
                             </div>
                             <div class="form-group">
-                                <label>@SharedLocalizer["Location"]</label>
+                                <label>@SharedLocalizer["Location"] *</label>
                                 <div id="location"></div>
                             </div>
                             

@@ -1,5 +1,6 @@
 ﻿using HH.dal.Models.Language;
 using HH.web.Data;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,11 +17,40 @@ namespace HH.dal.Data
     {
         public async static Task CreateDataTask(IHost host)
         {
+            IWebHostEnvironment _env = host.Services.GetService<IWebHostEnvironment>();
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 var _dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 await _dbContext.Database.MigrateAsync();
+                var context = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+                if (!await context.Roles.AnyAsync())
+                {
+                    await context.CreateAsync(new IdentityRole
+                    {
+                        Name = "Admin"
+                    });
+                }
+
+                var userContext = services.GetRequiredService<UserManager<ApplicationUser>>();
+
+                var admin = await userContext.FindByNameAsync("Admin");
+
+                if (admin == null)
+                {
+                    ApplicationUser adminUser = new ApplicationUser
+                    {
+                        FirstName = "Admin",
+                        LastName = "HH",
+                        Email = $"admin@hh.com",
+                        UserName = "Admin",
+                        EmailConfirmed = true
+                    };
+
+                    await userContext.CreateAsync(adminUser, "qwerty!");
+                    await userContext.AddToRoleAsync(adminUser, "Admin");
+                }
                
 
                 List<Language> languages = new List<Language>();

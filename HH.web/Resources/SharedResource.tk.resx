@@ -693,6 +693,12 @@
   <data name="Link" xml:space="preserve">
     <value>Salgylanma</value>
   </data>
+  <data name="Location" xml:space="preserve">
+    <value>Ýerleşýän ýeri</value>
+  </data>
+  <data name="Location adress" xml:space="preserve">
+    <value>Ýerleşýän ýeri</value>
+  </data>
   <data name="Log in" xml:space="preserve">
     <value>Girmek</value>
   </data>
@@ -1225,7 +1231,7 @@
     <value>Penşenbe</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Ady</value>
+    <value>Sözbaşy</value>
   </data>
   <data name="To contact us" xml:space="preserve">
     <value>Biziň bilen baglanyşyň</value>

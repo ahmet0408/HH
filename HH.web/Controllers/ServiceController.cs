@@ -1,12 +1,14 @@
 ﻿using HH.bll.DTOs.ServicesDTO;
 using HH.bll.Services.LanguageService;
 using HH.bll.Services.ServiceService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HH.web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ServiceController : Controller
     {
         private readonly IServiceService _serviceService;

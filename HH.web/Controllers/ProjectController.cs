@@ -1,12 +1,14 @@
 ﻿using HH.bll.DTOs.ProjectDTO;
 using HH.bll.Services.LanguageService;
 using HH.bll.Services.ProjectService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HH.web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProjectController : Controller
     {
         private readonly IProjectService _projectService;

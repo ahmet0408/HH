@@ -10,22 +10,23 @@ using System.Threading.Tasks;
 
 namespace HH.web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-        //[HttpGet]
-        //public IActionResult SetLanguage(string culture, string returnUrl)
-        //{
-        //    Response.Cookies.Append(
-        //        CookieRequestCultureProvider.DefaultCookieName,
-        //        CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-        //        new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
-        //    );
+        [HttpGet]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
 
-        //    return LocalRedirect(returnUrl);
-        //}
+            return LocalRedirect(returnUrl);
+        }
     }
 }

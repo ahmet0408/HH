@@ -29,6 +29,8 @@ namespace HH.web.Data
         public DbSet<Client> Client { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<NewsTranslate> NewsTranslates { get; set; }
+        public DbSet<License> License { get; set; }
+        public DbSet<LicenseTranslate> LicenseTranslates { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Language> Languages { get; set; }

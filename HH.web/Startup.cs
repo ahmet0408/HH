@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HH.dal;
 using HH.web.Data;
 using HH.web.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -50,9 +51,22 @@ namespace HH.web
                    Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
             services.AddControllersWithViews()
             .AddNewtonsoftJson(options =>
-             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
-            
+             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddDefaultIdentity<ApplicationUser>(options =>
+            {
+                options.Password.RequiredLength = 7;
+                options.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
+                options.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
+                options.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
+                options.Password.RequireDigit = false; // требуются ли цифры
+                options.SignIn.RequireConfirmedAccount = true;
+              
+            })
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddControllersWithViews()
             .AddDataAnnotationsLocalization(options =>
                 {

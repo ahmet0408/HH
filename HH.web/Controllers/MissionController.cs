@@ -1,12 +1,14 @@
 ﻿using HH.bll.DTOs.MissionDTO;
 using HH.bll.Services.LanguageService;
 using HH.bll.Services.MissionService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HH.web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class MissionController : Controller
     {
         private readonly IMissionService _missionService;

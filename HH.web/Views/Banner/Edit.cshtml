@@ -40,7 +40,7 @@
                                         <input type="hidden" name="BannerTranslates[@lngIndex].Id" value="@bannerT.Id" />
                                         <input type="hidden" class="form-control" name="BannerTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
                                         <div class="form-group">
-                                            <label>@SharedLocalizer["Title*"]</label>
+                                            <label>@SharedLocalizer["Title"] *</label>
                                             <input type="text" class="form-control" name="BannerTranslates[@lngIndex].Title" value="@bannerT.Title" />
                                         </div>
                                     }
@@ -54,7 +54,7 @@
                             <h2>@SharedLocalizer["Data"]</h2>
                             <hr />
                             <div class="form-group">
-                                <label>@SharedLocalizer["Image*"]</label>
+                                <label>@SharedLocalizer["Picture"] *</label>
                                 <div id="image"></div>
                             </div>
                             @if (Model.Image != null && Model.Image.Length > 0)

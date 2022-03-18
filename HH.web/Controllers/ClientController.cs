@@ -1,10 +1,12 @@
 ﻿using HH.bll.DTOs.ClientDTO;
 using HH.bll.Services.ClientService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace HH.web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ClientController : Controller
     {
         private readonly IClientService _clientService;

@@ -28,7 +28,7 @@
                     <div class="form-row">
                         <div class="col-lg-6">
                                 <div class="form-group">
-                                <label>@SharedLocalizer["Logo*"]</label>
+                                <label>@SharedLocalizer["Logo"] *</label>
                                 <div id="image"></div>
                             </div>
                             @if (Model.Logo != null && Model.Logo.Length > 0)
@@ -37,11 +37,11 @@
                             }
                             <input type="hidden" name="Logo" value="@Model.Logo" />
                             <div class="form-group">
-                                <label>@SharedLocalizer["Name*"]</label>
+                                <label>@SharedLocalizer["Name"] *</label>
                                 <input type="text" class="form-control" name="Name" value="@Model.Name" />
                             </div>
                             <div class="form-group">
-                                <label>@SharedLocalizer["Link*"]</label>
+                                <label>@SharedLocalizer["Link"] *</label>
                                 <input type="text" class="form-control" name="Link" value="@Model.Link" />
                             </div>
                         </div>

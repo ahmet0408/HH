@@ -24,6 +24,12 @@ namespace HH.web.Controllers.API
             return DataSourceLoader.Load<News>(_companyservice.GetAllNews().AsQueryable(), loadOptions);
 
         }
+        [HttpGet("GetAllLicense")]
+        public object GetAllLicense(DataSourceLoadOptions loadOptions)
+        {
+            return DataSourceLoader.Load<License>(_companyservice.GetAllLicense().AsQueryable(), loadOptions);
+
+        }
         //GET: api/Company/GetAllPublishNews
         [HttpGet("GetAllPublishNews")]
         public IActionResult GetAllPublishNews()
@@ -66,6 +72,41 @@ namespace HH.web.Controllers.API
         public async Task DeleteAsync(int id)
         {
             await _companyservice.RemoveNews(id);
+        }
+        //POST: api/Company/CreateLicense
+        [HttpPost("CreateLicense")]
+        public async Task<IActionResult> CreateLicense(CreateLicenseDTO value)
+        {
+            if (ModelState.IsValid)
+            {
+                await _companyservice.CreateLicense(value);
+                return Ok(value);
+            }
+            return BadRequest();
+        }
+        //PUT: api/Company/{id}
+        [HttpPut("EditLicense/{id}")]
+        public async Task<IActionResult> EditLicense(EditLicenseDTO value)
+        {
+            if (ModelState.IsValid)
+            {
+                await _companyservice.EditLicense(value);
+                return Ok(value);
+            }
+            return BadRequest();
+        }
+        //DELETE: api/Company/{id}
+        [HttpDelete("GetAllLicense/{id}")]
+        public async Task Delete(int id)
+        {
+            await _companyservice.RemoveLicense(id);
+        }
+        //GET: api/Company/GetAllPublishLicense
+        [HttpGet("GetAllPublishLicense")]
+        public IActionResult GetAllPublishLicense()
+        {
+            var result = _companyservice.GetAllPublishLicense();
+            return Ok(result);
         }
     }
 }

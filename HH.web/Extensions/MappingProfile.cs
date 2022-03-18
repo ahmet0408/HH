@@ -42,6 +42,11 @@ namespace HH.web.Extensions
                 .ForMember(p => p.Title, p => p.MapFrom(p => p.NewsTranslates.Select(p => p.Title).FirstOrDefault()))
                 .ForMember(p => p.ShortDesc, p => p.MapFrom(p => p.NewsTranslates.Select(p => p.ShortDesc).FirstOrDefault()))
                 .ForMember(p => p.Description, p => p.MapFrom(p => p.NewsTranslates.Select(p => p.Description).FirstOrDefault()));
+            CreateMap<dal.Models.Company.License, bll.DTOs.CompanyDTO.License>()
+                .ForMember(p => p.Title, p => p.MapFrom(p => p.LicenseTranslates.Select(p => p.Title).FirstOrDefault()));
+            CreateMap<CreateLicenseDTO, dal.Models.Company.License>();
+            CreateMap<EditLicenseDTO, dal.Models.Company.License>().ReverseMap();
+            CreateMap<LicenseTranslateDTO, LicenseTranslate>().ReverseMap();
 
             CreateMap<dal.Models.Service.Service, ProductServiceDTO>()
                 .ForMember(p => p.Name, p => p.MapFrom(p => p.ServiceTranslates.Select(p => p.Name).FirstOrDefault()))

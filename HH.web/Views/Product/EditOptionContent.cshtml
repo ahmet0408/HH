@@ -40,10 +40,10 @@
                                         <input type="hidden" name="OptionContentTranslates[@lngIndex].Id" value="@optionContentT.Id" />
                                         <input type="hidden" class="form-control" name="OptionContentTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
                                         <div class="form-group">
-                                            <label>@SharedLocalizer["Title"]</label>
+                                            <label>@SharedLocalizer["Title"] *</label>
                                             <input type="text" class="form-control" name="OptionContentTranslates[@lngIndex].Title" value="@optionContentT.Title" />
                                         </div>                                       
-                                        <label>@SharedLocalizer["Description"]</label>
+                                        <label>@SharedLocalizer["Description"] *</label>
                                         <div id="description-editorr-@lngIndex"></div>
                               
                                     }
@@ -96,7 +96,7 @@
                             <hr />
                              <input type="hidden" name="PreviousUrl" value="@Model.PreviousUrl" />
                                <div class="form-group">
-                                <label>@SharedLocalizer["SortOrder"]</label>
+                                <label>@SharedLocalizer["Sort order"]</label>
                                 <input type="text" class="form-control" name="SortOrder" value="@Model.SortOrder" />
                             </div>
                             <input type="hidden" name="OptionId" value="@Model.OptionId" />

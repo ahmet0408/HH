@@ -13,6 +13,8 @@ namespace HH.bll.DTOs.ProductDTO
         public string ShortDesc { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
+        public string RequestFile { get; set; }
+        public string DownloadFile { get; set; }
         public ICollection<OptionDTO> OptionDTO { get; set; }
     }
 }

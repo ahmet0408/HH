@@ -40,18 +40,18 @@
                                         <input type="hidden" name="NewsTranslates[@lngIndex].Id" value="@newsT.Id" />
                                         <input type="hidden" class="form-control" name="newsTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
                                         <div class="form-group">
-                                            <label>@SharedLocalizer["Name*"]</label>
+                                            <label>@SharedLocalizer["Name"] *</label>
                                             <input type="text" class="form-control" name="NewsTranslates[@lngIndex].Name" value="@newsT.Name" />
                                         </div>
                                         <div class="form-group">
-                                            <label>@SharedLocalizer["Title*"]</label>
+                                            <label>@SharedLocalizer["Title"] *</label>
                                             <input type="text" class="form-control" name="NewsTranslates[@lngIndex].Title" value="@newsT.Title" />
                                         </div>
                                         <div class="form-group">
-                                            <label>@SharedLocalizer["Short Description*"]</label>
+                                            <label>@SharedLocalizer["Short description"] *</label>
                                             <input type="text" class="form-control" name="NewsTranslates[@lngIndex].ShortDesc" value="@newsT.ShortDesc" />
                                         </div>                                     
-                                        <label>@SharedLocalizer["Description*"]</label>
+                                        <label>@SharedLocalizer["Description"] *</label>
                                         <div id="description-editorr-@lngIndex"></div>
                               
                                     }
@@ -104,7 +104,7 @@
                             <hr />
                                                         
                             <div class="form-group">
-                                <label>@SharedLocalizer["Image*"]</label>
+                                <label>@SharedLocalizer["Picture"] *</label>
                                 <div id="image"></div>
                             </div>
                             @if (Model.Image != null && Model.Image.Length > 0)

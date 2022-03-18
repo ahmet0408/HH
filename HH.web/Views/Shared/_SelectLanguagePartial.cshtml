@@ -9,6 +9,7 @@
 @{
     // получаем сервис IRequestCultureFeature
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var adsd = requestCulture.RequestCulture.UICulture.NativeName;
     // получаем список поддерживаемых культур
     var cultureItems = LocOptions.Value.SupportedUICultures.Where(p => p.Name != requestCulture.RequestCulture.Culture.Name)
         .Select(c => new SelectListItem { Value = c.Name, Text = c.NativeName.Substring(0, 1).ToUpper() + c.NativeName.Substring(1) })
@@ -23,11 +24,13 @@
         }
         lngListItem.Add(c);
     }
+    
 }
 
-<div class="text-gray-200 mr-10 select-none select-box relative h-full flex items-center" id="select-box">
-    <div class="pl-3 flex items-center z-10 bg-primary h-full cursor-pointer">
-        @if (requestCulture.RequestCulture.UICulture.NativeName == "Türkmen dili")
+
+<div style="text-align: center;" class="text-gray-200 mr-10 select-none select-box relative h-12 flex items-center" id="select-box">
+    <div style="width:90px;height: 60px" class="pl-2 flex items-center z-20 bg-dark h-full cursor-pointer">
+        @if (requestCulture.RequestCulture.UICulture.NativeName == "türkmen dili")
         {
             <span class="hover:text-white"> Türkmen </span>
         }
@@ -44,7 +47,7 @@
                   opacity="0.8" />
         </svg>
     </div>
-    <div class="flex flex-col absolute shadow-lg bg-primary px-4 pb-2" id="select-content">
+    <div style="width:90px; height: 54px;" class="flex flex-col absolute shadow-lg bg-dark pb-4" id="select-content">
         @foreach (var lng in lngListItem)
         {
             <a asp-area="" asp-controller="Admin" asp-action="SetLanguage"

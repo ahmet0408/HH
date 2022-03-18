@@ -10,6 +10,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HH</title>
+    <link rel="stylesheet" href="~/client/css/output.css" />
+    <link rel="stylesheet" href="~/client/css/pickmeup.css" />
+    <link rel="stylesheet" href="~/client/css/swiper.bundle.min.css" />
+    <link rel="stylesheet" href="~/client/css/Video.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    @RenderSection("Css", required: false)
+
     <link rel="stylesheet" href="~/css/site.css" />
 
     <link href="~/devextreme/css/dx.common.css" rel="stylesheet" />
@@ -60,7 +68,9 @@
             <div class="nano">
                 <div class="nano-content">
                     <div class="logo"><a asp-action="Index" asp-controller="Admin">
-                                <span>Halkara@Hyzmat</span></a></div>
+                                @*<span>Halkara@Hyzmat</span>*@
+                                <img src="/logo/logo.svg" />
+                                </a></div>
                     <ul>
                         <li><a class="sidebar-sub-toggle">About Us<span
                                 class="sidebar-collapse-icon ti-angle-down"></span></a>
@@ -88,6 +98,8 @@
                             <ul>
                                 <li><a asp-action="Index" asp-controller="Company" >News</a></li>               
                                 <li><a asp-action="Create" asp-controller="Company" >Create</a></li>
+                                <li><a asp-action="License" asp-controller="Company" >License</a></li>
+                                <li><a asp-action="CreateLicense" asp-controller="Company" >Create License</a></li>
                             </ul>
                         </li>
                         <li><a class="sidebar-sub-toggle">Contact<span
@@ -134,6 +146,15 @@
             </div>
         </div>
     </div>
+    @*<div class=" bg-primary z-30 relative order-2">*@
+               @* <div class="xl:px-0 px-4 flex sm:justify-end justify-between h-12">
+                    
+
+                    @await Html.PartialAsync("_SelectLanguagePartial")
+                    @await Html.PartialAsync("_LoginPartial")
+
+                </div>*@
+            @*</div>*@
     <div class="header">
         <div class="container-fluid">
             <div class="row">
@@ -145,9 +166,27 @@
                             <span class="line"></span>
                         </div>
                     </div>
-                    @*<div class="float-right">
+                    <div class="float-right">
+                        <div class="nav-header  z-30 relative order-2">
+                         <div class="xl:container xl:px-0 px-4 flex sm:justify-end justify-between h-12">
+                    
+
+                    @await Html.PartialAsync("_SelectLanguagePartial")
+                    @await Html.PartialAsync("_LoginPartial")
+
+                </div>
+                </div>
+                            @*@await Html.PartialAsync("_LoginPartial")*@
+@*
+            <div class="nav-header bg-primary z-30 relative order-2">
+
+                <div class="xl:container xl:px-0 px-4 flex sm:justify-end justify-between h-12">
+
                             @await Html.PartialAsync("_SelectLanguagePartial")
-                    </div>*@
+                     </div>
+                     </div>*@
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -178,6 +217,13 @@
     <script src="~/assets/js/lib/bootstrap.min.js"></script>
     <script src="~/assets/js/scripts.js"></script>
     <!-- bootstrap -->
+
+
+    <script src="~/client/js/vendor/gsap/gsap.min.js" defer></script>
+    <script src="~/client/js/vendor/swiper.min.js"></script>
+    <script src="~/client/js/slider.js" defer></script>
+    <script src="~/client/js/header.js" defer></script>
+    <script src="~/client/js/Video.js" defer></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

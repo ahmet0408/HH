@@ -16,5 +16,11 @@ namespace HH.bll.Services.CompanyService
         IEnumerable<News> GetAllNews();
         IEnumerable<NewsDTO> GetAllPublishNews();
         Task<NewsDetailDTO> GetNewsPage(int id);
+        Task CreateLicense(CreateLicenseDTO modelDTO);
+        Task EditLicense(EditLicenseDTO modelDTO);
+        Task RemoveLicense(int id);
+        IEnumerable<License> GetAllLicense();
+        Task<EditLicenseDTO> GetLicenseForEditById(int id);
+        IEnumerable<License> GetAllPublishLicense();
     }
 }

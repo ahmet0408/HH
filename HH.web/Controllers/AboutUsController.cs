@@ -2,12 +2,15 @@
 using HH.bll.DTOs.AboutUsDTO;
 using HH.bll.Services.AboutUsService;
 using HH.bll.Services.LanguageService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HH.web.Controllers
 {
+ 
+    [Authorize(Roles = "Admin")]
     public class AboutUsController : Controller
     {
         private readonly IAboutUsService _aboutService;

@@ -1,12 +1,14 @@
 ﻿using HH.bll.DTOs.BannerDTO;
 using HH.bll.Services.BannerService;
 using HH.bll.Services.LanguageService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HH.web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BannerController : Controller
     {
         private readonly IBannerService _bannerService;

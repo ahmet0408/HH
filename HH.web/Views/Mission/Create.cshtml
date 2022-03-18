@@ -31,9 +31,9 @@
                                 <h2>@languageDTO.Name</h2>
                                 <hr />
                                 <input type="hidden" class="form-control" name="MissionTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />                                                         
-                                    <label>@SharedLocalizer["Name"]</label>
+                                    <label>@SharedLocalizer["Name"] *</label>
                                     <div id="name-@lngIndex"></div>
-                                    <label>@SharedLocalizer["Description"]</label>
+                                    <label>@SharedLocalizer["Description"] *</label>
                                     <div id="description-editor-@lngIndex"></div>
                                     <script>
                                     $( function() {
@@ -88,7 +88,7 @@
                             <h2>@SharedLocalizer["Data"]</h2>
                             <hr />
                             <div class="form-group">
-                                <label>@SharedLocalizer["Icon"]</label>
+                                <label>@SharedLocalizer["Icon"] *</label>
                                 <div id="icon"></div>
                             </div>
                               <div class="form-group">

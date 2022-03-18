@@ -11,6 +11,7 @@ namespace HH.web.Utilities
         public static string GetAllBanner { get; } = "/api/BannerAPI/GetAllBanner";
         public static string GetAllClient { get; } = "/api/ClientAPI";
         public static string GetAllNews { get; } = "/api/CompanyAPI/GetAllNews";
+        public static string GetAllLicense { get; } = "/api/CompanyAPI/GetAllLicense";
         public static string GetAllMission { get; } = "/api/MissionAPI/GetAllMission";
         public static string GetAllProduct { get; } = "/api/ProductAPI/GetAllProduct";
         public static string GetAllLocation { get; } = "/api/ProjectAPI/GetAllLocation";

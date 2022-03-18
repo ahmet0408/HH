@@ -1,0 +1,111 @@
+﻿@model HH.bll.DTOs.CompanyDTO.EditLicenseDTO
+@using HH.web
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@using HH.bll.DTOs.LanguageDTO
+
+@{
+    ViewData["Title"] = SharedLocalizer["Edit License"];
+
+
+    int lngIndex = 0;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                @SharedLocalizer["Edit License"]
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form asp-action="EditLicense" id="form" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-row">
+                        <div class="col-lg-6">
+                            @foreach (LanguageDTO languageDTO in ViewBag.Languages)
+                            {
+                                <h2>@languageDTO.Name</h2>
+                                <hr />
+                                {
+                                    var licenseT = Model.LicenseTranslates.FirstOrDefault(p => p.LanguageCulture == languageDTO.Culture);
+
+                                    if (licenseT != null)
+                                    {
+                                        <input type="hidden" name="LicenseTranslates[@lngIndex].Id" value="@licenseT.Id" />
+                                        <input type="hidden" class="form-control" name="LicenseTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
+                                        <div class="form-group">
+                                            <label>@SharedLocalizer["Title"] *</label>
+                                            <input type="text" class="form-control" name="LicenseTranslates[@lngIndex].Title" value="@licenseT.Title" />
+                                        </div>
+                                    }
+                                }
+
+                                lngIndex++;
+                            }   
+
+                        </div>
+                            <div class="col-lg-6">
+                            <h2>@SharedLocalizer["Data"]</h2>
+                            <hr />
+                           <div class="form-group">
+                                <label>@SharedLocalizer["File"] *</label>
+                                <div id="file"></div>
+                            </div>
+                            @if (Model.File != null && Model.File.Length > 0)
+                            {
+                                <iframe src="~/images/license/@Model.File"></iframe>
+                            }
+                            <input type="hidden" name="File" value="@Model.File" />
+                            <div class="form-group">
+                                <div id="published"></div>
+                            </div>
+                        </div>
+                    </div>
+
+               
+                <div class="dx-fieldset">
+                    <br />
+                    <div id="summary"></div>
+                    <br />
+                    <div id="button"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $("#file").dxFileUploader({
+                                            selectButtonText: '@SharedLocalizer["Choose a file"]',
+                                            name: "FormFile",
+                                            labelText: '@SharedLocalizer["or drag file"]',
+                                            accept: "image/*",
+                                            uploadMode: '@SharedLocalizer["or drag"]',
+                                            multiple: false,
+                                            });
+
+            let published = '@Model.IsPublish';
+            $("#published").dxCheckBox({
+                value: (published.toLowerCase() == 'true'),
+                text: '@SharedLocalizer["Active"]',
+                name: 'IsPublish',
+            });
+
+            $("#button").dxButton({
+                text: '@SharedLocalizer["Edit"]',
+                type: "success",
+                useSubmitBehavior: true,
+            });
+            $("#summary").dxValidationSummary({});
+        });
+    </script>
+
+}

@@ -40,15 +40,15 @@
                                         <input type="hidden" name="ServiceTranslates[@lngIndex].Id" value="@serviceT.Id" />
                                         <input type="hidden" class="form-control" name="ServiceTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
                                         <div class="form-group">
-                                            <label>@SharedLocalizer["Name"]</label>
+                                            <label>@SharedLocalizer["Name"] *</label>
                                             <input type="text" class="form-control" name="ServiceTranslates[@lngIndex].Name" value="@serviceT.Name" />
                                         </div>
                                         <div class="form-group">
-                                            <label>@SharedLocalizer["Short Description"]</label>
+                                            <label>@SharedLocalizer["Short description"] *</label>
                                             <input type="text" class="form-control" name="ServiceTranslates[@lngIndex].ShortDesc" value="@serviceT.ShortDesc" />
                                         </div>
                                         <div class="form-group">
-                                            <label>@SharedLocalizer["Description"]</label>
+                                            <label>@SharedLocalizer["Description"] *</label>
                                             <input type="text" class="form-control" name="ServiceTranslates[@lngIndex].Description" value="@serviceT.Description" />
                                         </div>
                                     }
@@ -62,7 +62,7 @@
                             <h2>@SharedLocalizer["Data"]</h2>
                             <hr />
                             <div class="form-group">
-                                <label>@SharedLocalizer["Image"]</label>
+                                <label>@SharedLocalizer["Picture"] *</label>
                                 <div id="image"></div>
                             </div>
                             @if (Model.Image != null && Model.Image.Length > 0)

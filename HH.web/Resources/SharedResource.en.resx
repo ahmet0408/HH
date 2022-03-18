@@ -693,6 +693,12 @@
   <data name="Link" xml:space="preserve">
     <value>Link</value>
   </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Location adress" xml:space="preserve">
+    <value>Location adress</value>
+  </data>
   <data name="Log in" xml:space="preserve">
     <value>Log in</value>
   </data>

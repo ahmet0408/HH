@@ -64,11 +64,57 @@ namespace HH.bll.Services.CompanyService
             _dbContext.News.Remove(news);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task CreateLicense(CreateLicenseDTO modelDTO)
+        {
+            if (modelDTO != null)
+            {
+                dal.Models.Company.License license= _mapper.Map<dal.Models.Company.License>(modelDTO);
+                if (modelDTO.FormFile != null)
+                {
+                    license.File = await _imageService.UploadImage(modelDTO.FormFile, "license");
+                }
+                await _dbContext.License.AddAsync(license);
+                await _dbContext.SaveChangesAsync();
+            }
+        }
+        public async Task EditLicense(EditLicenseDTO modelDTO)
+        {
+            if (modelDTO != null)
+            {
+                dal.Models.Company.License license = _mapper.Map<dal.Models.Company.License>(modelDTO);
+                if (modelDTO.FormFile != null)
+                {
+                    _imageService.DeleteImage(modelDTO.File, "license");
+                    license.File = await _imageService.UploadImage(modelDTO.FormFile, "license");
+
+                }
+                _dbContext.License.Update(license);
+                await _dbContext.SaveChangesAsync();
+            }
+
+        }
+        public async Task RemoveLicense(int id)
+        {
+            dal.Models.Company.License license = await _dbContext.License.FindAsync(id);
+            if (!string.IsNullOrEmpty(license.File))
+            {
+                _imageService.DeleteImage(license.File, "license");
+            }
+            _dbContext.License.Remove(license);
+            await _dbContext.SaveChangesAsync();
+        }
         public IEnumerable<News> GetAllNews()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
             var news = _dbContext.News.Include(p => p.NewsTranslates.Where(p => p.LanguageCulture == culture));
             var result = _mapper.Map<IEnumerable<News>>(news);
+            return result;
+        }
+        public IEnumerable<License> GetAllLicense()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var license = _dbContext.License.Include(p => p.LicenseTranslates.Where(p => p.LanguageCulture == culture));
+            var result = _mapper.Map<IEnumerable<License>>(license);
             return result;
         }
         public async Task<EditNewsDTO> GetNewsForEditById(int id)
@@ -77,6 +123,12 @@ namespace HH.bll.Services.CompanyService
             EditNewsDTO editNewsDTO = _mapper.Map<EditNewsDTO>(news);
             return editNewsDTO;
         }
+        public async Task<EditLicenseDTO> GetLicenseForEditById(int id)
+        {
+            var license = await _dbContext.License.Include(p => p.LicenseTranslates).SingleOrDefaultAsync(p => p.Id == id);
+            EditLicenseDTO editLicenseDTO = _mapper.Map<EditLicenseDTO>(license);
+            return editLicenseDTO;
+        }
         public IEnumerable<NewsDTO> GetAllPublishNews()
         {
             string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
@@ -84,6 +136,13 @@ namespace HH.bll.Services.CompanyService
                                                     .Where(p =>( p.IsPublish == true) && 
                                                     (p.NewsTranslates.Any(p=>p.LanguageCulture == culture)));
             var result = _mapper.Map<IEnumerable<NewsDTO>>(news);
+            return result;
+        }
+        public IEnumerable<License> GetAllPublishLicense()
+        {
+            string culture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var license = _dbContext.License.Where(p => p.IsPublish == true).Include(p => p.LicenseTranslates.Where(p => p.LanguageCulture == culture));                                
+            var result = _mapper.Map<IEnumerable<License>>(license);
             return result;
         }
         public async Task<NewsDetailDTO> GetNewsPage(int id)

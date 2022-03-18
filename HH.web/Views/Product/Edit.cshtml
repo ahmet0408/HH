@@ -41,14 +41,14 @@
                                         <input type="hidden" name="ProductTranslates[@lngIndex].Id" value="@productT.Id" />
                                         <input type="hidden" class="form-control" name="ProductTranslates[@lngIndex].LanguageCulture" value="@languageDTO.Culture" />
                                         <div class="form-group">
-                                            <label>@SharedLocalizer["Name"]</label>
+                                            <label>@SharedLocalizer["Name"] *</label>
                                             <input type="text" class="form-control" name="ProductTranslates[@lngIndex].Name" value="@productT.Name" />
                                         </div>
                                         <div class="form-group">
-                                            <label>@SharedLocalizer["ShortDesc"]</label>
+                                            <label>@SharedLocalizer["Short description"] *</label>
                                             <input type="text" class="form-control" name="ProductTranslates[@lngIndex].ShortDesc" value="@productT.ShortDesc" />
                                         </div>
-                                        <label>@SharedLocalizer["Description"]</label>
+                                        <label>@SharedLocalizer["Description"] *</label>
                                         <div id="description-editorr-@lngIndex"></div>
                               
                                     }
@@ -101,7 +101,7 @@
                             <hr />
                                                         
                             <div class="form-group">
-                                <label>@SharedLocalizer["Image"]</label>
+                                <label>@SharedLocalizer["Picture"] *</label>
                                 <div id="image"></div>
                             </div>
                             @if (Model.Image != null && Model.Image.Length > 0)
@@ -130,7 +130,7 @@
                             }
                             <input type="hidden" name="DownloadFile" value="@Model.DownloadFile" />
                             <div class="form-group">
-                                <label>@SharedLocalizer["SortOrder"]</label>
+                                <label>@SharedLocalizer["Sort order"] *</label>
                                 <input type="text" class="form-control" name="SortOrder" value="@Model.SortOrder" />
                             </div>                           
                             <div class="form-group">
@@ -175,7 +175,7 @@
                                             selectButtonText: '@SharedLocalizer["Choose a file"]',
                                             name: "FormRequestFile",
                                             labelText: '@SharedLocalizer["or drag file"]',
-                                            accept: "image/*",
+                                            accept: "*",
                                             uploadMode: '@SharedLocalizer["or drag"]',
                                             multiple: false,
                                         });
@@ -183,7 +183,7 @@
                                             selectButtonText: '@SharedLocalizer["Choose a file"]',
                                             name: "FormDownloadFile",
                                             labelText: '@SharedLocalizer["or drag file"]',
-                                            accept: "image/*",
+                                            accept: "*",
                                             uploadMode: '@SharedLocalizer["or drag"]',
                                             multiple: false,
                                         });
