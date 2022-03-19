@@ -62,16 +62,16 @@
     <script>
      $(function () {
          $("#file").dxFileUploader({
-                selectButtonText: '@SharedLocalizer["Choose a picture"]',
+                selectButtonText: '@SharedLocalizer["Choose a file"]',
                 name: "FormFile",
-                labelText: '@SharedLocalizer["or drag picture"]',
+                labelText: '@SharedLocalizer["or drag file"]',
                 accept: "*",
                 uploadMode: "or drag",
                 multiple: false,
             }).dxValidator({
                 validationRules: [{
                     type: "required",
-                    message: '@SharedLocalizer["Upload picture"]'
+                    message: '@SharedLocalizer["Upload file"]'
                 }]
             });
          $("#published").dxCheckBox({

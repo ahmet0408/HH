@@ -651,6 +651,9 @@
   <data name="Field of activity (Trading, Manufacturing, etc.)" xml:space="preserve">
     <value>Сфера деятельности (Торговля, Производство и др.)</value>
   </data>
+  <data name="File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
   <data name="File management" xml:space="preserve">
     <value>Управление файлами</value>
   </data>
