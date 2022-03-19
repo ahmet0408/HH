@@ -228,6 +228,9 @@
   <data name="Charity" xml:space="preserve">
     <value>Charity</value>
   </data>
+  <data name="Choose a file" xml:space="preserve">
+    <value>Choose a file</value>
+  </data>
   <data name="Choose a logo" xml:space="preserve">
     <value>Choose a logo</value>
   </data>
@@ -864,6 +867,9 @@
   <data name="or drag" xml:space="preserve">
     <value>or drag</value>
   </data>
+  <data name="or drag file" xml:space="preserve">
+    <value>or drag file</value>
+  </data>
   <data name="or drag picture" xml:space="preserve">
     <value>or drag picture</value>
   </data>
@@ -1316,6 +1322,9 @@
   </data>
   <data name="Upload declaration obtained from tax office" xml:space="preserve">
     <value>Upload declaration obtained from tax office</value>
+  </data>
+  <data name="Upload file" xml:space="preserve">
+    <value>Upload file</value>
   </data>
   <data name="Upload main picture" xml:space="preserve">
     <value>Upload main picture</value>

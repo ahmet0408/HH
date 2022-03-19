@@ -228,6 +228,9 @@
   <data name="Charity" xml:space="preserve">
     <value>Haýyr-sahawat</value>
   </data>
+  <data name="Choose a file" xml:space="preserve">
+    <value>Faýly saýlaň</value>
+  </data>
   <data name="Choose a logo" xml:space="preserve">
     <value>Logotipi saýlaň</value>
   </data>
@@ -864,6 +867,9 @@
   <data name="or drag" xml:space="preserve">
     <value>ýa-da çekip geçiriň</value>
   </data>
+  <data name="or drag file" xml:space="preserve">
+    <value>ýa-da faýly çekip geçiriň</value>
+  </data>
   <data name="or drag picture" xml:space="preserve">
     <value>ýa-da şekili çekip geçiriň</value>
   </data>
@@ -1310,6 +1316,9 @@
   </data>
   <data name="Upload declaration obtained from tax office" xml:space="preserve">
     <value>Salgyt bölüminde alnan beýannamany ýükläň</value>
+  </data>
+  <data name="Upload file" xml:space="preserve">
+    <value>Faýly ýükläň</value>
   </data>
   <data name="Upload main picture" xml:space="preserve">
     <value>Baş şekili ýükläň</value>

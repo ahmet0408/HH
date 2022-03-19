@@ -228,6 +228,9 @@
   <data name="Charity" xml:space="preserve">
     <value>Благотворительность</value>
   </data>
+  <data name="Choose a file" xml:space="preserve">
+    <value>Выберите файл</value>
+  </data>
   <data name="Choose a logo" xml:space="preserve">
     <value>Выберите логотип</value>
   </data>
@@ -864,6 +867,9 @@
   <data name="or drag" xml:space="preserve">
     <value>или перетащите</value>
   </data>
+  <data name="or drag file" xml:space="preserve">
+    <value>или перетащите файл</value>
+  </data>
   <data name="or drag picture" xml:space="preserve">
     <value>или перетащите картинку</value>
   </data>
@@ -1311,6 +1317,9 @@
   </data>
   <data name="Upload declaration obtained from tax office" xml:space="preserve">
     <value>Загрузите декларацию, полученную в налоговой инспекции</value>
+  </data>
+  <data name="Upload file" xml:space="preserve">
+    <value>Загрузить файл</value>
   </data>
   <data name="Upload main picture" xml:space="preserve">
     <value>Загрузите главное изображение</value>
