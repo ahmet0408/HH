@@ -675,6 +675,9 @@
   <data name="i/n" xml:space="preserve">
     <value>p/n</value>
   </data>
+  <data name="Icon" xml:space="preserve">
+    <value>Nyşan</value>
+  </data>
   <data name="Industries" xml:space="preserve">
     <value>Pudaklar</value>
   </data>
@@ -683,6 +686,9 @@
   </data>
   <data name="Last name" xml:space="preserve">
     <value>Familiýa</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Giňişlik</value>
   </data>
   <data name="Legal person" xml:space="preserve">
     <value>Ýuridik şahs</value>
@@ -716,6 +722,12 @@
   </data>
   <data name="Logo" xml:space="preserve">
     <value>Logotip</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Uzynlyk</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Mail</value>
   </data>
   <data name="Main image" xml:space="preserve">
     <value>Baş şekil</value>
@@ -839,6 +851,15 @@
   </data>
   <data name="Online tradings" xml:space="preserve">
     <value>Internet-söwda</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>Görnüş</value>
+  </data>
+  <data name="Option name" xml:space="preserve">
+    <value>Görnüş ady</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Görnüşler</value>
   </data>
   <data name="or drag" xml:space="preserve">
     <value>ýa-da çekip geçiriň</value>
@@ -1131,6 +1152,9 @@
   <data name="Select newspaper" xml:space="preserve">
     <value>Gazeti saýlaň</value>
   </data>
+  <data name="Select option" xml:space="preserve">
+    <value>Görnüşi saýlaň</value>
+  </data>
   <data name="Select photo" xml:space="preserve">
     <value>Fotosuraty saýlaň</value>
   </data>
@@ -1184,6 +1208,9 @@
   </data>
   <data name="Something went wrong please try again" xml:space="preserve">
     <value>Nämedir bir zat ugruna däl. Gaýtadan synanyşmagyňyzy soraýarys</value>
+  </data>
+  <data name="Sort order" xml:space="preserve">
+    <value>Tertip nomeri</value>
   </data>
   <data name="Start date" xml:space="preserve">
     <value>Başlanýan senesi</value>

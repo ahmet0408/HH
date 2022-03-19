@@ -675,6 +675,9 @@
   <data name="i/n" xml:space="preserve">
     <value>п/н</value>
   </data>
+  <data name="Icon" xml:space="preserve">
+    <value>Значок</value>
+  </data>
   <data name="Industries" xml:space="preserve">
     <value>Отрасли</value>
   </data>
@@ -683,6 +686,9 @@
   </data>
   <data name="Last name" xml:space="preserve">
     <value>Фамилия</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Широта</value>
   </data>
   <data name="Legal person" xml:space="preserve">
     <value>Юридическое лицо</value>
@@ -716,6 +722,12 @@
   </data>
   <data name="Logo" xml:space="preserve">
     <value>Логотип</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Долгота</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Почта</value>
   </data>
   <data name="Main image" xml:space="preserve">
     <value>Главное изображение</value>
@@ -839,6 +851,15 @@
   </data>
   <data name="Online tradings" xml:space="preserve">
     <value>Интернет-торговля</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>Вариант</value>
+  </data>
+  <data name="Option name" xml:space="preserve">
+    <value>Название опции</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Опции</value>
   </data>
   <data name="or drag" xml:space="preserve">
     <value>или перетащите</value>
@@ -1131,6 +1152,9 @@
   <data name="Select newspaper" xml:space="preserve">
     <value>Выбрать газету</value>
   </data>
+  <data name="Select option" xml:space="preserve">
+    <value>Выберите опцию</value>
+  </data>
   <data name="Select photo" xml:space="preserve">
     <value>Выбрать фотографию</value>
   </data>
@@ -1184,6 +1208,9 @@
   </data>
   <data name="Something went wrong please try again" xml:space="preserve">
     <value>Что-то пошло не так. Пожалуйста, попытайтесь еще раз</value>
+  </data>
+  <data name="Sort order" xml:space="preserve">
+    <value>Порядок номеров</value>
   </data>
   <data name="Start date" xml:space="preserve">
     <value>Дата начало</value>

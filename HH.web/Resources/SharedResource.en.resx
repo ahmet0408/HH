@@ -675,6 +675,9 @@
   <data name="i/n" xml:space="preserve">
     <value>i/n</value>
   </data>
+  <data name="Icon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
   <data name="Industries" xml:space="preserve">
     <value>Industries</value>
   </data>
@@ -683,6 +686,9 @@
   </data>
   <data name="Last name" xml:space="preserve">
     <value>Last name</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Latitude</value>
   </data>
   <data name="Legal person" xml:space="preserve">
     <value>Legal person</value>
@@ -716,6 +722,12 @@
   </data>
   <data name="Logo" xml:space="preserve">
     <value>Logo</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Mail</value>
   </data>
   <data name="Main image" xml:space="preserve">
     <value>Main image</value>
@@ -839,6 +851,15 @@
   </data>
   <data name="Online tradings" xml:space="preserve">
     <value>Online tradings</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>Option</value>
+  </data>
+  <data name="Option name" xml:space="preserve">
+    <value>Option name</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
   </data>
   <data name="or drag" xml:space="preserve">
     <value>or drag</value>
@@ -1131,6 +1152,9 @@
   <data name="Select newspaper" xml:space="preserve">
     <value>Select newspaper</value>
   </data>
+  <data name="Select option" xml:space="preserve">
+    <value>Select option</value>
+  </data>
   <data name="Select photo" xml:space="preserve">
     <value>Select picture</value>
   </data>
@@ -1184,6 +1208,9 @@
   </data>
   <data name="Something went wrong please try again" xml:space="preserve">
     <value>Something went wrong please try again</value>
+  </data>
+  <data name="Sort order" xml:space="preserve">
+    <value>Sort order</value>
   </data>
   <data name="Start date" xml:space="preserve">
     <value>Start date</value>
