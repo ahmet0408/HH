@@ -4,6 +4,7 @@ using HH.bll.Services.ImageService;
 using HH.web.Data;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,17 @@ namespace HH.bll.Services.ClientService
                 dal.Models.Client.Client client = _mapper.Map<dal.Models.Client.Client>(modelDTO);
                 if (modelDTO.FormLogo != null)
                 {
-                    client.Logo = await _imageService.UploadImage(modelDTO.FormLogo, FilePath);  
+                    try
+                    {
+                        client.Logo = await _imageService.UploadImage(modelDTO.FormLogo, FilePath);
+                    }
+                    catch(Exception e)
+                    {
+                        using (StreamWriter file = new StreamWriter("error.txt", true))
+                        {
+                            file.WriteLine(e.Message);
+                        }
+                    }
                 }
                 await _dbContext.Client.AddAsync(client);
                 await _dbContext.SaveChangesAsync();

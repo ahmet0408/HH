@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Gtp9GLVfKMTvlVxwpyFp2aUfND3dAJo6w9tQNFkGP1diRqWP2UvYp7Aadcaec7MHXb+0QLS+rx0z8Bv135klog==",
+  "dgSpecHash": "jp+s4vSAXRmpu8kVgqqaCF7ujc4xYSwd+6DeVuGbc38RnEpc/24QDywcjMU+mcT7pAhBa/lSo9bEFAzOEPW3+g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\Desktop\\hh.web\\HH.bll\\HH.bll.csproj",
+  "projectFilePath": "C:\\Users\\User\\Desktop\\React\\HH.web\\HH.bll\\HH.bll.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\identitymodel\\4.4.0\\identitymodel.4.4.0.nupkg.sha512",

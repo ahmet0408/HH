@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -47,8 +48,9 @@ namespace HH.web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseNpgsql(
-                   Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //options.UseNpgsql(
+            //       Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
             services.AddControllersWithViews()
             .AddNewtonsoftJson(options =>
              options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
