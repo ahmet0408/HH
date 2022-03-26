@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About us" xml:space="preserve">
+    <value>О нас</value>
+  </data>
   <data name="Access denied" xml:space="preserve">
     <value>Доступ запрещен</value>
   </data>
@@ -252,6 +255,9 @@
   <data name="City" xml:space="preserve">
     <value>Город</value>
   </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Клиенты</value>
+  </data>
   <data name="Collected" xml:space="preserve">
     <value>Собрано</value>
   </data>
@@ -300,6 +306,9 @@
   <data name="Copy of the precept" xml:space="preserve">
     <value>Копия приказа</value>
   </data>
+  <data name="Create About us" xml:space="preserve">
+    <value>Создать о нас</value>
+  </data>
   <data name="Create activity type" xml:space="preserve">
     <value>Создание вид деятельности</value>
   </data>
@@ -315,14 +324,26 @@
   <data name="Create city" xml:space="preserve">
     <value>Добавление города</value>
   </data>
+  <data name="Create client" xml:space="preserve">
+    <value>Добавление клиент</value>
+  </data>
   <data name="Create department" xml:space="preserve">
     <value>Добавление отдела</value>
   </data>
   <data name="Create industry" xml:space="preserve">
     <value>Добавление отрасли</value>
   </data>
+  <data name="Create license" xml:space="preserve">
+    <value>Создать лицензию</value>
+  </data>
+  <data name="Create location" xml:space="preserve">
+    <value>Создать местоположение</value>
+  </data>
   <data name="Create menu" xml:space="preserve">
     <value>Добавление меню</value>
+  </data>
+  <data name="Create mission" xml:space="preserve">
+    <value>Создать миссию</value>
   </data>
   <data name="Create news" xml:space="preserve">
     <value>Добавление новости</value>
@@ -339,11 +360,20 @@
   <data name="Create online trading" xml:space="preserve">
     <value>Добавление онлайн торговли</value>
   </data>
+  <data name="Create option" xml:space="preserve">
+    <value>Создать вариант</value>
+  </data>
+  <data name="Create Option content" xml:space="preserve">
+    <value>Создать дополнительный контент</value>
+  </data>
   <data name="Create page" xml:space="preserve">
     <value>Добавление страницы</value>
   </data>
   <data name="Create partner" xml:space="preserve">
     <value>Добавление партнера</value>
+  </data>
+  <data name="Create product" xml:space="preserve">
+    <value>Создать продукт</value>
   </data>
   <data name="Create project" xml:space="preserve">
     <value>Добавление проекта</value>
@@ -359,6 +389,9 @@
   </data>
   <data name="Create services" xml:space="preserve">
     <value>Добавление услуги</value>
+  </data>
+  <data name="Create status" xml:space="preserve">
+    <value>Создать статус</value>
   </data>
   <data name="Create trading house" xml:space="preserve">
     <value>Добавление торгового дома</value>
@@ -429,6 +462,9 @@
   <data name="Edit" xml:space="preserve">
     <value>Изменить</value>
   </data>
+  <data name="Edit About us" xml:space="preserve">
+    <value>Редактировать О нас</value>
+  </data>
   <data name="Edit activity type" xml:space="preserve">
     <value>Редактирование вид деятельности</value>
   </data>
@@ -444,14 +480,26 @@
   <data name="Edit charity" xml:space="preserve">
     <value>Редактирование благотворительности</value>
   </data>
+  <data name="Edit client" xml:space="preserve">
+    <value>Изменить клиента</value>
+  </data>
   <data name="Edit department" xml:space="preserve">
     <value>Изменение отдела</value>
   </data>
   <data name="Edit industry" xml:space="preserve">
     <value>Редактирование отрасли</value>
   </data>
+  <data name="Edit license" xml:space="preserve">
+    <value>Изменить лицензию</value>
+  </data>
+  <data name="Edit location" xml:space="preserve">
+    <value>Изменить местоположение</value>
+  </data>
   <data name="Edit menu" xml:space="preserve">
     <value>Редактирование меню</value>
+  </data>
+  <data name="Edit mission" xml:space="preserve">
+    <value>Изменить миссию</value>
   </data>
   <data name="Edit news" xml:space="preserve">
     <value>Редактировать новость</value>
@@ -468,11 +516,20 @@
   <data name="Edit online trading" xml:space="preserve">
     <value>Редактирование онлайн торговли</value>
   </data>
+  <data name="Edit option" xml:space="preserve">
+    <value>Вариант редактирования</value>
+  </data>
+  <data name="Edit Option content" xml:space="preserve">
+    <value>Изменить содержимое опции</value>
+  </data>
   <data name="Edit page" xml:space="preserve">
     <value>Редактирование страницы</value>
   </data>
   <data name="Edit partner" xml:space="preserve">
     <value>Редактирование партнера</value>
+  </data>
+  <data name="Edit product" xml:space="preserve">
+    <value>Изменить продукт</value>
   </data>
   <data name="Edit project" xml:space="preserve">
     <value>Редактирование проекта</value>
@@ -488,6 +545,9 @@
   </data>
   <data name="Edit services" xml:space="preserve">
     <value>Редактирование услуги</value>
+  </data>
+  <data name="Edit status" xml:space="preserve">
+    <value>Изменить статус</value>
   </data>
   <data name="Edit trading house" xml:space="preserve">
     <value>Редактирование торгового дома</value>
@@ -702,6 +762,9 @@
   <data name="Legal person membership" xml:space="preserve">
     <value>Членство юридического лица</value>
   </data>
+  <data name="Licenses" xml:space="preserve">
+    <value>Лицензии</value>
+  </data>
   <data name="Link" xml:space="preserve">
     <value>Ссылка</value>
   </data>
@@ -767,6 +830,9 @@
   </data>
   <data name="Message" xml:space="preserve">
     <value>Сообщение</value>
+  </data>
+  <data name="Missions" xml:space="preserve">
+    <value>Миссии</value>
   </data>
   <data name="Monday" xml:space="preserve">
     <value>Понедельник</value>
@@ -1043,6 +1109,9 @@
   </data>
   <data name="Press releases" xml:space="preserve">
     <value>Пресс-релизы</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Продукты</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Профиль</value>

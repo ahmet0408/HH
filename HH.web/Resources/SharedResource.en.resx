@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About us" xml:space="preserve">
+    <value>About us</value>
+  </data>
   <data name="Access denied" xml:space="preserve">
     <value>Access denied</value>
   </data>
@@ -252,6 +255,9 @@
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Clients</value>
+  </data>
   <data name="Collected" xml:space="preserve">
     <value>Collected</value>
   </data>
@@ -300,6 +306,9 @@
   <data name="Copy of the precept" xml:space="preserve">
     <value>Copy of the precept</value>
   </data>
+  <data name="Create About us" xml:space="preserve">
+    <value>Create About us</value>
+  </data>
   <data name="Create activity type" xml:space="preserve">
     <value>Create activity type</value>
   </data>
@@ -315,14 +324,26 @@
   <data name="Create city" xml:space="preserve">
     <value>Create city</value>
   </data>
+  <data name="Create client" xml:space="preserve">
+    <value>Create client</value>
+  </data>
   <data name="Create department" xml:space="preserve">
     <value>Create department</value>
   </data>
   <data name="Create industry" xml:space="preserve">
     <value>Create industry</value>
   </data>
+  <data name="Create license" xml:space="preserve">
+    <value>Create license</value>
+  </data>
+  <data name="Create Location" xml:space="preserve">
+    <value>Create Location</value>
+  </data>
   <data name="Create menu" xml:space="preserve">
     <value>Create menu</value>
+  </data>
+  <data name="Create mission" xml:space="preserve">
+    <value>Create mission</value>
   </data>
   <data name="Create news" xml:space="preserve">
     <value>Create news</value>
@@ -339,11 +360,20 @@
   <data name="Create online trading" xml:space="preserve">
     <value>Create online trading</value>
   </data>
+  <data name="Create option" xml:space="preserve">
+    <value>Create option</value>
+  </data>
+  <data name="Create Option content" xml:space="preserve">
+    <value>Create Option content</value>
+  </data>
   <data name="Create page" xml:space="preserve">
     <value>Create page</value>
   </data>
   <data name="Create partner" xml:space="preserve">
     <value>Create partner</value>
+  </data>
+  <data name="Create product" xml:space="preserve">
+    <value>Create product</value>
   </data>
   <data name="Create project" xml:space="preserve">
     <value>Create project</value>
@@ -359,6 +389,9 @@
   </data>
   <data name="Create services" xml:space="preserve">
     <value>Create services</value>
+  </data>
+  <data name="Create status" xml:space="preserve">
+    <value>Create status</value>
   </data>
   <data name="Create trading house" xml:space="preserve">
     <value>Create trading house</value>
@@ -429,6 +462,9 @@
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="Edit About us" xml:space="preserve">
+    <value>Edit About us</value>
+  </data>
   <data name="Edit activity type" xml:space="preserve">
     <value>Edit activity type</value>
   </data>
@@ -444,14 +480,26 @@
   <data name="Edit charity" xml:space="preserve">
     <value>Edit charity</value>
   </data>
+  <data name="Edit client" xml:space="preserve">
+    <value>Edit cient</value>
+  </data>
   <data name="Edit department" xml:space="preserve">
     <value>Edit department</value>
   </data>
   <data name="Edit industry" xml:space="preserve">
     <value>Edit industry</value>
   </data>
+  <data name="Edit license" xml:space="preserve">
+    <value>Edit license</value>
+  </data>
+  <data name="Edit Location" xml:space="preserve">
+    <value>Edit Location</value>
+  </data>
   <data name="Edit menu" xml:space="preserve">
     <value>Edit menu</value>
+  </data>
+  <data name="Edit mission" xml:space="preserve">
+    <value>Edit mission</value>
   </data>
   <data name="Edit news" xml:space="preserve">
     <value>Edit news</value>
@@ -468,11 +516,20 @@
   <data name="Edit online trading" xml:space="preserve">
     <value>Edit online trading</value>
   </data>
+  <data name="Edit option" xml:space="preserve">
+    <value>Edit option</value>
+  </data>
+  <data name="Edit Option content" xml:space="preserve">
+    <value>Edit Option content</value>
+  </data>
   <data name="Edit page" xml:space="preserve">
     <value>Edit page</value>
   </data>
   <data name="Edit partner" xml:space="preserve">
     <value>Edit partner</value>
+  </data>
+  <data name="Edit product" xml:space="preserve">
+    <value>Edit product</value>
   </data>
   <data name="Edit project" xml:space="preserve">
     <value>Edit project</value>
@@ -488,6 +545,9 @@
   </data>
   <data name="Edit services" xml:space="preserve">
     <value>Edit services</value>
+  </data>
+  <data name="Edit status" xml:space="preserve">
+    <value>Edit status</value>
   </data>
   <data name="Edit trading house" xml:space="preserve">
     <value>Edit trading house</value>
@@ -702,6 +762,9 @@
   <data name="Legal person membership" xml:space="preserve">
     <value>Legal person membership</value>
   </data>
+  <data name="Licenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
   <data name="Link" xml:space="preserve">
     <value>Link</value>
   </data>
@@ -767,6 +830,9 @@
   </data>
   <data name="Message" xml:space="preserve">
     <value>Message</value>
+  </data>
+  <data name="Missions" xml:space="preserve">
+    <value>Missions</value>
   </data>
   <data name="Monday" xml:space="preserve">
     <value>Monday</value>
@@ -1043,6 +1109,9 @@
   </data>
   <data name="Press releases" xml:space="preserve">
     <value>Press releases</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>

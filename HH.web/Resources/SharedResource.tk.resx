@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About us" xml:space="preserve">
+    <value>Biz hakynda</value>
+  </data>
   <data name="Access denied" xml:space="preserve">
     <value>Elýeterlik gadagan</value>
   </data>
@@ -252,6 +255,9 @@
   <data name="City" xml:space="preserve">
     <value>Şäher</value>
   </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Müşderiler</value>
+  </data>
   <data name="Collected" xml:space="preserve">
     <value>Toplandy</value>
   </data>
@@ -300,6 +306,9 @@
   <data name="Copy of the precept" xml:space="preserve">
     <value>Buýrugyň nusgasy</value>
   </data>
+  <data name="Create About us" xml:space="preserve">
+    <value>Biz hakyndany goşmak</value>
+  </data>
   <data name="Create activity type" xml:space="preserve">
     <value>Iş görnüşini döretmek</value>
   </data>
@@ -315,14 +324,26 @@
   <data name="Create city" xml:space="preserve">
     <value>Şäheri goşmak</value>
   </data>
+  <data name="Create client" xml:space="preserve">
+    <value>Müşderi goşmak</value>
+  </data>
   <data name="Create department" xml:space="preserve">
     <value>Bölümi goşmak</value>
   </data>
   <data name="Create industry" xml:space="preserve">
     <value>Pudagy goşmak</value>
   </data>
+  <data name="Create license" xml:space="preserve">
+    <value>Ygtyýarnama goşmak</value>
+  </data>
+  <data name="Create location" xml:space="preserve">
+    <value>Adres goşmak</value>
+  </data>
   <data name="Create menu" xml:space="preserve">
     <value>Menýuny goşmak</value>
+  </data>
+  <data name="Create mission" xml:space="preserve">
+    <value>Wezipe goşmak</value>
   </data>
   <data name="Create news" xml:space="preserve">
     <value>Täzelikleri goşmak</value>
@@ -339,11 +360,20 @@
   <data name="Create online trading" xml:space="preserve">
     <value>Onlaýn söwdany goşmak</value>
   </data>
+  <data name="Create option" xml:space="preserve">
+    <value>Opsiýa goşmak</value>
+  </data>
+  <data name="Create Option content" xml:space="preserve">
+    <value>Opsiýa mazmun goşmak</value>
+  </data>
   <data name="Create page" xml:space="preserve">
     <value>Sahypany goşmak</value>
   </data>
   <data name="Create partner" xml:space="preserve">
     <value>Hyzmatdaşy goşmak</value>
+  </data>
+  <data name="Create product" xml:space="preserve">
+    <value>Önüm goşmak</value>
   </data>
   <data name="Create project" xml:space="preserve">
     <value>Taslamany goşmak</value>
@@ -359,6 +389,9 @@
   </data>
   <data name="Create services" xml:space="preserve">
     <value>Hyzmaty goşmak</value>
+  </data>
+  <data name="Create status" xml:space="preserve">
+    <value>Dereje goşmak</value>
   </data>
   <data name="Create trading house" xml:space="preserve">
     <value>Söwda öýüni goşmak</value>
@@ -429,6 +462,9 @@
   <data name="Edit" xml:space="preserve">
     <value>Üýtgetmek</value>
   </data>
+  <data name="Edit About us" xml:space="preserve">
+    <value>Biz hakynda düzedişleri girizmek</value>
+  </data>
   <data name="Edit activity type" xml:space="preserve">
     <value>Iş görnüşine düzediş girizmek</value>
   </data>
@@ -444,14 +480,26 @@
   <data name="Edit charity" xml:space="preserve">
     <value>Haýyr-sahawata düzedişleri girizmek</value>
   </data>
+  <data name="Edit client" xml:space="preserve">
+    <value>Müşderä düzedişleri girizmek</value>
+  </data>
   <data name="Edit department" xml:space="preserve">
     <value>Bölüme düzedişleri girizmek</value>
   </data>
   <data name="Edit industry" xml:space="preserve">
     <value>Pudaga düzedişleri girizmek</value>
   </data>
+  <data name="Edit license" xml:space="preserve">
+    <value>Ygtyýarnama düzedişleri girizmek</value>
+  </data>
+  <data name="Edit Location" xml:space="preserve">
+    <value>Adrese düzedişleri girizmek</value>
+  </data>
   <data name="Edit menu" xml:space="preserve">
     <value>Menýu düzedişleri girizmek</value>
+  </data>
+  <data name="Edit mission" xml:space="preserve">
+    <value>Wezipa düzedişleri girizmek</value>
   </data>
   <data name="Edit news" xml:space="preserve">
     <value>Täzelikleri düzedişleri girizmek</value>
@@ -468,11 +516,20 @@
   <data name="Edit online trading" xml:space="preserve">
     <value>Onlaýn söwda düzedişleri girizmek</value>
   </data>
+  <data name="Edit option" xml:space="preserve">
+    <value>Opsiýa düzedişleri girizmek</value>
+  </data>
+  <data name="Edit Option content" xml:space="preserve">
+    <value>Opsiýanyň mazmunyna düzedişleri girizmek</value>
+  </data>
   <data name="Edit page" xml:space="preserve">
     <value>Sahypa düzedişleri girizmek</value>
   </data>
   <data name="Edit partner" xml:space="preserve">
     <value>Hyzmatdaşa düzedişleri girizmek</value>
+  </data>
+  <data name="Edit product" xml:space="preserve">
+    <value>Önüme düzedişleri girizmek</value>
   </data>
   <data name="Edit project" xml:space="preserve">
     <value>Taslama düzedişleri girizmek</value>
@@ -488,6 +545,9 @@
   </data>
   <data name="Edit services" xml:space="preserve">
     <value>Hyzmatlara düzedişleri girizmek</value>
+  </data>
+  <data name="Edit status" xml:space="preserve">
+    <value>Derejä düzedişleri girizmek</value>
   </data>
   <data name="Edit trading house" xml:space="preserve">
     <value>Sözda öýüne düzedişleri girizmek</value>
@@ -702,6 +762,9 @@
   <data name="Legal person membership" xml:space="preserve">
     <value>Ýuridik şahsyň agzalykda durýan ýeri</value>
   </data>
+  <data name="Licenses" xml:space="preserve">
+    <value>Ygtyýarnamalar</value>
+  </data>
   <data name="Link" xml:space="preserve">
     <value>Salgylanma</value>
   </data>
@@ -767,6 +830,9 @@
   </data>
   <data name="Message" xml:space="preserve">
     <value>Habar</value>
+  </data>
+  <data name="Missions" xml:space="preserve">
+    <value>Wezipeler</value>
   </data>
   <data name="Monday" xml:space="preserve">
     <value>Duşenbe</value>
@@ -1043,6 +1109,9 @@
   </data>
   <data name="Press releases" xml:space="preserve">
     <value>Pres-relizler</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Önümler</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profili</value>

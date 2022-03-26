@@ -53,7 +53,7 @@ namespace HH.web.Controllers.API
             return BadRequest();
         }
         //DELETE: api/ClientAPI/1
-        [HttpDelete("/{id}")]
+        [HttpDelete("{id}")]
         public async Task DeleteAsync(int id)
         {
             await _clientService.RemoveClient(id);
