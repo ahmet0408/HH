@@ -31,17 +31,9 @@ namespace HH.bll.Services.ClientService
                 dal.Models.Client.Client client = _mapper.Map<dal.Models.Client.Client>(modelDTO);
                 if (modelDTO.FormLogo != null)
                 {
-                    try
-                    {
+                   
                         client.Logo = await _imageService.UploadImage(modelDTO.FormLogo, FilePath);
-                    }
-                    catch(Exception e)
-                    {
-                        using (StreamWriter file = new StreamWriter("error.txt", true))
-                        {
-                            file.WriteLine(e.Message);
-                        }
-                    }
+                   
                 }
                 await _dbContext.Client.AddAsync(client);
                 await _dbContext.SaveChangesAsync();
