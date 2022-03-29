@@ -16,6 +16,7 @@ namespace HH.dal.Data.Configuration.MissionConfiguration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Icon).IsRequired();
             builder.Property(x => x.IsPublish).IsRequired();
+            builder.Property(x => x.iconCode).IsRequired();
             builder.HasMany(x => x.MissionTranslates).WithOne(x => x.Mission).HasForeignKey(x => x.MissionId).OnDelete(DeleteBehavior.Cascade);
         }
     }

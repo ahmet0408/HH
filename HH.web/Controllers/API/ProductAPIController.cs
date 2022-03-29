@@ -81,5 +81,10 @@ namespace HH.web.Controllers.API
         {
             await _productService.RemoveOption(id);
         }
+        [HttpDelete("GetAllOptionContentForOption/{id}/{iid}")]
+        public async Task Deletee(int iid)
+        {
+            await _productService.RemoveOptionContent(iid);
+        }
     }
 }

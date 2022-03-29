@@ -24,6 +24,10 @@ namespace HH.web.Controllers
         {
             return View();
         }
+        public IActionResult Option()
+        {
+            return View();
+        }
         public IActionResult CreateOption()
         {       
             ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
@@ -36,7 +40,7 @@ namespace HH.web.Controllers
             {
                 await _productService.CreateOption(option);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Option");
             }
             ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
             return View(option);
@@ -59,7 +63,7 @@ namespace HH.web.Controllers
             if (ModelState.IsValid)
             {
                 await _productService.EditOption(editOptionDTO);
-                return RedirectToAction("Index");
+                return RedirectToAction("Option");
             }
             return View(editOptionDTO);
         }
@@ -75,7 +79,7 @@ namespace HH.web.Controllers
             {
                 await _productService.CreateOptionContent(optioncontent);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Option");
             }
             ViewBag.Languages = _languageService.GetAllPublishLanguage().OrderBy(o => o.DisplayOrder);
             return View(optioncontent);

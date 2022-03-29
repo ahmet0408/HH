@@ -12,6 +12,7 @@ namespace HH.bll.DTOs.MissionDTO
         public string Name { get; set; }
         public string Description { get; set; } 
         public string Icon { get; set; }
+        public string iconCode { get; set; }
         public bool IsPublish { get; set; }
     }
 }

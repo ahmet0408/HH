@@ -744,6 +744,9 @@
   <data name="Icon" xml:space="preserve">
     <value>Icon</value>
   </data>
+  <data name="Icon Code" xml:space="preserve">
+    <value>Icon Code</value>
+  </data>
   <data name="Industries" xml:space="preserve">
     <value>Industries</value>
   </data>

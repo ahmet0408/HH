@@ -744,6 +744,9 @@
   <data name="Icon" xml:space="preserve">
     <value>Nyşan</value>
   </data>
+  <data name="Icon Code" xml:space="preserve">
+    <value>Nyşan kody</value>
+  </data>
   <data name="Industries" xml:space="preserve">
     <value>Pudaklar</value>
   </data>

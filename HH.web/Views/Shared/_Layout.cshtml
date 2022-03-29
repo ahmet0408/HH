@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="~/client/css/swiper.bundle.min.css" />
     <link rel="stylesheet" href="~/client/css/Video.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
+    <link rel="stylesheet" href="~/fonts/IBMPlexSans/stylesheet.css" />
     @RenderSection("Css", required: false)
 
     <link rel="stylesheet" href="~/css/site.css" />
@@ -35,7 +35,7 @@
     <link href="~/assets/css/lib/helper.css" rel="stylesheet" />
     <link href="~/assets/css/style.css" rel="stylesheet" />
     <style>
-
+        
         .button span {
             cursor: pointer;
             display: inline-block;
@@ -59,8 +59,10 @@
             .button:hover span:after {
                 opacity: 1;
                 right: 0;
-            }
+            } 
+            
     </style>
+    
 </head>
 <body >
     <div class="sidebar  sidebar-hide-to-hide sidebar-shrink sidebar-gestures    ">
@@ -120,6 +122,7 @@
                             <ul>
                                 <li><a asp-action="Index" asp-controller="Product" >Product</a></li>               
                                 <li><a asp-action="Create" asp-controller="Product" >Create</a></li>
+                                <li><a asp-action="Option" asp-controller="Product" >Option</a></li>               
                                 <li><a asp-action="CreateOption" asp-controller="Product" >Create Option</a></li>
                                 <li><a asp-action="CreateOptionContent" asp-controller="Product" >Create Option Content</a></li>
                             </ul>

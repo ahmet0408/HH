@@ -1098,3 +1098,4 @@ C:\Users\User\Desktop\React\HH.web\HH.web\obj\Debug\net5.0\HH.web.dll
 C:\Users\User\Desktop\React\HH.web\HH.web\obj\Debug\net5.0\ref\HH.web.dll
 C:\Users\User\Desktop\React\HH.web\HH.web\obj\Debug\net5.0\HH.web.pdb
 C:\Users\User\Desktop\React\HH.web\HH.web\obj\Debug\net5.0\HH.web.genruntimeconfig.cache
+C:\Users\User\Desktop\React\HH.web\HH.web\obj\Debug\net5.0\Razor\Views\Product\Option.cshtml.g.cs

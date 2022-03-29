@@ -14,6 +14,8 @@ namespace HH.bll.DTOs.MissionDTO
         [Required]
         public IFormFile FormIcon { get; set; }
         [Required]
+        public string iconCode { get; set; }
+        [Required]
         public bool IsPublish { get; set; }
     }
 }

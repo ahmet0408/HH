@@ -744,6 +744,9 @@
   <data name="Icon" xml:space="preserve">
     <value>Значок</value>
   </data>
+  <data name="Icon Code" xml:space="preserve">
+    <value>Код значка</value>
+  </data>
   <data name="Industries" xml:space="preserve">
     <value>Отрасли</value>
   </data>

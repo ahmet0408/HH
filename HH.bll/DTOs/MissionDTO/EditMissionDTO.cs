@@ -14,6 +14,8 @@ namespace HH.bll.DTOs.MissionDTO
         public ICollection<MissionTranslateDTO> MissionTranslates { get; set; }
         public string Icon { get; set; }
         public IFormFile FormIcon { get; set; }
+        [Required] 
+        public string iconCode { get; set; }
         [Required]
         public bool IsPublish { get; set; }
     }

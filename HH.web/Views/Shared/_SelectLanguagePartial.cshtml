@@ -11,7 +11,6 @@
 @{
     // получаем сервис IRequestCultureFeature
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
-    var adsd = requestCulture.RequestCulture.UICulture.NativeName;
     // получаем список поддерживаемых культур
     var cultureItems = LocOptions.Value.SupportedUICultures.Where(p => p.Name != requestCulture.RequestCulture.Culture.Name)
         .Select(c => new SelectListItem { Value = c.Name, Text = c.NativeName.Substring(0, 1).ToUpper() + c.NativeName.Substring(1) })
